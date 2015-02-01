@@ -2,6 +2,8 @@
 var renderer;
 var camera;
 var scene;
+var raycaster = new THREE.Raycaster();
+var mouse = new THREE.Vector2();
 
 function setup() {
   // set the scene size
@@ -126,7 +128,29 @@ function animate() {
 }
 
 function render() {
+  // update the picking ray with the camera and mouse position  
+  raycaster.setFromCamera( mouse, camera ); 
+
+  // calculate objects intersecting the picking ray
+  var intersects = raycaster.intersectObjects( scene.children );
+  for (var i = 0; i < intersects.length; i++) {
+    intersects[i].object.material.color = new THREE.Color( 0x0000ff );
+  }
+
   renderer.render( scene, camera );
 }
+
+function onMouseMove( event ) {
+
+  // calculate mouse position in normalized device coordinates
+  // (-1 to +1) for both components
+
+  mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1
+  mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1    
+
+}
+
+window.addEventListener('mousemove', onMouseMove, false );
+window.requestAnimationFrame(render);
 
 
