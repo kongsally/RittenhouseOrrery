@@ -143,15 +143,23 @@ function onMouseMove( event ) {
 
 function onMouseClick (event) {
 
-  console.log("down");
     // update the picking ray with the camera and mouse position  
   raycaster.setFromCamera( mouse, camera ); 
 
   // calculate objects intersecting the picking ray
   var intersects = raycaster.intersectObjects(scene.children);
+  var selectedColor = new THREE.Color( 0x0000ff );
 
   for (var i = 0; i < intersects.length; i++) {
-    intersects[i].object.material.color = new THREE.Color( 0x0000ff );
+    if(intersects[i].object.material.color.r == selectedColor.r
+      && intersects[i].object.material.color.g == selectedColor.g
+       && intersects[i].object.material.color.b == selectedColor.b) {
+      
+      intersects[i].object.material.color = new THREE.Color( 0xffffff );
+   
+    } else {
+        intersects[i].object.material.color = selectedColor;
+    }
   }
   render();
 
