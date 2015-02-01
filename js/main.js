@@ -35,22 +35,24 @@ function setup() {
   // so pull it back
   camera.position.z = 300;
 
+  //trackball Control
   controls = new THREE.TrackballControls( camera );
 
-  //load needed OBJS
-  putSphere();
-
-    // start the renderer
-  renderer.setSize(WIDTH, HEIGHT);
-  // attach the render-supplied DOM element
-  $container.append(renderer.domElement);
-
-  // create light
+   // create light
   var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
   directionalLight.position.set( 0, 0.5, 0.2 );
   scene.add( directionalLight );
   var amblight = new THREE.AmbientLight( 0x404040 ); // soft white light
   scene.add( amblight );
+
+  //load needed OBJS
+  var p = new THREE.Vector3( 0, 0, 0 );
+  putSphere(p);
+
+    // start the renderer
+  renderer.setSize(WIDTH, HEIGHT);
+  // attach the render-supplied DOM element
+  $container.append(renderer.domElement);
 
   // draw!
   renderer.render(scene, camera);
@@ -76,16 +78,15 @@ var sphereMaterial =
 
 var loader = new THREE.OBJLoader();
     loader.load('../data/sphere.obj', function(object) {
-       console.log(object);
        scene.add(object);
     });
 
 
 }
 
-function putSphere() {
+function putSphere(pos) {
   // set up the sphere vars
-var radius = 50,
+var radius = 20,
     segments = 16,
     rings = 16;
 
@@ -110,8 +111,9 @@ var sphere = new THREE.Mesh(
   sphereMaterial);
 
 // add the sphere to the scene
-console.log(sphere);
+sphere.position.set(pos.x, pos.y, pos.z);
 scene.add(sphere);
+render();
 
 }
 
