@@ -49,13 +49,13 @@ function setup() {
 
   //load needed OBJS
   var p = new THREE.Vector3( 0, 0, 0 );
-  putSphere(p);
+  //putSphere(p);
 
     // start the renderer
   renderer.setSize(WIDTH, HEIGHT);
   // attach the render-supplied DOM element
   $container.append(renderer.domElement);
-
+  loadObjsTo(scene);
   // draw!
   renderer.render(scene, camera);
   animate();
@@ -79,8 +79,19 @@ var sphereMaterial =
 
 
 var loader = new THREE.OBJLoader();
-    loader.load('../data/sphere.obj', function(object) {
-       scene.add(object);
+    loader.load('../data/spring.obj', function(object) {
+       object.traverse( function ( child ) {
+
+            if ( child instanceof THREE.Mesh ) {
+
+             // child.material.map = texture;
+
+            }
+
+          } );
+       console.log(object);
+       object.scale.set(10000, 10000, 10000);
+          scene.add( object );
     });
 
 
