@@ -79,7 +79,7 @@ var sphereMaterial =
 
 
 var loader = new THREE.OBJLoader();
-    loader.load('../data/spring.obj', function(object) {
+    loader.load('/data/spring.obj', function(object) {
        object.traverse( function ( child ) {
 
             if ( child instanceof THREE.Mesh ) {
