@@ -3,11 +3,12 @@ import java.util.ArrayList;
 
 public class Gear {
 	
+	Gear root;
 	String name;
-	int size;
+	int radius;
 	double teethNum;
 	double rotateNum;
-	//double angularSpeed;
+	double angularSpeed;
 	boolean isMoved;
 	ArrayList<Gear> sisters = new ArrayList<Gear>();
 	ArrayList<Gear> children = new ArrayList<Gear>();
@@ -17,9 +18,9 @@ public class Gear {
 		this.name = name;
 		isMoved = false;
 	}
-	
-	public Gear(int teethNum) {
-		this.teethNum = teethNum;
+
+	public Gear (int teethNum) {
+		this.radius = radius;
 	}
 	
 	public static boolean isSisters(Gear gear1, Gear gear2) {
@@ -36,25 +37,25 @@ public class Gear {
 		else return false;
 	}
 	
-	public static void rotate (Gear gear1, Gear gear2) {
-		//gear1.rotateNum = rotateNum;
+	public static void rotate (Gear gear1, Gear gear2, int rotateNum) {
+		gear1.rotateNum = rotateNum;
 		if (isSisters(gear1, gear2)) {
-			gear2.rotateNum = (double) (gear2.teethNum / gear1.teethNum) * gear1.rotateNum;
-			//gear2.angularSpeed = gear1.angularSpeed;
+			gear2.rotateNum = (double) (gear1.teethNum / gear2.teethNum) * gear1.rotateNum;
+			gear2.angularSpeed = gear1.angularSpeed;
 		}
 		
 		else if (isParent(gear1, gear2)) {
-			gear2.rotateNum = - gear1.rotateNum;
-			//gear2.angularSpeed = - (double) (gear1.teethNum / gear2.teethNum) * gear1.angularSpeed;
+			gear2.rotateNum = gear1.rotateNum;
+			gear2.angularSpeed = - (double) (gear1.teethNum / gear2.teethNum) * gear1.angularSpeed;
 		}
 		
 	}
-	
+
 	public void addToSisters (Gear sister) {
-		sisters.add(sister);
+		root.sisters.add(sister);
 	}
 
 	public void addToChildren (Gear child) {
-		children.add(child);
+		root.children.add(child);
 	}
 }

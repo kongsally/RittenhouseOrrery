@@ -1,20 +1,20 @@
 
 public class Interaction {
+	Gear root;
 
-	public static void interact(Gear root, int rotateNum) {
-		root.rotateNum = rotateNum;
+	public void interact(Gear root) {
 		sisterInteract(root);
 	}
 
-	public static void sisterInteract(Gear root) {
+	public void sisterInteract(Gear sister) {
 		for (Gear sGear : root.sisters) {
 			Gear.rotate (root, sGear);
 			childrenInteract(sGear);
 		}
 	}
 
-	public static void childrenInteract(Gear root) {
-		for (Gear cGear : root.children) {
+	public void childrenInteract(Gear child) {
+		for (Gear cGear : root.sisters) {
 			Gear.rotate (root, cGear);
 			sisterInteract(cGear);
 			childrenInteract(cGear);
