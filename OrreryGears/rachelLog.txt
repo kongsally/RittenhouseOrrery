@@ -1,0 +1,14 @@
+Feb.4th, Thursday:
+Rachel and Karen started on bubilding the data structure in Java. We created three classes: Gear, Interaction and Test. 
+
+Currently, we have radius, teethNum, rotateNum an arraylist of sister gears and children gears etc. within each gear's inforamtion. In test, we fist use the Gear constructor to create some gears and then use another function to align them in some relationships and sequence and then call the interact function in Interaction.java to see their rotation direction and rotation number.
+
+Gear Data Structure Team Planning:
+
+week 1: (-Feb.8th) Finish the basic model for building gears and gear interaction, make sure the very basic data strcuture and functions work correctly.
+
+week 2: (-Feb.15th) 
+Part 1:Learn how to use object-oriented method to construct similar data structure in JavaScript.
+Part 2: Read 3.js library and understand how to manipulate rotation and dimensions in th website.
+Part 3: Read JavaDoc on how to import and manipulate .obj files in java.
+Part 4: add variables such as angularSpeed and test these interactions with better tests.
