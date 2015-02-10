@@ -7,8 +7,8 @@ var mouse = new THREE.Vector2();
 
 function setup() {
   // set the scene size
-  var WIDTH = window.innerWidth * 0.8,
-      HEIGHT = window.innerHeight * 0.8;
+  var WIDTH = window.innerWidth * 0.9,
+      HEIGHT = window.innerHeight * 0.7;
 
   // set some camera attributes
   var VIEW_ANGLE = 45,
@@ -90,9 +90,9 @@ var loader = new THREE.OBJLoader();
             }
 
           } );
-       console.log(object);
        object.scale.set(8, 8, 8);
-        object.rotation.set(-Math.PI/2, 0, 0);
+       object.rotation.set(-Math.PI/2, 0, 0);
+       object.name = "cabinet";
        scene.add( object );
     });
 
@@ -155,8 +155,6 @@ function onMouseMove( event ) {
 }
 
 function onMouseClick (event) {
-
-  console.log(controls);
   mouseRayCast();
 }
 
@@ -183,6 +181,11 @@ function mouseRayCast() {
   }
   render();
 
+}
+
+function crank() {
+  var object = scene.getObjectByName( "cabinet", true );
+  object.rotation.z += Math.PI/8;
 }
 
 window.addEventListener('mousemove', onMouseMove, false );
