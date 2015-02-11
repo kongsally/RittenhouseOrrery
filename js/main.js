@@ -37,7 +37,7 @@ function setup() {
   // so pull it back
   camera.position.z = 300;
 
-  //trackball Control
+  //Orbit Control
   controls = new THREE.OrbitControls( camera );
   controls.maxDistance = 1000;
 
@@ -48,10 +48,7 @@ function setup() {
   var amblight = new THREE.AmbientLight( 0x404040 ); // soft white light
   scene.add( amblight );
 
-  //load needed OBJS
-  var p = new THREE.Vector3( 0, 0, 0 );
-  //putSphere(p);
-
+ 
   // start the renderer
   renderer.setSize(WIDTH, HEIGHT);
 
@@ -74,22 +71,9 @@ manager.onProgress = function ( item, loaded, total ) {
     console.log( item, loaded, total );
 };
 
-var sphereMaterial =
-  new THREE.MeshLambertMaterial(
-    {
-      color: 0xCC0000
-    });
-
 
 var loader = new THREE.OBJLoader();
     loader.load('data/' + fileName, function(object) {
-       object.traverse( function ( child ) {
-
-            if ( child instanceof THREE.Mesh ) {
-             // child.material.map = texture;
-            }
-
-          } );
        object.scale.set(8, 8, 8);
        object.rotation.set(-Math.PI/2, 0, 0);
        object.name = "cabinet";
