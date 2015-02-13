@@ -1,8 +1,35 @@
 h1 {
 	text-align: center;
 	font-family: sans-serif;
+	font-weight: 200;
+	color: #e5e5e5;
+	margin-top: 5%;
+}
+
+body {
+	background-color: #000;
 }
 
 #container {
 	text-align: center;
+}
+
+#crank {
+	font-size: 1.5em;
+	font-family: sans-serif;
+	background-color: rgba(255, 255, 255, 0.5);
+	color: #2a2a2a;
+	text-align: center;
+	position: fixed;
+	bottom: 1em;
+	width: 30%;
+	padding: 0.8em 0.3em 0.8em 0.3em;
+	left: 35%;
+
+	margin: 0;
+}
+
+#crank:hover {
+	background-color: rgba(255, 255, 255, 0.8);
+	color: #2a2a2a;
 }

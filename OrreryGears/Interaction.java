@@ -6,14 +6,14 @@ public class Interaction {
 		sisterInteract(root);
 	}
 
-	public void sisterInteract(Gear sister) {
+	public void sisterInteract(Gear root) {
 		for (Gear sGear : root.sisters) {
 			Gear.rotate (root, sGear);
 			childrenInteract(sGear);
 		}
 	}
 
-	public void childrenInteract(Gear child) {
+	public void childrenInteract(Gear root) {
 		for (Gear cGear : root.sisters) {
 			Gear.rotate (root, cGear);
 			sisterInteract(cGear);

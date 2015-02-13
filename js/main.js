@@ -7,8 +7,8 @@ var mouse = new THREE.Vector2();
 
 function setup() {
   // set the scene size
-  var WIDTH = window.innerWidth * 0.8,
-      HEIGHT = window.innerHeight * 0.8;
+  var WIDTH = window.innerWidth * 0.9,
+      HEIGHT = window.innerHeight * 0.7;
 
   // set some camera attributes
   var VIEW_ANGLE = 45,
@@ -37,33 +37,33 @@ function setup() {
   // so pull it back
   camera.position.z = 300;
 
-  //trackball Control
-  controls = new THREE.TrackballControls( camera );
+  //Orbit Control
+  controls = new THREE.OrbitControls( camera );
+  controls.maxDistance = 1000;
 
    // create light
-  var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
-  directionalLight.position.set( 0, 0.5, 0.2 );
+  var directionalLight = new THREE.DirectionalLight( 0xffffff, 1.0 );
+  directionalLight.position.set( 0, 1, 0.3 );
   scene.add( directionalLight );
   var amblight = new THREE.AmbientLight( 0x404040 ); // soft white light
   scene.add( amblight );
 
-  //load needed OBJS
-  var p = new THREE.Vector3( 0, 0, 0 );
-  putSphere(p);
-
-    // start the renderer
+ 
+  // start the renderer
   renderer.setSize(WIDTH, HEIGHT);
+
   // attach the render-supplied DOM element
   $container.append(renderer.domElement);
 
   // draw!
   renderer.render(scene, camera);
   animate();
+  loadObj("markup.obj");
 }
 
 
 
-function loadObjsTo(scene) {
+function loadObj(fileName) {
 
 //load in the sphere
 var manager = new THREE.LoadingManager();
@@ -71,19 +71,16 @@ manager.onProgress = function ( item, loaded, total ) {
     console.log( item, loaded, total );
 };
 
-var sphereMaterial =
-  new THREE.MeshLambertMaterial(
-    {
-      color: 0xCC0000
-    });
-
 
 var loader = new THREE.OBJLoader();
-    loader.load('../data/sphere.obj', function(object) {
-       scene.add(object);
+    loader.load('data/' + fileName, function(object) {
+       object.scale.set(8, 8, 8);
+       object.rotation.set(-Math.PI/2, 0, 0);
+       object.name = "cabinet";
+       scene.add( object );
     });
 
-
+ render();
 }
 
 function putSphere(pos) {
@@ -142,19 +139,37 @@ function onMouseMove( event ) {
 }
 
 function onMouseClick (event) {
+  mouseRayCast();
+}
 
-  console.log("down");
-    // update the picking ray with the camera and mouse position  
+function mouseRayCast() {
+   // update the picking ray with the camera and mouse position  
   raycaster.setFromCamera( mouse, camera ); 
 
   // calculate objects intersecting the picking ray
-  var intersects = raycaster.intersectObjects(scene.children);
+  var intersects = raycaster.intersectObjects(scene.children, true);
+  var selectedColor = new THREE.Color( 0xff0000 );
 
   for (var i = 0; i < intersects.length; i++) {
-    intersects[i].object.material.color = new THREE.Color( 0x0000ff );
+    console.log("intersected!");
+
+    if(intersects[i].object.material.color.r == selectedColor.r
+      && intersects[i].object.material.color.g == selectedColor.g
+       && intersects[i].object.material.color.b == selectedColor.b) {
+      
+      intersects[i].object.material.color = new THREE.Color( 0xffffff );
+  
+    } else {
+        intersects[i].object.material.color = selectedColor;
+    }
   }
   render();
 
+}
+
+function crank() {
+  var object = scene.getObjectByName( "cabinet", true );
+  object.rotation.z += Math.PI/8;
 }
 
 window.addEventListener('mousemove', onMouseMove, false );

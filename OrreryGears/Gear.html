@@ -1,0 +1,109 @@
+<html>
+<head>
+<title> Test </title>
+
+</head>
+
+<body> 
+
+<script language = "javascript">
+
+//Global variables
+function Gear () {
+var name;
+var size;
+var teethNum;
+var rotateNum;
+var isMoved = false;
+var sisters = new Array();
+var children = new Array();
+
+function contains(a, obj) {
+    for (var i = 0; i < a.length; i++) {
+        if (a[i] == obj) {
+            return true;
+        }
+    }
+    return false;
+}
+
+//Object constructor
+
+function Gear (teeth) {
+	this.teethNum = teeth;
+}
+
+//functions
+
+function isSisters (gear1, gear2) {
+	if (contains(gear1.sisters, gear2) || contains(gear2.sisters, gear1)) {
+		return true;
+	}
+	else return false;
+}
+
+function isParent (gear1, gear2) {
+	if (contains(gear1.children, gear2)) {
+			return true;
+		}
+		else return false;
+}
+
+function addToSisters (sister) {
+	sisters.push(sister);
+}
+
+function addToChildren (child) {
+	children.push(child);
+}
+
+function rotate (gear1, gear2) {
+	if (isSisters(gear1, gear2)) {
+			gear2.rotateNum = (double) (gear2.teethNum / gear1.teethNum) * gear1.rotateNum;
+		}
+		
+		else if (isParent(gear1, gear2)) {
+			gear2.rotateNum = - gear1.rotateNum;
+		}
+}
+
+function sisterInteract (root) {
+	for (var i = 0; i < root.sisters.length; i++) {
+		rotate (root, sisters[i]);
+		childrenInteract(sisters[i])
+	}
+}
+
+function childrenInteract (root) {
+	for (var i = 0; i < root.children.length; i++) {
+		rotate (root, children[i]);
+		sisterInteract (children[i])
+		childrenInteract (children[i])
+	}
+}
+
+function interact (root, rotate) {
+	root.rotateNum = rotate;
+	sisterInteract(root);
+}
+
+}
+
+var gear1 = new Gear(50);
+var gear2 = new Gear(100);
+var gear3 = new Gear(50);
+
+gear1.addToSisters(gear2);
+gear2.addToChildren(gear3);
+
+interact(gear1,10);
+
+//var bool = isSisters(gear1, gear2);
+
+var arr = [1, 2];
+var bool = contains(arr, 1);
+
+document.write(bool);
+</script>
+</body>
+</html>
