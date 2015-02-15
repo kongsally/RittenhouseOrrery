@@ -4,6 +4,8 @@ var camera;
 var scene;
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
+var gears = [];
+var gearModels = [];
 
 function setup() {
   // set the scene size
@@ -58,12 +60,38 @@ function setup() {
   // draw!
   renderer.render(scene, camera);
   animate();
-  loadObj("markup.obj");
+  var origin = new THREE.Vector3(0, 0, 0);
+  var cabinetScale = new THREE.Vector3(8, 8, 8);
+  var cabinetRot = new THREE.Vector3(-Math.PI/2, 0, 0);
+
+  loadObj("cabinet.obj", origin, cabinetScale, cabinetRot, new THREE.Color("rgb(200,200,200)"));
+
+  //load sample gears
+    var gearScale = new THREE.Vector3(500, 500, 500);
+    var gear1 = new Gear(50);
+    gear1.name = "gear0";
+    var gear2 = new Gear(100);
+    gear2.name = "gear1";
+    var gear3 = new Gear(50);
+    gear3.name = "gear2";
+    console.log(gear2);
+
+    addToSisters(gear1, gear2);
+    addToChildren(gear2, gear3);
+
+
+    gears.push(gear2);
+    gears.push(gear1);
+    gears.push(gear3);
+    for(var i =0 ;i < gears.length; i++) {
+      loadObj("gear" + i + ".obj", new THREE.Vector3((i-1) * 50, 0, 100), 
+        gearScale, new THREE.Vector3(0, 0, 0), new THREE.Color("rgb(" + i * 50 + ",0,0)"));
+    }
 }
 
 
 
-function loadObj(fileName) {
+function loadObj(fileName, pos, scale, rot, col) {
 
 //load in the sphere
 var manager = new THREE.LoadingManager();
@@ -74,9 +102,14 @@ manager.onProgress = function ( item, loaded, total ) {
 
 var loader = new THREE.OBJLoader();
     loader.load('data/' + fileName, function(object) {
-       object.scale.set(8, 8, 8);
-       object.rotation.set(-Math.PI/2, 0, 0);
-       object.name = "cabinet";
+       object.scale.set(scale.x, scale.y, scale.z);
+       object.rotation.set(rot.x, rot.y, rot.z);
+       object.name = fileName;
+       object.position.set(pos.x, pos.y, pos.z);
+       console.log(object);
+       object.children[0].material.color.r = col.r;
+       object.children[0].material.color.g = col.g;
+       object.children[0].material.color.b = col.b;
        scene.add( object );
     });
 
@@ -139,7 +172,7 @@ function onMouseMove( event ) {
 }
 
 function onMouseClick (event) {
-  mouseRayCast();
+  // mouseRayCast();
 }
 
 function mouseRayCast() {
@@ -168,8 +201,15 @@ function mouseRayCast() {
 }
 
 function crank() {
-  var object = scene.getObjectByName( "cabinet", true );
-  object.rotation.z += Math.PI/8;
+ 
+
+  //gear 1 is mother gear
+  interact(gears[1],10);
+
+  for(var i =0 ;i < gears.length; i++) {
+    var object = scene.getObjectByName( "gear" + i + ".obj", true );
+    object.rotation.z = gears[i].rotateNum * Math.PI/180;
+  }
 }
 
 window.addEventListener('mousemove', onMouseMove, false );
