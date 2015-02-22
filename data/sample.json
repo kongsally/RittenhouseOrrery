@@ -1,0 +1,6 @@
+"gears":[
+    {"id":"1", "teethNumber":"50", "sisters": [], "children":}, 
+     {"id":"2", "teethNumber":"100", "sisters": [], "children":}, 
+      {"id":"3", "teethNumber":"", "sisters": [], "children":}, 
+       {"id":"4", "teethNumber":"", "sisters": [], "children":}, 
+]

@@ -84,7 +84,7 @@ function setup() {
     gears.push(gear1);
     gears.push(gear3);
     for(var i =0 ;i < gears.length; i++) {
-      loadObj("gear" + i + ".obj", new THREE.Vector3((i-1) * 50, 0, 100), 
+      loadObj("gear" + i + ".obj", new THREE.Vector3((i-1) * 50, 0, -100), 
         gearScale, new THREE.Vector3(0, 0, 0), new THREE.Color("rgb(" + i * 50 + ",0,0)"));
     }
 }
@@ -93,11 +93,16 @@ function setup() {
 
 function loadObj(fileName, pos, scale, rot, col) {
 
-//load in the sphere
 var manager = new THREE.LoadingManager();
 manager.onProgress = function ( item, loaded, total ) {
     console.log( item, loaded, total );
 };
+
+var material  = new THREE.MeshPhongMaterial()
+material.map = THREE.ImageUtils.loadTexture('data/Orrery_albedo.png');
+material.specularMap = THREE.ImageUtils.loadTexture('data/Orrery_gloss.jpg');
+material.specular  = new THREE.Color('white');
+
 
 
 var loader = new THREE.OBJLoader();
@@ -107,9 +112,7 @@ var loader = new THREE.OBJLoader();
        object.name = fileName;
        object.position.set(pos.x, pos.y, pos.z);
        console.log(object);
-       object.children[0].material.color.r = col.r;
-       object.children[0].material.color.g = col.g;
-       object.children[0].material.color.b = col.b;
+       object.children[0].material = material;
        scene.add( object );
     });
 

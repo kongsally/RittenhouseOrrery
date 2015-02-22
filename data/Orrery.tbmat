@@ -1,0 +1,54 @@
+@Sub SRSurface = SRSurfaceParallaxMap
+Normal Map = @Tex path Orrery_normal.png srgb 0 filter 1 mip 1 aniso 4 wrap 1 @EndTex
+Scale & Bias = 1
+    Flip X = 0
+    Flip Y = 0
+    Flip Z = 0
+    Object Space = 0
+
+Channel = 0
+    Depth = 0.0
+Depth Center = 0.5
+@End
+
+@Sub SRMicrosurface = SRMicrosurfaceGlossMap
+Gloss Map = @Tex path Orrery_gloss.png srgb 0 filter 1 mip 1 aniso 4 wrap 1 @EndTex
+Channel = 0
+    Gloss = 1
+    Invert = 0
+@End
+
+@Sub SRAlbedo = SRAlbedoMap
+Albedo Map = @Tex path Orrery_albedo.png srgb 1 filter 1 mip 1 aniso 4 wrap 1 @EndTex
+Color = 1 1 1
+@End
+
+@Sub SRDiffusion = SRDiffusionLambertian
+@End
+
+@Sub SRReflectivity = SRReflectivitySpecularMap
+Specular Map = @Tex path Orrery_specular.png srgb 1 filter 1 mip 1 aniso 4 wrap 1 @EndTex
+Intensity = 1
+    Color = 1 1 1
+    Fresnel = 1
+    Fresnel Color = 1 1 1
+    Conserve Energy = 1
+@End
+
+@Sub SRReflection = SRReflectionBlinnPhong
+    Horizon Occlusion = 1
+@End
+
+@Sub SROcclusion = SROcclusionMap
+Occlusion Map = @Tex path Orrery_ao.png srgb 1 filter 1 mip 1 aniso 4 wrap 1 @EndTex
+Channel;occlusion = 0
+    Occlusion = 1
+    UV Set = 0
+    Cavity Map = nil
+    Channel;cavity = 0
+    Diffuse Cavity = 1
+    Specular Cavity = 1
+@End
+
+@Sub SRMerge = SRMerge
+@End
