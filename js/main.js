@@ -62,9 +62,9 @@ function setup() {
   animate();
   var origin = new THREE.Vector3(0, 0, 0);
   var cabinetScale = new THREE.Vector3(8, 8, 8);
-  var cabinetRot = new THREE.Vector3(-Math.PI/2, 0, 0);
+  var cabinetRot = new THREE.Vector3(0, 0, 0);
 
-  loadObj("cabinet.obj", origin, cabinetScale, cabinetRot, new THREE.Color("rgb(200,200,200)"));
+  loadObj("lowpoly.obj", origin, cabinetScale, cabinetRot, new THREE.Color("rgb(200,200,200)"));
 
   //load sample gears
     var gearScale = new THREE.Vector3(500, 500, 500);
@@ -84,7 +84,7 @@ function setup() {
     gears.push(gear1);
     gears.push(gear3);
     for(var i =0 ;i < gears.length; i++) {
-      loadObj("gear" + i + ".obj", new THREE.Vector3((i-1) * 50, 0, -100), 
+      loadObj("gear" + i + ".obj", new THREE.Vector3((i-1) * 50, -50, 100), 
         gearScale, new THREE.Vector3(0, 0, 0), new THREE.Color("rgb(" + i * 50 + ",0,0)"));
     }
 }
@@ -102,8 +102,8 @@ var material  = new THREE.MeshPhongMaterial()
 material.map = THREE.ImageUtils.loadTexture('data/Orrery_albedo.png');
 material.specularMap = THREE.ImageUtils.loadTexture('data/Orrery_gloss.jpg');
 material.specular  = new THREE.Color('white');
-
-
+material.bumpMap    = THREE.ImageUtils.loadTexture('data/Orrery_bump.png')
+material.bumpScale = 0.05
 
 var loader = new THREE.OBJLoader();
     loader.load('data/' + fileName, function(object) {
@@ -205,7 +205,6 @@ function mouseRayCast() {
 
 function crank() {
  
-
   //gear 1 is mother gear
   interact(gears[1],10);
 
