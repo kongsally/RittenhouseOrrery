@@ -1,0 +1,26 @@
+/*Explanation and Objectives*/
+/*each line of the txt file represents one gear's input information
+in the form of such as "name" "teethNum" "sisters(given sisters' names)" "children(given children's names)"
+Parsing is done by line and by the space in between each input
+*/
+
+/*Pasing implementation*/
+/*while (nextline != null){
+var temp[] = nextline.split();
+var sisters[] = parseCSV(temp[2]);
+var tempGear = new Gear(temp[0], temp[1]);
+for (sisters: sisters[]) {
+addSisters(tempGear, sister);
+}
+for (chlid: children[]) {
+details omitted
+}
+totalGear.push(tempGear);
+*/
+
+/* Example:
+gear1 50 gear2 none
+gear2 100 none gear3,gear4
+gear3 50 none none
+gear4 20 none none
+*/
