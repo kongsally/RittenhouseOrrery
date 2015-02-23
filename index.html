@@ -12,6 +12,7 @@
     <script src="js/OBJLoader.js"></script>
     <script src="js/TrackballControls.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/gear.js"></script>
     <link rel="stylesheet" href="css/main.css">
 
 </head>
@@ -19,16 +20,33 @@
 <h1> Rittenhouse Orrery Project </h1>
  <div id="container"></div>
  <script>
-var json = [
+var gearInput = [
 {"id":"1", "teethNum":"50", "sisters": [2], "children": []},
 {"id":"2", "teethNum":"100", "sisters": [], "children": [3, 4]},
 {"id":"3", "teethNum":"50", "sisters": [], "children": []},
 {"id":"4", "teethNum":"20", "sisters": [], "children": []}
 ];
-
-console.log(json);
- 
  </script>
- 
+
+ <script>
+ //very basic testing, it works!
+ console.log(gearInput); 
+ console.log(gearInput[0].id);
+
+//testing the gear instructor
+var gear1 = new Gear("1", 50);
+var gear2 = new Gear("2", 100);
+var gear3 = new Gear("3", 50);
+console.log(gear1);
+
+addToSisters(gear1, gear2);
+addToChildren(gear2, gear3);
+interact(gear1,10);
+
+console.log(gear1);
+console.log(gear2);
+console.log(gear3);
+
+ </script>
 </body>
 </html>
