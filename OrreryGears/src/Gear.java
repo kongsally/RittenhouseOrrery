@@ -8,7 +8,7 @@ public class Gear {
 	double teethNum;
 	double rotateNum;
 	//double angularSpeed;
-	boolean isMoved;
+	//boolean isMoved;
 	ArrayList<Gear> sisters = new ArrayList<Gear>();
 	ArrayList<Gear> children = new ArrayList<Gear>();
 	
