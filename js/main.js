@@ -99,8 +99,8 @@ manager.onProgress = function ( item, loaded, total ) {
 };
 
 var material  = new THREE.MeshPhongMaterial()
-material.map = THREE.ImageUtils.loadTexture('data/Orrery_albedo.png');
-material.specularMap = THREE.ImageUtils.loadTexture('data/Orrery_gloss.png');
+material.map = THREE.ImageUtils.loadTexture('data/albedo_with_shadow.png');
+material.specularMap = THREE.ImageUtils.loadTexture('data/Orrery_specular.png');
 material.specular  = new THREE.Color('white');
 material.bumpMap    = THREE.ImageUtils.loadTexture('data/Orrery_bump.png')
 material.bumpScale = 0.05
