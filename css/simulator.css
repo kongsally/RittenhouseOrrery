@@ -1,0 +1,46 @@
+html { 
+
+}
+
+body {
+	border: none;
+}
+
+h3 {
+	text-align: center;
+    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 2.5em;
+	background-color: rgba(255, 255, 255, 0.5);
+	padding: 10px;
+    margin-top: 1em;
+}
+
+h3:hover {
+    cursor: pointer;
+}
+
+a:link, a:visited {
+    display: block;
+    width: 120px;
+    font-weight: bold;
+    color: #000000;
+    background-color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    padding: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+a:hover, a:active {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+
+#container {
+	text-align: center;
+}
+
+#homeBtn {
+    margin-left: 5%;
+    cursor: pointer;
+}

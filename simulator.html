@@ -9,19 +9,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <script src="js/three.min.js"></script>
     <script src="js/jquery.js"></script>
+    <script src="js/OBJLoader.js"></script>
+    <script src="js/MaterialLoader.js"></script>
+    <script src="js/TrackballControls.js"></script>
     <script src="js/Detector.js"></script>
     <script src="js/stats.min.js"></script>
     <script src="js/OBJLoader.js"></script>
     <script src="js/OrbitControls.js"></script>
     <script src="js/gear.js"></script>
     <script src="js/main.js"></script>
-    <link rel="stylesheet" href="css/main.css">
-
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/simulator.css">
+    <link href='http://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>
 </head>
 <body onload = "setup();">
-<h1> Rittenhouse Orrery Project </h1>
- <div id="container"></div>
- <div id="crank" onclick="crank();"> Crank It</div>
- 
+
+  <h3 onclick="window.location='index.html'"> Rittenhouse Orrery Project </h3>
+  
+  <a id="homeBtn" class="button" href="index.html"> Home </a> 
+  <div id="container"></div>
+
 </body>
 </html>
