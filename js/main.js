@@ -10,7 +10,7 @@ var gearModels = [];
 function setup() {
   // set the scene size
   var WIDTH = window.innerWidth,
-      HEIGHT = window.innerHeight * 0.7;
+      HEIGHT = window.innerHeight * 0.8;
 
   // set some camera attributes
   var VIEW_ANGLE = 45,
@@ -64,7 +64,16 @@ function setup() {
   var cabinetScale = new THREE.Vector3(8, 8, 8);
   var cabinetRot = new THREE.Vector3(0, 0, 0);
 
-  loadObj("cabinet.obj", origin, cabinetScale, cabinetRot, new THREE.Color("rgb(200,200,200)"));
+  loadObj("cabinet.obj", "albedo_with_shadow.png", "orrery_specular.png",
+    origin, cabinetScale, cabinetRot, new THREE.Color("rgb(200,200,200)"));
+  
+  loadObj("starryNight.obj", "starryNight_albedo.png", "",
+    origin, cabinetScale, cabinetRot, new THREE.Color("rgb(200,200,200)"));
+  
+  loadObj("zodiacRing.obj", "zodiacRing_albedo.png", "zodiacRing_Specular.png", 
+    origin, cabinetScale, cabinetRot, new THREE.Color("rgb(200,200,200)"));
+
+  
 
   // //load sample gears
   //   var gearScale = new THREE.Vector3(500, 500, 500);
@@ -91,22 +100,29 @@ function setup() {
 
 
 
-function loadObj(fileName, pos, scale, rot, col) {
+function loadObj(fileName, albedo, spec, pos, scale, rot, col) {
 
 var manager = new THREE.LoadingManager();
 manager.onProgress = function ( item, loaded, total ) {
     console.log( item, loaded, total );
 };
 
+var path = 'data/';
+
 var material  = new THREE.MeshPhongMaterial()
-material.map = THREE.ImageUtils.loadTexture('data/albedo_with_shadow.png');
-material.specularMap = THREE.ImageUtils.loadTexture('data/Orrery_specular.png');
-material.specular  = new THREE.Color('white');
-material.bumpMap    = THREE.ImageUtils.loadTexture('data/Orrery_bump.png')
-material.bumpScale = 0.05
+
+if(albedo !== "") {
+  material.map = THREE.ImageUtils.loadTexture(path + albedo);
+  material.transparent = true;
+}
+
+if(spec !== "") {
+  material.specularMap = THREE.ImageUtils.loadTexture(path + spec);
+  material.specular  = new THREE.Color('white');
+}
 
 var loader = new THREE.OBJLoader();
-    loader.load('data/' + fileName, function(object) {
+    loader.load(path + fileName, function(object) {
        object.scale.set(scale.x, scale.y, scale.z);
        object.rotation.set(rot.x, rot.y, rot.z);
        object.name = fileName;
@@ -161,8 +177,7 @@ function animate() {
 }
 
 function render() {
-
-  renderer.render( scene, camera );
+  renderer.render(scene, camera);
 }
 
 function onMouseMove( event ) {
