@@ -9,11 +9,11 @@ body {
 h3 {
 	text-align: center;
     font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 2em;
+	font-size: 24px;
 	background-color: rgba(255, 255, 255, 0.5);
 	padding: 10px;
-    margin-top: 1em;
-    margin-bottom: 0.5;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 h3:hover {
