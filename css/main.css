@@ -5,5 +5,9 @@
 
 #orreryImg {
 	width: 100%;
+	height: auto;
 }
 
+#navContainer {
+	padding-top: 10%;
+}

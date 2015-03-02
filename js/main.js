@@ -9,7 +9,7 @@ var gearModels = [];
 
 function setup() {
   // set the scene size
-  var WIDTH = window.innerWidth * 0.9,
+  var WIDTH = window.innerWidth,
       HEIGHT = window.innerHeight * 0.7;
 
   // set some camera attributes
@@ -64,29 +64,29 @@ function setup() {
   var cabinetScale = new THREE.Vector3(8, 8, 8);
   var cabinetRot = new THREE.Vector3(0, 0, 0);
 
-  loadObj("lowpoly.obj", origin, cabinetScale, cabinetRot, new THREE.Color("rgb(200,200,200)"));
+  loadObj("cabinet.obj", origin, cabinetScale, cabinetRot, new THREE.Color("rgb(200,200,200)"));
 
-  //load sample gears
-    var gearScale = new THREE.Vector3(500, 500, 500);
-    var gear1 = new Gear(50);
-    gear1.name = "gear0";
-    var gear2 = new Gear(100);
-    gear2.name = "gear1";
-    var gear3 = new Gear(50);
-    gear3.name = "gear2";
-    console.log(gear2);
+  // //load sample gears
+  //   var gearScale = new THREE.Vector3(500, 500, 500);
+  //   var gear1 = new Gear(50);
+  //   gear1.name = "gear0";
+  //   var gear2 = new Gear(100);
+  //   gear2.name = "gear1";
+  //   var gear3 = new Gear(50);
+  //   gear3.name = "gear2";
+  //   console.log(gear2);
 
-    addToSisters(gear1, gear2);
-    addToChildren(gear2, gear3);
+  //   addToSisters(gear1, gear2);
+  //   addToChildren(gear2, gear3);
 
 
-    gears.push(gear2);
-    gears.push(gear1);
-    gears.push(gear3);
-    for(var i =0 ;i < gears.length; i++) {
-      loadObj("gear" + i + ".obj", new THREE.Vector3((i-1) * 50, -50, 100), 
-        gearScale, new THREE.Vector3(0, 0, 0), new THREE.Color("rgb(" + i * 50 + ",0,0)"));
-    }
+  //   gears.push(gear2);
+  //   gears.push(gear1);
+  //   gears.push(gear3);
+  //   for(var i =0 ;i < gears.length; i++) {
+  //     loadObj("gear" + i + ".obj", new THREE.Vector3((i-1) * 50, -50, 100), 
+  //       gearScale, new THREE.Vector3(0, 0, 0), new THREE.Color("rgb(" + i * 50 + ",0,0)"));
+  //   }
 }
 
 
