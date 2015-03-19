@@ -6,6 +6,7 @@ var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
 var gears = [];
 var gearModels = [];
+var objectModels = [];
 
 function setup() {
   // set the scene size
@@ -64,14 +65,16 @@ function setup() {
   var cabinetScale = new THREE.Vector3(8, 8, 8);
   var cabinetRot = new THREE.Vector3(0, 0, 0);
 
-  loadObj("cabinet.obj", "albedo_with_shadow.png", "orrery_specular.png",
-    origin, cabinetScale, cabinetRot, new THREE.Color("rgb(200,200,200)"));
+  load_json_obj("data/sample.json");
+
+  // loadObj("cabinet.obj", "albedo_with_shadow.png", "orrery_specular.png",
+  //   origin, cabinetScale, cabinetRot);
   
-  loadObj("starryNight.obj", "starryNight_albedo.png", "",
-    origin, cabinetScale, cabinetRot, new THREE.Color("rgb(200,200,200)"));
+  // loadObj("starryNight.obj", "starryNight_albedo.png", "",
+  //   origin, cabinetScale, cabinetRot);
   
-  loadObj("zodiacRing.obj", "zodiacRing_albedo.png", "zodiacRing_Specular.png", 
-    origin, cabinetScale, cabinetRot, new THREE.Color("rgb(200,200,200)"));
+  // loadObj("zodiacRing.obj", "zodiacRing_albedo.png", "zodiacRing_Specular.png", 
+  //   origin, cabinetScale, cabinetRot);
 
   
 
@@ -94,45 +97,70 @@ function setup() {
   //   gears.push(gear3);
   //   for(var i =0 ;i < gears.length; i++) {
   //     loadObj("gear" + i + ".obj", new THREE.Vector3((i-1) * 50, -50, 100), 
-  //       gearScale, new THREE.Vector3(0, 0, 0), new THREE.Color("rgb(" + i * 50 + ",0,0)"));
+  //       gearScale, new THREE.Vector3(0, 0, 0)));
   //   }
 }
 
-
-
-function loadObj(fileName, albedo, spec, pos, scale, rot, col) {
-
-var manager = new THREE.LoadingManager();
-manager.onProgress = function ( item, loaded, total ) {
-    console.log( item, loaded, total );
-};
-
-var path = 'data/';
-
-var material  = new THREE.MeshPhongMaterial()
-
-if(albedo !== "") {
-  material.map = THREE.ImageUtils.loadTexture(path + albedo);
-  material.transparent = true;
+function load_json_obj(filePath){
+  $.getJSON(filePath, function(data) {
+    objectModels = data.objects;
+    for(var i = 0; i < objectModels.length; i++) {
+    loadObj(
+      objectModels[i].objFile,
+      objectModels[i].albedoFile,
+      objectModels[i].specularFile,
+      new THREE.Vector3(
+        objectModels[i].origin.x,
+        objectModels[i].origin.y,
+        objectModels[i].origin.z
+      ),
+      new THREE.Vector3(
+        objectModels[i].scale.x,
+        objectModels[i].scale.y,
+        objectModels[i].scale.z
+      ),
+      new THREE.Vector3(
+        objectModels[i].rotate.x,
+        objectModels[i].rotate.y,
+        objectModels[i].rotate.z
+      )
+    );
+  }
+  });
 }
 
-if(spec !== "") {
-  material.specularMap = THREE.ImageUtils.loadTexture(path + spec);
-  material.specular  = new THREE.Color('white');
-}
+function loadObj(fileName, albedo, spec, pos, scale, rot) {
 
-var loader = new THREE.OBJLoader();
-    loader.load(path + fileName, function(object) {
-       object.scale.set(scale.x, scale.y, scale.z);
-       object.rotation.set(rot.x, rot.y, rot.z);
-       object.name = fileName;
-       object.position.set(pos.x, pos.y, pos.z);
-       console.log(object);
-       object.children[0].material = material;
-       scene.add( object );
-    });
+  var manager = new THREE.LoadingManager();
+  manager.onProgress = function ( item, loaded, total ) {
+      console.log( item, loaded, total );
+  };
 
- render();
+  var path = 'data/';
+
+  var material  = new THREE.MeshPhongMaterial()
+
+  if(albedo !== "") {
+    material.map = THREE.ImageUtils.loadTexture(path + albedo);
+    material.transparent = true;
+  }
+
+  if(spec !== "") {
+    material.specularMap = THREE.ImageUtils.loadTexture(path + spec);
+    material.specular  = new THREE.Color('white');
+  }
+
+  var loader = new THREE.OBJLoader();
+      loader.load(path + fileName, function(object) {
+         object.scale.set(scale.x, scale.y, scale.z);
+         object.rotation.set(rot.x, rot.y, rot.z);
+         object.name = fileName;
+         object.position.set(pos.x, pos.y, pos.z);
+         object.children[0].material = material;
+         scene.add( object );
+      });
+
+   render();
 }
 
 function putSphere(pos) {
@@ -190,6 +218,7 @@ function onMouseMove( event ) {
 }
 
 function onMouseClick (event) {
+  console.log(objectModels);
   // mouseRayCast();
 }
 

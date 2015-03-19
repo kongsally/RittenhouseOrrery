@@ -1,6 +1,66 @@
-"gears":[
-    {"id":"1", "teethNumber":"50", "sisters": [], "children":}, 
-     {"id":"2", "teethNumber":"100", "sisters": [], "children":}, 
-      {"id":"3", "teethNumber":"", "sisters": [], "children":}, 
-       {"id":"4", "teethNumber":"", "sisters": [], "children":}, 
-]
+{"objects": [
+	{
+		"name": "Cabinet",
+		"objFile": "cabinet.obj",
+		"albedoFile": "albedo_with_shadow.png",
+		"specularFile": "orrery_specular.png",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		},
+		"scale" : {
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+	},
+	{
+		"name": "Starry Night",
+		"objFile": "starryNight.obj",
+		"albedoFile": "starryNight_albedo.png",
+		"specularFile": "",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		},
+		"scale" : {
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+
+	},
+	{
+		"name": "Zodiac Ring",
+		"objFile": "zodiacRing.obj",
+		"albedoFile": "zodiacRing_albedo.png",
+		"specularFile": "zodiacRing_Specular.png",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		},
+		"scale" : {
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+	}
+]}
