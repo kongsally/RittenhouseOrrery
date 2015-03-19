@@ -62,5 +62,89 @@
 			"y" : 0,
 			"z" : 0
 		}
+	},
+	{
+		"name": "Gear0",
+		"objFile": "8.obj",
+		"albedoFile": "brass.jpg",
+		"specularFile": "zodiacRing_Specular.png",
+		"origin" : {
+			"x" : -120,
+			"y" : 50,
+			"z" : 50
+		},
+		"scale" : {
+			"x" : 1,
+			"y" : 1,
+			"z" : 1
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+	},
+	{
+		"name": "Gear1",
+		"objFile": "45.obj",
+		"albedoFile": "brass.jpg",
+		"specularFile": "zodiacRing_Specular.png",
+		"origin" : {
+			"x" : -120,
+			"y" : 25,
+			"z" : 50
+		},
+		"scale" : {
+			"x" : 1,
+			"y" : 1,
+			"z" : 1
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+	},
+	{
+		"name": "Gear2",
+		"objFile": "64.obj",
+		"albedoFile": "brass.jpg",
+		"specularFile": "zodiacRing_Specular.png",
+		"origin" : {
+			"x" : -120,
+			"y" : 0,
+			"z" : 50
+		},
+		"scale" : {
+			"x" : 1,
+			"y" : 1,
+			"z" : 1
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+	},
+	{
+		"name": "Gear3",
+		"objFile": "173.obj",
+		"albedoFile": "brass.jpg",
+		"specularFile": "zodiacRing_Specular.png",
+		"origin" : {
+			"x" : -120,
+			"y" : -50,
+			"z" : 50
+		},
+		"scale" : {
+			"x" : 1,
+			"y" : 1,
+			"z" : 1
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
 	}
 ]}

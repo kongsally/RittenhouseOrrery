@@ -46,7 +46,7 @@ function setup() {
 
    // create light
   var directionalLight = new THREE.DirectionalLight( 0xffffff, 1.0 );
-  directionalLight.position.set( 0, 1, 0.3 );
+  directionalLight.position.set( 100, 100, 100 );
   scene.add( directionalLight );
   var amblight = new THREE.AmbientLight( 0x404040 ); // soft white light
   scene.add( amblight );
@@ -106,6 +106,7 @@ function load_json_obj(filePath){
     objectModels = data.objects;
     for(var i = 0; i < objectModels.length; i++) {
     loadObj(
+      objectModels[i].name,
       objectModels[i].objFile,
       objectModels[i].albedoFile,
       objectModels[i].specularFile,
@@ -129,7 +130,7 @@ function load_json_obj(filePath){
   });
 }
 
-function loadObj(fileName, albedo, spec, pos, scale, rot) {
+function loadObj(objName, fileName, albedo, spec, pos, scale, rot) {
 
   var manager = new THREE.LoadingManager();
   manager.onProgress = function ( item, loaded, total ) {
@@ -157,6 +158,8 @@ function loadObj(fileName, albedo, spec, pos, scale, rot) {
          object.name = fileName;
          object.position.set(pos.x, pos.y, pos.z);
          object.children[0].material = material;
+         object.children[0].geometry.name = objName;
+         console.log(objName);
          scene.add( object );
       });
 
@@ -218,8 +221,7 @@ function onMouseMove( event ) {
 }
 
 function onMouseClick (event) {
-  console.log(objectModels);
-  // mouseRayCast();
+   mouseRayCast();
 }
 
 function mouseRayCast() {
@@ -229,20 +231,24 @@ function mouseRayCast() {
   // calculate objects intersecting the picking ray
   var intersects = raycaster.intersectObjects(scene.children, true);
   var selectedColor = new THREE.Color( 0xff0000 );
+  var intersectedObj = "";
 
   for (var i = 0; i < intersects.length; i++) {
-    console.log("intersected!");
+    
+    intersectedObj = intersects[i].object.geometry.name;
+    break;
 
-    if(intersects[i].object.material.color.r == selectedColor.r
-      && intersects[i].object.material.color.g == selectedColor.g
-       && intersects[i].object.material.color.b == selectedColor.b) {
-      
-      intersects[i].object.material.color = new THREE.Color( 0xffffff );
-  
-    } else {
-        intersects[i].object.material.color = selectedColor;
-    }
+    // if(intersects[i].object.material.color.r == selectedColor.r
+    //   && intersects[i].object.material.color.g == selectedColor.g
+    //    && intersects[i].object.material.color.b == selectedColor.b) {
+    //   intersects[i].object.material.color = new THREE.Color( 0xffffff );
+    // } else {
+    //     intersects[i].object.material.color = selectedColor;
+    // }
   }
+
+  $("#name").html(intersectedObj);
+
   render();
 
 }

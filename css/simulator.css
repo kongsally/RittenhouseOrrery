@@ -38,11 +38,27 @@ a:hover, a:active {
 
 
 #container {
-	text-align: center;
+	/*text-align: center;*/
+    margin-bottom: 1em;
 }
 
 #homeBtn {
     margin-left: 5%;
     cursor: pointer;
     vertical-align: center;
+}
+
+#info {
+    width: 20%;
+    height: 60%;
+    position: fixed;
+    right: 1em;
+    bottom: 5%;
+    padding: 1em;
+    color: #FFE688;
+    background-color: rgba(42,85,140, 0.8);
+}
+
+#name {
+    color: #ECCC58;
 }
