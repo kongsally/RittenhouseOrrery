@@ -9,11 +9,11 @@ body {
 h3 {
 	text-align: center;
     font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-size: 2em;
+	font-size: 24px;
 	background-color: rgba(255, 255, 255, 0.5);
 	padding: 10px;
-    margin-top: 1em;
-    margin-bottom: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 h3:hover {
@@ -38,12 +38,30 @@ a:hover, a:active {
 
 
 #container {
-	text-align: center;
+    display: none;
+	/*text-align: center;*/
+    margin-bottom: 1em;
 }
 
 #homeBtn {
     margin-left: 5%;
     cursor: pointer;
+    vertical-align: center;
+}
+
+#info {
+    width: 20%;
+    height: 60%;
+    position: fixed;
+    right: 1em;
+    bottom: 5%;
+    padding: 1em;
+    color: #FFE688;
+    background-color: rgba(42,85,140, 0.8);
+}
+
+#name {
+    color: #ECCC58;
 }
 
 #loading {

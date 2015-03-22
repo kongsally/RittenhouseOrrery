@@ -6,25 +6,14 @@ var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
 var gears = [];
 var gearModels = [];
+var objectModels = [];
+var countUp = 0;
 
-function onReady(callback) {
-    var intervalID = window.setInterval(checkReady, 1000);
-    function checkReady() {
-        if (document.getElementsByTagName('body')[0] !== undefined) {
-            window.clearInterval(intervalID);
-            callback.call(this);
-        }
-    }
+
+function toggleCanvas() {
+  $("#container").css("display", "block");
+  $("#loading").css("display", "none");
 }
-
-function show(id, value) {
-    document.getElementById(id).style.display = value ? 'block' : 'none';
-}
-
-onReady(function () {
-    show('loading', false);
-    show('container', true);
-});
 
 function setLoadLocation(windowWidth, windowHeight) {
   var loadLeft = windowWidth/2;
@@ -32,12 +21,13 @@ function setLoadLocation(windowWidth, windowHeight) {
   $('#loading').css("top", loadTop);
   $('#loading').css("left", loadLeft);
 }
+
 function setup() {
 
   //show('container', false);
   // set the scene size
-  var WIDTH = window.innerWidth * 0.9,
-      HEIGHT = window.innerHeight * 0.7;
+  var WIDTH = window.innerWidth,
+      HEIGHT = window.innerHeight * 0.8;
 
   setLoadLocation(WIDTH, HEIGHT);    
 
@@ -74,7 +64,7 @@ function setup() {
 
    // create light
   var directionalLight = new THREE.DirectionalLight( 0xffffff, 1.0 );
-  directionalLight.position.set( 0, 1, 0.3 );
+  directionalLight.position.set( 100, 100, 100 );
   scene.add( directionalLight );
   var amblight = new THREE.AmbientLight( 0x404040 ); // soft white light
   scene.add( amblight );
@@ -93,59 +83,84 @@ function setup() {
   var cabinetScale = new THREE.Vector3(8, 8, 8);
   var cabinetRot = new THREE.Vector3(0, 0, 0);
 
-  loadObj("lowpoly.obj", origin, cabinetScale, cabinetRot, new THREE.Color("rgb(200,200,200)"));
+  load_json_obj("data/sample.json");
 
-  //load sample gears
-    var gearScale = new THREE.Vector3(500, 500, 500);
-    var gear1 = new Gear(50);
-    gear1.name = "gear0";
-    var gear2 = new Gear(100);
-    gear2.name = "gear1";
-    var gear3 = new Gear(50);
-    gear3.name = "gear2";
-    console.log(gear2);
-
-    addToSisters(gear1, gear2);
-    addToChildren(gear2, gear3);
-
-
-    gears.push(gear2);
-    gears.push(gear1);
-    gears.push(gear3);
-    for(var i =0 ;i < gears.length; i++) {
-      loadObj("gear" + i + ".obj", new THREE.Vector3((i-1) * 50, -50, 100), 
-        gearScale, new THREE.Vector3(0, 0, 0), new THREE.Color("rgb(" + i * 50 + ",0,0)"));
-    }
 }
 
+function load_json_obj(filePath){
+  $.getJSON(filePath, function(data) {
+    objectModels = data.objects;
 
+    for(var i = 0; i < objectModels.length; i++) {
+    loadObj(
+      objectModels[i].name,
+      objectModels[i].objFile,
+      objectModels[i].albedoFile,
+      objectModels[i].specularFile,
+      new THREE.Vector3(
+        objectModels[i].origin.x,
+        objectModels[i].origin.y,
+        objectModels[i].origin.z
+      ),
+      new THREE.Vector3(
+        objectModels[i].scale.x,
+        objectModels[i].scale.y,
+        objectModels[i].scale.z
+      ),
+      new THREE.Vector3(
+        objectModels[i].rotate.x,
+        objectModels[i].rotate.y,
+        objectModels[i].rotate.z
+      )
+    );
+  }
 
-function loadObj(fileName, pos, scale, rot, col) {
+  });
 
-var manager = new THREE.LoadingManager();
-manager.onProgress = function ( item, loaded, total ) {
-    console.log( item, loaded, total );
-};
+}
 
-var material  = new THREE.MeshPhongMaterial()
-material.map = THREE.ImageUtils.loadTexture('data/albedo_with_shadow.png');
-material.specularMap = THREE.ImageUtils.loadTexture('data/Orrery_specular.png');
-material.specular  = new THREE.Color('white');
-material.bumpMap    = THREE.ImageUtils.loadTexture('data/Orrery_bump.png')
-material.bumpScale = 0.05
+function loadObj(objName, fileName, albedo, spec, pos, scale, rot) {
 
-var loader = new THREE.OBJLoader();
-    loader.load('data/' + fileName, function(object) {
-       object.scale.set(scale.x, scale.y, scale.z);
-       object.rotation.set(rot.x, rot.y, rot.z);
-       object.name = fileName;
-       object.position.set(pos.x, pos.y, pos.z);
-       console.log(object);
-       object.children[0].material = material;
-       scene.add( object );
-    });
+  var manager = new THREE.LoadingManager();
+  manager.onProgress = function ( item, loaded, total ) {
+      console.log( item, loaded, total );
+  };
 
- render();
+  var path = 'data/';
+
+  var material  = new THREE.MeshPhongMaterial()
+
+  if(albedo !== "") {
+    material.map = THREE.ImageUtils.loadTexture(path + albedo);
+    material.transparent = true;
+  }
+
+  if(spec !== "") {
+    material.specularMap = THREE.ImageUtils.loadTexture(path + spec);
+    material.specular  = new THREE.Color('white');
+  }
+
+  var loader = new THREE.OBJLoader();
+      loader.load(path + fileName, function(object) {
+         object.scale.set(scale.x, scale.y, scale.z);
+         object.rotation.set(rot.x, rot.y, rot.z);
+         object.name = fileName;
+         object.position.set(pos.x, pos.y, pos.z);
+         object.children[0].material = material;
+         object.children[0].geometry.name = objName;
+         console.log(objName);
+         scene.add( object );
+         
+         countUp += 1; //keep track of objects loaded
+
+         if(countUp == objectModels.length) {
+            toggleCanvas();
+         }
+         
+      });
+
+   render();
+ 
 }
 
 function putSphere(pos) {
@@ -190,8 +205,7 @@ function animate() {
 }
 
 function render() {
-
-  renderer.render( scene, camera );
+  renderer.render(scene, camera);
 }
 
 function onMouseMove( event ) {
@@ -204,7 +218,7 @@ function onMouseMove( event ) {
 }
 
 function onMouseClick (event) {
-  // mouseRayCast();
+   mouseRayCast();
 }
 
 function mouseRayCast() {
@@ -214,20 +228,24 @@ function mouseRayCast() {
   // calculate objects intersecting the picking ray
   var intersects = raycaster.intersectObjects(scene.children, true);
   var selectedColor = new THREE.Color( 0xff0000 );
+  var intersectedObj = "";
 
   for (var i = 0; i < intersects.length; i++) {
-    console.log("intersected!");
+    
+    intersectedObj = intersects[i].object.geometry.name;
+    break;
 
-    if(intersects[i].object.material.color.r == selectedColor.r
-      && intersects[i].object.material.color.g == selectedColor.g
-       && intersects[i].object.material.color.b == selectedColor.b) {
-      
-      intersects[i].object.material.color = new THREE.Color( 0xffffff );
-  
-    } else {
-        intersects[i].object.material.color = selectedColor;
-    }
+    // if(intersects[i].object.material.color.r == selectedColor.r
+    //   && intersects[i].object.material.color.g == selectedColor.g
+    //    && intersects[i].object.material.color.b == selectedColor.b) {
+    //   intersects[i].object.material.color = new THREE.Color( 0xffffff );
+    // } else {
+    //     intersects[i].object.material.color = selectedColor;
+    // }
   }
+
+  $("#name").html(intersectedObj);
+
   render();
 
 }

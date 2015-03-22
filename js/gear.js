@@ -39,13 +39,13 @@ function addToChildren (root, child) {
 }
 
 function rotate (gear1, gear2) {
-	if (isSisters(gear1, gear2)) {
-			gear2.rotateNum = (gear2.teethNum / gear1.teethNum) * gear1.rotateNum;
-		}
-		else if (isParent(gear1, gear2)) {
-			gear2.rotateNum = - gear1.rotateNum;
-		}
-}
+ 	if (isSisters(gear1, gear2)) {
+			gear2.rotateNum = ((gear2.teethNum / gear1.teethNum) * gear1.rotateNum) % 360;
+ 		}
+ 		else if (isParent(gear1, gear2)) {
+			gear2.rotateNum = -(gear1.rotateNum % 360);
+ 		}
+ }
 
 function sisterInteract (root) {
 	for (var i = 0; i < root.sisters.length; i++) {
@@ -63,7 +63,7 @@ function childrenInteract (root) {
 }
 
 function interact (root, rotateNum) {
-	root.rotateNum = rotateNum;
+	root.rotateNum += rotateNum;
 	sisterInteract(root);
 }
 
