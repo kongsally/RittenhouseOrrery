@@ -45,3 +45,16 @@ a:hover, a:active {
     margin-left: 5%;
     cursor: pointer;
 }
+
+#loading {
+    z-index: 100;
+    background-image: url("../images/ajax-loader.gif");
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    position: absolute;
+    top: 300px;
+    left: 400px;
+    width: 66px;
+    height: 66px;
+}

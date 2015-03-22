@@ -7,10 +7,39 @@ var mouse = new THREE.Vector2();
 var gears = [];
 var gearModels = [];
 
+function onReady(callback) {
+    var intervalID = window.setInterval(checkReady, 1000);
+    function checkReady() {
+        if (document.getElementsByTagName('body')[0] !== undefined) {
+            window.clearInterval(intervalID);
+            callback.call(this);
+        }
+    }
+}
+
+function show(id, value) {
+    document.getElementById(id).style.display = value ? 'block' : 'none';
+}
+
+onReady(function () {
+    show('loading', false);
+    show('container', true);
+});
+
+function setLoadLocation(windowWidth, windowHeight) {
+  var loadLeft = windowWidth/2;
+  var loadTop = windowHeight/2 + 100;
+  $('#loading').css("top", loadTop);
+  $('#loading').css("left", loadLeft);
+}
 function setup() {
+
+  //show('container', false);
   // set the scene size
   var WIDTH = window.innerWidth * 0.9,
       HEIGHT = window.innerHeight * 0.7;
+
+  setLoadLocation(WIDTH, HEIGHT);    
 
   // set some camera attributes
   var VIEW_ANGLE = 45,
