@@ -1,9 +1,10 @@
 {"objects": [
 	{
 		"name": "Cabinet",
-		"objFile": "cabinet.obj",
+		"objFile": "cabinetBody.obj",
 		"albedoFile": "albedo_with_shadow.png",
 		"specularFile": "orrery_specular.png",
+		"normalFile": "orrery_normal.png",
 		"origin" : {
 			"x" : 0,
 			"y" : 0,
@@ -25,6 +26,7 @@
 		"objFile": "starryNight.obj",
 		"albedoFile": "starryNight_albedo.png",
 		"specularFile": "",
+		"normalFile": "",
 		"origin" : {
 			"x" : 0,
 			"y" : 0,
@@ -47,6 +49,7 @@
 		"objFile": "zodiacRing.obj",
 		"albedoFile": "zodiacRing_albedo.png",
 		"specularFile": "zodiacRing_Specular.png",
+		"normalFile": "",
 		"origin" : {
 			"x" : 0,
 			"y" : 0,
@@ -64,19 +67,86 @@
 		}
 	},
 	{
-		"name": "Gear0",
-		"objFile": "8.obj",
-		"albedoFile": "brass.jpg",
-		"specularFile": "zodiacRing_Specular.png",
+		"name": "Cabinet Legs",
+		"objFile": "cabinet_legs.obj",
+		"albedoFile": "cabinetlegs_albedo.png",
+		"specularFile": "cabinetlegs_specular.png",
+		"normalFile": "cabinetlegs_normal.png",
 		"origin" : {
-			"x" : -120,
-			"y" : 50,
-			"z" : 50
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
 		},
 		"scale" : {
-			"x" : 1,
-			"y" : 1,
-			"z" : 1
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+	},
+	{
+		"name": "ArmPivot",
+		"objFile": "armPivot.obj",
+		"albedoFile": "armPivot_albedo.png",
+		"specularFile": "armPivot_specular.png",
+		"normalFile": "",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 1.25
+		},
+		"scale" : {
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+	},
+	{
+		"name": "Arrow Arm",
+		"objFile": "smallArm.obj",
+		"albedoFile": "smallArm_albedo.png",
+		"specularFile": "smallArm_specular.png",
+		"normalFile": "",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 1.6
+		},
+		"scale" : {
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+	},
+	{
+		"name": "Gear0",
+		"objFile": "8.obj",
+		"albedoFile": "8_albedo.png",
+		"specularFile": "8_metalness(specular).png",
+		"normalFile": "",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 1.1
+		},
+		"scale" : {
+			"x" : 4,
+			"y" : 4,
+			"z" : 4
 		},
 		"rotate" : {
 			"x" : 0,
@@ -87,17 +157,18 @@
 	{
 		"name": "Gear1",
 		"objFile": "45.obj",
-		"albedoFile": "brass.jpg",
-		"specularFile": "zodiacRing_Specular.png",
+		"albedoFile": "45_albedo.png",
+		"specularFile": "45_specular.png",
+		"normalFile": "",
 		"origin" : {
-			"x" : -120,
-			"y" : 25,
-			"z" : 50
+			"x" : 0,
+			"y" : 0,
+			"z" : 1.1
 		},
 		"scale" : {
-			"x" : 1,
-			"y" : 1,
-			"z" : 1
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
 		},
 		"rotate" : {
 			"x" : 0,
@@ -108,17 +179,18 @@
 	{
 		"name": "Gear2",
 		"objFile": "64.obj",
-		"albedoFile": "brass.jpg",
-		"specularFile": "zodiacRing_Specular.png",
+		"albedoFile": "64_albedo.png",
+		"specularFile": "64_specular.png",
+		"normalFile": "",
 		"origin" : {
-			"x" : -120,
+			"x" : 0,
 			"y" : 0,
-			"z" : 50
+			"z" : 1.1
 		},
 		"scale" : {
-			"x" : 1,
-			"y" : 1,
-			"z" : 1
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
 		},
 		"rotate" : {
 			"x" : 0,
@@ -129,17 +201,18 @@
 	{
 		"name": "Gear3",
 		"objFile": "173.obj",
-		"albedoFile": "brass.jpg",
-		"specularFile": "zodiacRing_Specular.png",
+		"albedoFile": "173_albedo.png",
+		"specularFile": "173_specular.png",
+		"normalFile": "",
 		"origin" : {
-			"x" : -120,
-			"y" : -50,
-			"z" : 50
+			"x" : 0,
+			"y" : 0,
+			"z" : 1.1
 		},
 		"scale" : {
-			"x" : 1,
-			"y" : 1,
-			"z" : 1
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
 		},
 		"rotate" : {
 			"x" : 0,

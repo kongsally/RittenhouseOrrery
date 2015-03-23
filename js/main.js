@@ -12,6 +12,7 @@ var countUp = 0;
 
 function toggleCanvas() {
   $("#container").css("display", "block");
+  // $("#info").css("display", "block");
   $("#loading").css("display", "none");
 }
 
@@ -97,6 +98,7 @@ function load_json_obj(filePath){
       objectModels[i].objFile,
       objectModels[i].albedoFile,
       objectModels[i].specularFile,
+      objectModels[i].normalFile,
       new THREE.Vector3(
         objectModels[i].origin.x,
         objectModels[i].origin.y,
@@ -119,7 +121,7 @@ function load_json_obj(filePath){
 
 }
 
-function loadObj(objName, fileName, albedo, spec, pos, scale, rot) {
+function loadObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
 
   var manager = new THREE.LoadingManager();
   manager.onProgress = function ( item, loaded, total ) {
@@ -140,6 +142,11 @@ function loadObj(objName, fileName, albedo, spec, pos, scale, rot) {
     material.specular  = new THREE.Color('white');
   }
 
+  if(norm != "") {
+    material.normalMap = THREE.ImageUtils.loadTexture(path + norm);
+    normalScale: new THREE.Vector2( 0.5, 0.5 );
+  }
+
   var loader = new THREE.OBJLoader();
       loader.load(path + fileName, function(object) {
          object.scale.set(scale.x, scale.y, scale.z);
@@ -154,12 +161,11 @@ function loadObj(objName, fileName, albedo, spec, pos, scale, rot) {
          countUp += 1; //keep track of objects loaded
 
          if(countUp == objectModels.length) {
+            render();
             toggleCanvas();
          }
          
       });
-
-   render();
  
 }
 
