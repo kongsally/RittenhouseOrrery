@@ -2,9 +2,9 @@
 	{
 		"name": "Cabinet",
 		"objFile": "cabinetBody.obj",
-		"albedoFile": "albedo_with_shadow.png",
-		"specularFile": "orrery_specular.png",
-		"normalFile": "orrery_normal.png",
+		"albedoFile": "cabinet_albedo.png",
+		"specularFile": "cabinet_specular.png",
+		"normalFile": "cabinet_normal.png",
 		"origin" : {
 			"x" : 0,
 			"y" : 0,
