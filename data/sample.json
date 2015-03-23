@@ -25,7 +25,7 @@
 		"name": "Starry Night",
 		"objFile": "starryNight.obj",
 		"albedoFile": "starryNight_albedo.png",
-		"specularFile": "",
+		"specularFile": "starryNight_specular.png",
 		"normalFile": "",
 		"origin" : {
 			"x" : 0,
