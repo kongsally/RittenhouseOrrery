@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {"objects": [
 	{
 		"name": "Cabinet",
@@ -148,3 +149,11 @@
 		}
 	}
 ]}
+=======
+"gears": [
+{"id":"1", "teethNum":"50", "sisters": [2], "children": []},
+{"id":"2", "teethNum":"100", "sisters": [], "children": [3, 4]},
+{"id":"3", "teethNum":"50", "sisters": [], "children": []},
+{"id":"4", "teethNum":"20", "sisters": [], "children": []}
+]
+>>>>>>> cb7cd8ad0b9164f9f6825f3ee604fb50a96e9b99
