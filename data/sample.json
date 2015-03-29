@@ -2,9 +2,31 @@
 	{
 		"name": "Cabinet",
 		"objFile": "cabinetBody.obj",
-		"albedoFile": "cabinet_albedo.png",
+		"albedoFile": "orrery_albedoWithAoShadows.png",
 		"specularFile": "cabinet_specular.png",
-		"normalFile": "cabinet_normal.png",
+		"normalFile": "orrery_normal.png",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		},
+		"scale" : {
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+	},
+	{
+		"name": "Cabinet Description Panel",
+		"objFile": "cabinetDescripLow.obj",
+		"albedoFile": "orreryDescrip_albedo.png",
+		"specularFile": "orreryDescrip_specular.png",
+		"normalFile": "orreryDescrip_normal.png",
 		"origin" : {
 			"x" : 0,
 			"y" : 0,
@@ -53,7 +75,7 @@
 		"origin" : {
 			"x" : 0,
 			"y" : 0,
-			"z" : 0.2
+			"z" : 0.1
 		},
 		"scale" : {
 			"x" : 8,
@@ -97,7 +119,7 @@
 		"origin" : {
 			"x" : 0,
 			"y" : 0,
-			"z" : 1.25
+			"z" : 1.5
 		},
 		"scale" : {
 			"x" : 8,
@@ -119,7 +141,7 @@
 		"origin" : {
 			"x" : 0,
 			"y" : 0,
-			"z" : 1.6
+			"z" : 1.9
 		},
 		"scale" : {
 			"x" : 8,
