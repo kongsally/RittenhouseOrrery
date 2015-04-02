@@ -9,6 +9,18 @@ var gearModels = [];
 var objectModels = [];
 var countUp = 0;
 
+document.onkeydown = checkKey;
+
+function checkKey(e) {
+
+    e = e || window.event;
+
+    if (e.keyCode == '32') {
+        // space bar
+        crank();
+    }
+}
+
 
 function toggleCanvas() {
   $("#container").css("display", "block");
@@ -86,6 +98,23 @@ function setup() {
 
   load_json_obj("data/sample.json");
 
+  var gear0 = new Gear(8);
+  gear0.name = "0";
+  var gear1 = new Gear(45);
+  gear1.name = "1";
+  var gear2 = new Gear(64);
+  gear2.name = "2";
+  var gear3 = new Gear(173);
+  gear3.name = "3";
+
+  addToSisters(gear0, gear2);
+  addToChildren(gear0, gear3);
+
+  gears.push(gear0);
+  gears.push(gear1);
+  gears.push(gear2);
+  gears.push(gear3);
+
 }
 
 function load_json_obj(filePath){
@@ -151,7 +180,7 @@ function loadObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
       loader.load(path + fileName, function(object) {
          object.scale.set(scale.x, scale.y, scale.z);
          object.rotation.set(rot.x, rot.y, rot.z);
-         object.name = fileName;
+         object.name = objName;
          object.position.set(pos.x, pos.y, pos.z);
          object.children[0].material = material;
          object.children[0].geometry.name = objName;
@@ -259,10 +288,14 @@ function mouseRayCast() {
 function crank() {
  
   //gear 1 is mother gear
-  interact(gears[1],10);
+  console.log("cranking");
+  console.log(gears[0]);
+  console.log(scene);
+
+  interact(gears[0],gears[0].teethNum);
 
   for(var i =0 ;i < gears.length; i++) {
-    var object = scene.getObjectByName( "gear" + i + ".obj", true );
+    var object = scene.getObjectByName( "Gear" + i, true );
     object.rotation.z = gears[i].rotateNum * Math.PI/180;
   }
 }

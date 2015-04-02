@@ -1,0 +1,74 @@
+Without AppCache:
+
+THREE.WebGLRenderer 70
+OBJLoader.js:365 OBJLoader: 21.173ms
+main.js:187 Cabinet
+OBJLoader.js:365 OBJLoader: 1.768ms
+main.js:187 Cabinet Description Panel
+OBJLoader.js:365 OBJLoader: 0.278ms
+main.js:187 Starry Night
+OBJLoader.js:365 OBJLoader: 0.305ms
+main.js:187 Zodiac Ring
+OBJLoader.js:365 OBJLoader: 0.552ms
+main.js:187 ArmPivot
+OBJLoader.js:365 OBJLoader: 0.914ms
+main.js:187 Arrow Arm
+OBJLoader.js:365 OBJLoader: 61.757ms
+main.js:187 Cabinet Legs
+OBJLoader.js:365 OBJLoader: 387.335ms
+main.js:187 Gear0
+OBJLoader.js:365 OBJLoader: 903.273ms
+main.js:187 Gear1
+OBJLoader.js:365 OBJLoader: 1774.678ms
+main.js:187 Gear2
+OBJLoader.js:365 OBJLoader: 2256.168ms
+main.js:187 Gear3
+
+
+With AppCache:
+
+OBJLoader.js:365 OBJLoader: 35.051ms
+main.js:187 Cabinet
+OBJLoader.js:365 OBJLoader: 3.077ms
+main.js:187 Cabinet Description Panel
+OBJLoader.js:365 OBJLoader: 0.385ms
+main.js:187 Starry Night
+OBJLoader.js:365 OBJLoader: 0.461ms
+main.js:187 Zodiac Ring
+OBJLoader.js:365 OBJLoader: 0.540ms
+main.js:187 ArmPivot
+OBJLoader.js:365 OBJLoader: 1.137ms
+main.js:187 Arrow Arm
+OBJLoader.js:365 OBJLoader: 66.174ms
+main.js:187 Cabinet Legs
+OBJLoader.js:365 OBJLoader: 396.314ms
+main.js:187 Gear0
+OBJLoader.js:365 OBJLoader: 957.924ms
+main.js:187 Gear1
+OBJLoader.js:365 OBJLoader: 1717.993ms
+main.js:187 Gear2
+OBJLoader.js:365 OBJLoader: 2236.680ms
+main.js:187 Gear3
+
+OBJLoader: 20.275ms
+main.js:187 Cabinet
+OBJLoader.js:365 OBJLoader: 2.228ms
+main.js:187 Cabinet Description Panel
+OBJLoader.js:365 OBJLoader: 0.423ms
+main.js:187 Starry Night
+OBJLoader.js:365 OBJLoader: 0.374ms
+main.js:187 Zodiac Ring
+OBJLoader.js:365 OBJLoader: 0.699ms
+main.js:187 ArmPivot
+OBJLoader.js:365 OBJLoader: 0.889ms
+main.js:187 Arrow Arm
+OBJLoader.js:365 OBJLoader: 110.396ms
+main.js:187 Cabinet Legs
+OBJLoader.js:365 OBJLoader: 372.745ms
+main.js:187 Gear0
+OBJLoader.js:365 OBJLoader: 980.636ms
+main.js:187 Gear1
+OBJLoader.js:365 OBJLoader: 1816.083ms
+main.js:187 Gear2
+OBJLoader.js:365 OBJLoader: 2333.586ms
+main.js:187 Gear3
