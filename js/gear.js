@@ -67,28 +67,3 @@ function interact (root, rotateNum) {
 	sisterInteract(root);
 }
 
-var gearArray = [];
-var gear1 = new Gear(50);
-gear1.name = "1";
-var gear2 = new Gear(100);
-gear2.name = "2";
-var gear3 = new Gear(50);
-gear3.name = "3";
-console.log(gear2);
-
-gearArray.push(gear1);
-gearArray.push(gear2);
-gearArray.push(gear3);
-
-addToSisters(gear1, gear2);
-addToChildren(gear2, gear3);
-
-for(var i =0 ; i < gearArray.length; i++) {
-	console.log(gearArray[i].name);
-	$("#gears").append("<h4> Gear " + gearArray[i].name + "</h4>");
-}
-
-interact(gear1,10);
-console.log(gear1);
-console.log(gear2);
-console.log(gear3);
