@@ -154,4 +154,93 @@
 			"z" : 0
 		}
 	}
+	},
+	{
+		"name": "Gear0",
+		"objFile": "8.obj",
+		"albedoFile": "8_albedo.png",
+		"specularFile": "8_metalness(specular).png",
+		"normalFile": "",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 1.1
+		},
+		"scale" : {
+			"x" : 4,
+			"y" : 4,
+			"z" : 4
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+	},
+	{
+		"name": "Gear1",
+		"objFile": "45.obj",
+		"albedoFile": "45_albedo.png",
+		"specularFile": "45_specular.png",
+		"normalFile": "",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 1.1
+		},
+		"scale" : {
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+	},
+	{
+		"name": "Gear2",
+		"objFile": "64.obj",
+		"albedoFile": "64_albedo.png",
+		"specularFile": "64_specular.png",
+		"normalFile": "",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 1.1
+		},
+		"scale" : {
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+	},
+	{
+		"name": "Gear3",
+		"objFile": "173.obj",
+		"albedoFile": "173_albedo.png",
+		"specularFile": "173_specular.png",
+		"normalFile": "",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 1.1
+		},
+		"scale" : {
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+	}
 ]}
