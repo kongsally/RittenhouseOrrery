@@ -41,6 +41,8 @@ a:hover, a:active {
 #container {
     margin-bottom: 1em;
     width: 100%;
+    padding-top: 1em;
+    padding-left: 7.5%;
 }
 
 #homeBtn {

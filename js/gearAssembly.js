@@ -13,7 +13,7 @@ function setup() {
 
   //show('container', false);
   // set the scene size
-  var WIDTH = window.innerWidth * 0.65,
+  var WIDTH = window.innerWidth * 0.6,
       HEIGHT = window.innerHeight * 0.65;
 
   // set some camera attributes
