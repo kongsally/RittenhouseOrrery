@@ -9,28 +9,12 @@ var gearModels = [];
 var objectModels = [];
 var countUp = 0;
 
-
-function toggleCanvas() {
-  $("#container").css("display", "block");
-  // $("#info").css("display", "block");
-  $("#loading").css("display", "none");
-}
-
-function setLoadLocation(windowWidth, windowHeight) {
-  var loadLeft = windowWidth/2;
-  var loadTop = windowHeight/2 + 100;
-  $('#loading').css("top", loadTop);
-  $('#loading').css("left", loadLeft);
-}
-
 function setup() {
 
   //show('container', false);
   // set the scene size
-  var WIDTH = window.innerWidth,
-      HEIGHT = window.innerHeight * 0.8;
-
-  setLoadLocation(WIDTH, HEIGHT);    
+  var WIDTH = window.innerWidth * 0.65,
+      HEIGHT = window.innerHeight * 0.65;
 
   // set some camera attributes
   var VIEW_ANGLE = 45,
@@ -80,10 +64,11 @@ function setup() {
   // draw!
   renderer.render(scene, camera);
   animate();
-
-  load_json_obj("data/sample.json");
-
+  load_json_obj("data/gearSetup.json");
+ 
 }
+
+
 
 function load_json_obj(filePath){
   $.getJSON(filePath, function(data) {
@@ -151,52 +136,66 @@ function loadObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
          object.name = fileName;
          object.position.set(pos.x, pos.y, pos.z);
          object.children[0].material = material;
-         object.children[0].geometry.name = objName;
-         console.log(objName);
+         object.children[0].geometry.name = fileName;
          scene.add( object );
-         
-         countUp += 1; //keep track of objects loaded
 
-         if(countUp == objectModels.length) {
-            render();
-            toggleCanvas();
-         }
+        $("#objList").append("<div class='objLoaded' id ='" 
+          + countUp + "' onclick=selectObj('" + fileName + "'); >" 
+          + fileName + "</div>");
+
+         countUp += 1; //keep track of objects loaded
+         render();
          
       });
  
 }
 
-function putSphere(pos) {
-  // set up the sphere vars
-var radius = 20,
-    segments = 16,
-    rings = 16;
+function renderObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
 
-// create a new mesh with
-// sphere geometry - we will cover
-// the sphereMaterial next!
+  var manager = new THREE.LoadingManager();
+  manager.onProgress = function ( item, loaded, total ) {
+      console.log( item, loaded, total );
+  };
 
-// create the sphere's material
-var sphereMaterial =
-  new THREE.MeshLambertMaterial(
-    {
-      color: 0xCCCCCC
-    });
+  var path = "";
 
-var sphere = new THREE.Mesh(
+  var material  = new THREE.MeshPhongMaterial()
 
-  new THREE.SphereGeometry(
-    radius,
-    segments,
-    rings),
+  if(albedo !== "") {
+    material.map = THREE.ImageUtils.loadTexture(path + albedo);
+    material.transparent = true;
+  }
 
-  sphereMaterial);
+  if(spec !== "") {
+    material.specularMap = THREE.ImageUtils.loadTexture(path + spec);
+    material.specular  = new THREE.Color('white');
+  }
 
-// add the sphere to the scene
-sphere.position.set(pos.x, pos.y, pos.z);
-scene.add(sphere);
-render();
+  if(norm != "") {
+    material.normalMap = THREE.ImageUtils.loadTexture(path + norm);
+    normalScale: new THREE.Vector2( 0.5, 0.5 );
+  }
 
+  var loader = new THREE.OBJLoader();
+      loader.load(path + fileName, function(object) {
+         object.scale.set(scale.x, scale.y, scale.z);
+         object.rotation.set(rot.x, rot.y, rot.z);
+         object.name = objName;
+         object.position.set(pos.x, pos.y, pos.z);
+         object.children[0].material = material;
+         object.children[0].geometry.name = objName;
+         console.log(objName);
+         scene.add( object );
+
+         $("#objList").append("<div class='objLoaded' id ='" 
+          + countUp + "' onclick=selectObj('" + objName + "'); >" 
+          + objName + "</div>");
+         
+         countUp += 1; //keep track of objects loaded
+         render();
+         
+      });
+ 
 }
 
 function animate() {
@@ -237,14 +236,6 @@ function mouseRayCast() {
     
     intersectedObj = intersects[i].object.geometry.name;
     break;
-
-    // if(intersects[i].object.material.color.r == selectedColor.r
-    //   && intersects[i].object.material.color.g == selectedColor.g
-    //    && intersects[i].object.material.color.b == selectedColor.b) {
-    //   intersects[i].object.material.color = new THREE.Color( 0xffffff );
-    // } else {
-    //     intersects[i].object.material.color = selectedColor;
-    // }
   }
 
   $("#name").html(intersectedObj);
@@ -253,15 +244,11 @@ function mouseRayCast() {
 
 }
 
-function crank() {
- 
+function selectObj(objName) {
   //gear 1 is mother gear
-  interact(gears[1],10);
-
-  for(var i =0 ;i < gears.length; i++) {
-    var object = scene.getObjectByName( "gear" + i + ".obj", true );
-    object.rotation.z = gears[i].rotateNum * Math.PI/180;
-  }
+    var object = scene.getObjectByName( objName, true );
+    object.rotation.z += 30 * Math.PI/180;
+  
 }
 
 window.addEventListener('mousemove', onMouseMove, false );

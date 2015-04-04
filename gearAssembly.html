@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<!--
+  * Please see the included README.md file for license terms and conditions.
+  -->
+<head>
+    <title>David Rittenhouse 1771 Orrery</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <script src="js/three.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/OBJLoader.js"></script>
+    <script src="js/MaterialLoader.js"></script>
+    <script src="js/TrackballControls.js"></script>
+    <script src="js/Detector.js"></script>
+    <script src="js/stats.min.js"></script>
+    <script src="js/OBJLoader.js"></script>
+    <script src="js/OrbitControls.js"></script>
+    <script src="js/gear.js"></script>
+    <script src="js/gearAssembly.js"></script>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/gearAssembly.css">
+    <link href='http://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>
+        <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-61303691-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+</head>
+<body onload = "setup();">
+
+  <h3 onclick="window.location='index.html'"> David Rittenhouse's 1771 Orrery </h3>
+  
+  <a id="homeBtn" class="button" onclick="window.location='index.html'"> Home </a> 
+  <a id="simulatorBtn" class="button" onclick="window.location='simulator.html'"> Simulator </a> 
+
+    <div class = "row">
+      <div class = "eight columns">
+        <div id="container"></div>
+      </div>
+      <div class = "four columns">
+       <p>Load an obj :  <input type="file" id="file-field"></p>
+           
+        <div id ="objList">Uploaded Objs: </div>
+      </div>
+    </div>
+
+</body>
+
+<script>
+//check if browser supports file api and filereader features
+  if (window.File && window.FileReader && window.FileList && window.Blob) {
+      
+    //this function is called when the input loads an image
+      function renderFile(file){
+        var stuff = [new THREE.Vector3(
+        0,0,0
+      ),
+      new THREE.Vector3(
+        8,8,8
+      ),
+      new THREE.Vector3(
+        0,0,0
+      )];
+        var reader = new FileReader();
+          reader.onload = function(event){
+              the_url = event.target.result
+              renderObj(file.name, the_url,"","","", stuff[0], stuff[1], stuff[2]);
+         
+          }
+      
+      //when the file is read it triggers the onload event above.
+          reader.readAsDataURL(file);
+      }
+    
+
+    //watch for change on the 
+      $( "#file-field" ).change(function() {
+          console.log("file has been chosen");
+          //grab the first image in the fileList
+          //in this example we are only loading one file.
+          renderFile(this.files[0]);
+
+      });
+
+  } else {
+    alert('The File APIs are not fully supported in this browser.');
+  }
+  </script>
+</html>

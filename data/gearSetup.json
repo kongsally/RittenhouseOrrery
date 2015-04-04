@@ -1,0 +1,114 @@
+
+{"objects": [
+	{
+		"name": "Cabinet",
+		"objFile": "cabinetBody.obj",
+		"albedoFile": "orrery_albedoWithAoShadows.png",
+		"specularFile": "cabinet_specular.png",
+		"normalFile": "orrery_normal.png",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		},
+		"scale" : {
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+	},
+	{
+		"name": "Cabinet Description Panel",
+		"objFile": "cabinetDescripLow.obj",
+		"albedoFile": "orreryDescrip_albedo.png",
+		"specularFile": "orreryDescrip_specular.png",
+		"normalFile": "orreryDescrip_normal.png",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		},
+		"scale" : {
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+	},
+	{
+		"name": "Starry Night",
+		"objFile": "starryNight.obj",
+		"albedoFile": "starryNight_albedo.png",
+		"specularFile": "",
+		"normalFile": "",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		},
+		"scale" : {
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+
+	},
+	{
+		"name": "Zodiac Ring",
+		"objFile": "zodiacRing.obj",
+		"albedoFile": "zodiacRing_albedo.png",
+		"specularFile": "zodiacRing_Specular.png",
+		"normalFile": "",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0.1
+		},
+		"scale" : {
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+	},
+	{
+		"name": "Cabinet Legs",
+		"objFile": "cabinet_legs.obj",
+		"albedoFile": "cabinetlegs_albedo.png",
+		"specularFile": "cabinetlegs_specular.png",
+		"normalFile": "cabinetlegs_normal.png",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		},
+		"scale" : {
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+	}
+]}
