@@ -71,7 +71,7 @@ a:hover, a:active {
 #objList{
     width: 80%;
     padding: 1em;
-    background-color: #e6e6e6;
+    background-color: #eee;
     z-index: -100;
 }
 
