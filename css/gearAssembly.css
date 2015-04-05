@@ -6,6 +6,10 @@ body {
 	border: none;
 }
 
+  .objLoaded {cursor: pointer;}
+  .accordion-content {display: none;}
+  .accordion-content.default {display: block;}
+
 h3 {
 	text-align: center;
     font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;

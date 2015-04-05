@@ -139,10 +139,15 @@ function loadObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
          object.children[0].material = material;
          object.children[0].geometry.name = fileName;
          scene.add( object );
-
-        $("#objList").append("<div class='objLoaded' id ='" 
-          + countUp + "' onclick=selectObj('" + fileName + "'); >" 
-          + fileName + "</div>");
+         if (countUp == 0) {
+          $("#objList").append("<div class='objLoaded' id ='" 
+          + countUp + "' onclick=selectObj('" + countUp + "," + fileName + "'); >" 
+          + fileName + "</div>" +"<div class='accordion-content default'> <p> TEST</p> </div>");
+         } else {
+            $("#objList").append("<div class='objLoaded' id ='" 
+              + countUp + "' onclick=selectObj('" + countUp + "," + fileName + "'); >" 
+              + fileName + "</div>" + "<div class='accordion-content'> <p> TEST</p> </div>" );
+          }
 
          countUp += 1; //keep track of objects loaded
          render();
@@ -222,6 +227,7 @@ function onMouseMove( event ) {
 
 function onMouseClick (event) {
    mouseRayCast();
+   console.log("testing");
 }
 
 function mouseRayCast() {
@@ -245,9 +251,13 @@ function mouseRayCast() {
 
 }
 
-function selectObj(objName) {
+function selectObj(objID, objName) {
   //gear 1 is mother gear
   selectedObj = scene.getObjectByName( objName, true );
+  $("#" + objID).next().slideToggle('fast');
+
+      //Hide the other panels
+      $(".accordion-content").not($("#" + objID).next()).slideUp('fast');
 }
 
 function onKeyDown(e){

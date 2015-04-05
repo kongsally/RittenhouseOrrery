@@ -33,6 +33,7 @@
       ga('send', 'pageview');
     </script>
     <!-- End Google Analytics -->
+    <!-- JS -->
 </head>
 <body onload = "setup();">
 
@@ -47,8 +48,7 @@
         <div id="container"></div>
       </div>
       <div class = "four columns">
-       <p>Load an obj :  <input type="file" id="file-field"></p>
-           
+       <p>Load an obj :  <input type = "file" type="accordian-toggle" id="file-field" id="accordian-content"> </p>
         <div id ="objList">Uploaded Objs: </div>
       </div>
     </div>
@@ -95,4 +95,5 @@
     alert('The File APIs are not fully supported in this browser.');
   }
   </script>
+
 </html>
