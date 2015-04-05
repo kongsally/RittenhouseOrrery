@@ -134,14 +134,14 @@ function loadObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
       loader.load(path + fileName, function(object) {
          object.scale.set(scale.x, scale.y, scale.z);
          object.rotation.set(rot.x, rot.y, rot.z);
-         object.name = fileName;
+         object.name = countUp.toString();
          object.position.set(pos.x, pos.y, pos.z);
          object.children[0].material = material;
          object.children[0].geometry.name = fileName;
          scene.add( object );
 
         $("#objList").append("<div class='objLoaded' id ='" 
-          + countUp + "' onclick=selectObj('" + fileName + "'); >" 
+          + countUp + "' onclick=selectObj('" + countUp.toString() + "'); >" 
           + fileName + "</div>");
 
          countUp += 1; //keep track of objects loaded
@@ -181,7 +181,7 @@ function renderObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
       loader.load(path + fileName, function(object) {
          object.scale.set(scale.x, scale.y, scale.z);
          object.rotation.set(rot.x, rot.y, rot.z);
-         object.name = objName;
+         object.name = countUp.toString();
          object.position.set(pos.x, pos.y, pos.z);
          object.children[0].material = material;
          object.children[0].geometry.name = objName;
@@ -189,7 +189,7 @@ function renderObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
          scene.add( object );
 
          $("#objList").append("<div class='objLoaded' id ='" 
-          + countUp + "' onclick=selectObj('" + objName + "'); >" 
+          + countUp + "' onclick=selectObj('" + countUp.toString() + "'); >" 
           + objName + "</div>");
          
          countUp += 1; //keep track of objects loaded
@@ -251,7 +251,6 @@ function selectObj(objName) {
 }
 
 function onKeyDown(e){
-  console.log(e);
   var keyCode = e.keyCode;
   if(keyCode == 65){ // a
        selectedObj.position.x -= 1;
