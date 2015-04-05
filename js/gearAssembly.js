@@ -185,8 +185,10 @@ function renderObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
          object.position.set(pos.x, pos.y, pos.z);
          object.children[0].material = material;
          object.children[0].geometry.name = objName;
-         console.log(objName);
+         console.log(object);
          scene.add( object );
+         //add the object to an array of objects
+         //print all objects in the scene
 
          $("#objList").append("<div class='objLoaded' id ='" 
           + countUp + "' onclick=selectObj('" + countUp.toString() + "'); >" 
@@ -248,6 +250,12 @@ function mouseRayCast() {
 function selectObj(objName) {
   //gear 1 is mother gear
   selectedObj = scene.getObjectByName( objName, true );
+  $("#objInfo").empty();
+  $("#objInfo").append("<p>Position: (" + selectedObj.position.x + "," 
+                        + selectedObj.position.y
+                        + "," + selectedObj.position.z + ")</p>");
+  $("#objInfo").append("<p>Scale: (" + selectedObj.scale.x + "," + selectedObj.scale.y
+                    + "," + selectedObj.scale.z + ")</p>");
 }
 
 function onKeyDown(e){
