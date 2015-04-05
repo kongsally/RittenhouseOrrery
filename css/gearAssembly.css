@@ -51,6 +51,10 @@ a:hover, a:active {
     vertical-align: center;
 }
 
+#controlGuide {
+    margin-left: 5%;
+}
+
 #info {
     display: none;
     width: 20%;
@@ -84,4 +88,5 @@ a:hover, a:active {
 .objLoaded:hover {
     background-color: #2c2c2c;
     color: #e6e6e6;
+    cursor: pointer;
 }

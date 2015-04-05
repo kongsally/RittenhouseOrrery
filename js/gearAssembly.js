@@ -8,6 +8,7 @@ var gears = [];
 var gearModels = [];
 var objectModels = [];
 var countUp = 0;
+var selectedObj;
 
 function setup() {
 
@@ -246,13 +247,35 @@ function mouseRayCast() {
 
 function selectObj(objName) {
   //gear 1 is mother gear
-    var object = scene.getObjectByName( objName, true );
-    object.rotation.z += 30 * Math.PI/180;
-  
+  selectedObj = scene.getObjectByName( objName, true );
+}
+
+function onKeyDown(e){
+  console.log(e);
+  var keyCode = e.keyCode;
+  if(keyCode == 65){ // a
+       selectedObj.position.x -= 1;
+  }
+  if(keyCode == 68){ // d
+       selectedObj.position.x += 1;
+  }
+   if(keyCode == 87){ // w
+       selectedObj.position.y += 1;
+  }
+   if(keyCode == 83){ // s
+       selectedObj.position.y -= 1;
+  }
+  if(keyCode == 69){ // e
+       selectedObj.position.z += 1;
+  }
+  if(keyCode == 81){ // q
+       selectedObj.position.z -= 1;
+  }
 }
 
 window.addEventListener('mousemove', onMouseMove, false );
 window.addEventListener('click', onMouseClick, false );
+window.addEventListener('keydown', onKeyDown, false );
 
 window.requestAnimationFrame(render);
 
