@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">...</style>
+    <script type="text/JavaScript">
+    window.onload = function() {
+      var txt = document.getElementById('txt');
+      txt.value = window.onload + '';
+      document.getElementById('link').onclick = function(code) {
+        this.href = 'data:text/plain;charset=utf-8,'
+          + encodeURIComponent(txt.value);
+      };
+    };
+ 
+    main();
+    </script>
+  </head>
+  <body>
+    <div id="txtWrap">
+      <textarea id="txt"></textarea>
+    </div>
+    <a href="" id="link" download="code.json">Download Above Code</a>
+  </body>
+</html>
