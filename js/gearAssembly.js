@@ -140,9 +140,17 @@ function loadObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
          object.children[0].geometry.name = fileName;
          scene.add( object );
 
-        $("#objList").append("<div class='objLoaded' id ='" 
-          + countUp + "' onclick=selectObj('" + countUp.toString() + "'); >" 
-          + fileName + "</div>");
+         if (countUp == 0) {
+          $("#objList").append("<div class='objLoaded' id ='" 
+          + countUp + "' onclick=selectObj('" + countUp + "'); >" 
+          + fileName + "</div>" +"<div class='accordion-content'>" + 
+            "<p id='p" + countUp + "'></p> </div>");
+         } else {
+            $("#objList").append("<div class='objLoaded' id ='" 
+              + countUp + "' onclick=selectObj('" + countUp + "'); >" 
+              + fileName + "</div>" + "<div class='accordion-content'>" + 
+              "<p id='p" + countUp + "'></p> </div>" );
+          }
 
          countUp += 1; //keep track of objects loaded
          render();
@@ -190,10 +198,10 @@ function renderObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
          //add the object to an array of objects
          //print all objects in the scene
 
-         $("#objList").append("<div class='objLoaded' id ='" 
-          + countUp + "' onclick=selectObj('" + countUp.toString() + "'); >" 
-          + objName + "</div>");
-         
+            $("#objList").append("<div class='objLoaded' id ='" 
+              + countUp + "' onclick=selectObj('" + countUp + "'); >" 
+              + objName + "</div>" + "<div class='accordion-content'>" + 
+              "<p id='p" + countUp + "'></p> </div>" );
          countUp += 1; //keep track of objects loaded
          render();
          
@@ -247,15 +255,23 @@ function mouseRayCast() {
 
 }
 
-function selectObj(objName) {
+function selectObj(objID) {
   //gear 1 is mother gear
-  selectedObj = scene.getObjectByName( objName, true );
-  $("#objInfo").empty();
-  $("#objInfo").append("<p>Position: (" + selectedObj.position.x + "," 
-                        + selectedObj.position.y
-                        + "," + selectedObj.position.z + ")</p>");
-  $("#objInfo").append("<p>Scale: (" + selectedObj.scale.x + "," + selectedObj.scale.y
-                    + "," + selectedObj.scale.z + ")</p>");
+  selectedObj = scene.getObjectByName( objID, true );
+
+  $("#" + objID).next().slideToggle('fast');
+  $("#p" + objID).html(objInfoString(selectedObj));
+
+  //Hide the other panels
+  $(".accordion-content").not($("#" + objID).next()).slideUp('fast');
+
+}
+
+function objInfoString(obj) {
+  var infoString = "Position: " + obj.position.x + "," + obj.position.y + "," + obj.position.z;
+  infoString += "<br>";
+  infoString += "Scale Factor: " + obj.scale.x;
+  return infoString
 }
 
 function onKeyDown(e){
@@ -278,12 +294,26 @@ function onKeyDown(e){
   if(keyCode == 81){ // q
        selectedObj.position.z -= 1;
   }
+  if(keyCode == 219){ // [
+    if(selectedObj.scale.x - 0.5 > 0) {
+       selectedObj.scale.x -= 0.5;
+       selectedObj.scale.y -= 0.5;
+       selectedObj.scale.z -= 0.5;
+    }
+  }
+   if(keyCode == 221){ // ]
+       selectedObj.scale.x += 0.5;
+       selectedObj.scale.y += 0.5;
+       selectedObj.scale.z += 0.5;
+  }
+
+  $("#p" + selectedObj.name).html(objInfoString(selectedObj));
+
 }
 
 window.addEventListener('mousemove', onMouseMove, false );
 window.addEventListener('click', onMouseClick, false );
 window.addEventListener('keydown', onKeyDown, false );
-
 window.requestAnimationFrame(render);
 
 
