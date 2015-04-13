@@ -4,7 +4,7 @@
 		"name": "Cabinet",
 		"objFile": "cabinetBody.obj",
 		"albedoFile": "orrery_albedoWithAoShadows.png",
-		"specularFile": "cabinet_specular.png",
+		"specularFile": "orrery_specular.png",
 		"normalFile": "orrery_normal.png",
 		"origin" : {
 			"x" : 0,
@@ -24,7 +24,7 @@
 	},
 	{
 		"name": "Cabinet Description Panel",
-		"objFile": "cabinetDescripLow.obj",
+		"objFile": "cabinetDescription.obj",
 		"albedoFile": "orreryDescrip_albedo.png",
 		"specularFile": "orreryDescrip_specular.png",
 		"normalFile": "orreryDescrip_normal.png",
@@ -48,7 +48,7 @@
 		"name": "Starry Night",
 		"objFile": "starryNight.obj",
 		"albedoFile": "starryNight_albedo.png",
-		"specularFile": "",
+		"specularFile": "starryNight_specular.png",
 		"normalFile": "",
 		"origin" : {
 			"x" : 0,
@@ -110,5 +110,119 @@
 			"y" : 0,
 			"z" : 0
 		}
+
+	},
+	{
+		"name": "ArmPivot",
+		"objFile": "armPivot.obj",
+		"albedoFile": "armPivot_albedo.png",
+		"specularFile": "armPivot_specular.png",
+		"normalFile": "",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 1.5
+		},
+		"scale" : {
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+	},
+	{
+		"name": "Arrow Arm",
+		"objFile": "smallArm.obj",
+		"albedoFile": "smallArm_albedo.png",
+		"specularFile": "smallArm_specular.png",
+		"normalFile": "",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 1.9
+		},
+		"scale" : {
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+
+	},
+	{
+		"name": "Main Window",
+		"objFile": "mainWindow.obj",
+		"albedoFile": "mainWindow_albedo.png",
+		"specularFile": "mainWindow_specular.png",
+		"normalFile": "",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		},
+		"scale" : {
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+	},
+	{
+		"name": "Window Left",
+		"objFile": "windowLeft.obj",
+		"albedoFile": "windows_albedo.png",
+		"specularFile": "windows_specular.png",
+		"normalFile": "windows_normal.png",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		},
+		"scale" : {
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+
+	},
+	{
+		"name": "Window Right",
+		"objFile": "windowRight.obj",
+		"albedoFile": "windows_albedo.png",
+		"specularFile": "windows_specular.png",
+		"normalFile": "windows_normal.png",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		},
+		"scale" : {
+			"x" : 8,
+			"y" : 8,
+			"z" : 8
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+
 	}
 ]}
