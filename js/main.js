@@ -6,7 +6,7 @@ var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
 var gears = [];
 var gearModels = [];
-var objectModels = [];
+var objectModels = []; //keep objectmodels Index as ID for description access
 var countUp = 0;
 
 document.onkeydown = checkKey;
@@ -120,6 +120,7 @@ function load_json_obj(filePath){
 
     for(var i = 0; i < objectModels.length; i++) {
     loadObj(
+      i,
       objectModels[i].name,
       objectModels[i].objFile,
       objectModels[i].albedoFile,
@@ -147,7 +148,7 @@ function load_json_obj(filePath){
 
 }
 
-function loadObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
+function loadObj(id, objName, fileName, albedo, spec, norm, pos, scale, rot) {
 
   var manager = new THREE.LoadingManager();
   manager.onProgress = function ( item, loaded, total ) {
@@ -180,6 +181,7 @@ function loadObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
          object.name = objName;
          object.position.set(pos.x, pos.y, pos.z);
          object.children[0].material = material;
+         object.children[0].name = id;
          object.children[0].geometry.name = objName;
          console.log(objName);
          scene.add( object );
@@ -265,6 +267,8 @@ function mouseRayCast() {
   for (var i = 0; i < intersects.length; i++) {
     
     intersectedObj = intersects[i].object.geometry.name;
+     $("#name").html(intersectedObj);
+     $("#description").html(objectModels[intersects[i].object.name].description);
     break;
 
     // if(intersects[i].object.material.color.r == selectedColor.r

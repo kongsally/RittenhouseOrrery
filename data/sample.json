@@ -2,6 +2,7 @@
 {"objects": [
 	{
 		"name": "Cabinet",
+		"description": " The Rittenhouse Orrery is housed in a Chippendale case built by the prominent Philadelphia cabinetmakers John Folwell and Parnell Gibbs",
 		"objFile": "cabinetBody.obj",
 		"albedoFile": "orrery_albedoWithAoShadows.png",
 		"specularFile": "orrery_specular.png",
