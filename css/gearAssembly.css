@@ -19,7 +19,6 @@ h3 {
 	text-align: center;
     font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 24px;
-	background-color: rgba(255, 255, 255, 0.5);
 	padding: 10px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -35,15 +34,10 @@ a:link, a:visited {
     width: 120px;
     font-weight: bold;
     color: #000000;
-    background-color: rgba(255, 255, 255, 0.5);
     text-align: center;
     padding: 4px;
     text-decoration: none;
     text-transform: uppercase;
-}
-
-a:hover, a:active {
-    background-color: rgba(255, 255, 255, 0.8);
 }
 
 
@@ -80,6 +74,23 @@ a:hover, a:active {
     color: #ECCC58;
 }
 
+#objInfo {
+  color: #555;
+  width: 90%;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid #bbb;
+  cursor: pointer;
+  box-sizing: border-box;
+}
 
 #objList{
     width: 80%;
