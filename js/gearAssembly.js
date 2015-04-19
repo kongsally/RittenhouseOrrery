@@ -12,6 +12,7 @@ var selectedObj;
 var txt = 'Hello';
 
 function downloadFunction() {
+  txt = JSON.stringify(objectModels);
     document.getElementById('GearInfo').href = 'data:text/plain;charset=utf-8,'
         + encodeURIComponent(txt);
 }
