@@ -269,10 +269,23 @@ function mouseRayCast() {
 
   if(intersects.length != 0) {
     
-    intersectedObj = intersects[0].object.geometry.name;
+<<<<<<< HEAD
+    intersectedObj = intersects[i].object.geometry.name;
      $("#name").html(intersectedObj);
-     $("#description").html(objectModels[intersects[0].object.name].description);
-   
+     $("#description").html(objectModels[intersects[i].object.name].description);
+    break;
+
+    // if(intersects[i].object.material.color.r == selectedColor.r
+    //   && intersects[i].object.material.color.g == selectedColor.g
+    //    && intersects[i].object.material.color.b == selectedColor.b) {
+    //   intersects[i].object.material.color = new THREE.Color( 0xffffff );
+    // } else {
+    //     intersects[i].object.material.color = selectedColor;
+    // }
+  }
+=======
+    intersectedObj = intersects[0].object.geometry.name;
+
     if(intersects[0].object.material.color.r == selectedColor.r
       && intersects[0].object.material.color.g == selectedColor.g
        && intersects[0].object.material.color.b == selectedColor.b) {
@@ -291,6 +304,7 @@ function mouseRayCast() {
 
   
 }
+>>>>>>> 5cd7d2d662082c8cf8d1e1ac2d34cd64cc0f1d44
 
   $("#name").html(intersectedObj);
 
