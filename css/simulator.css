@@ -51,7 +51,6 @@ a:hover, a:active {
 }
 
 #info {
-    display: none;
     width: 20%;
     height: 60%;
     position: fixed;
@@ -59,7 +58,7 @@ a:hover, a:active {
     bottom: 5%;
     padding: 1em;
     color: #FFE688;
-    background-color: rgba(42,85,140, 0.8);
+    border: solid 2 px rgba(42,85,140, 0.8);
 }
 
 #name {

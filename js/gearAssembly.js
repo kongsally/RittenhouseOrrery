@@ -146,7 +146,7 @@ function loadObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
          } else {
             $("#objList").append("<div class='objLoaded' id ='" 
               + countUp + "' onclick=selectObj('" + countUp + "," + fileName + "'); >" 
-              + fileName + "</div>" + "<div class='accordion-content'> <p> TEST</p> </div>" );
+              + fileName + "</div>" + "<div class='accordion-content'> <p> TEST </p> </div>" );
           }
 
          countUp += 1; //keep track of objects loaded

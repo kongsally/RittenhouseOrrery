@@ -217,12 +217,13 @@ function onMouseMove( event ) {
   // (-1 to +1) for both components
   mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1
   mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1    
-
+  mouseRayCast();
 }
 
 function onMouseClick (event) {
    mouseRayCast();
 }
+
 
 function mouseRayCast() {
    // update the picking ray with the camera and mouse position  
@@ -230,22 +231,33 @@ function mouseRayCast() {
 
   // calculate objects intersecting the picking ray
   var intersects = raycaster.intersectObjects(scene.children, true);
-  var selectedColor = new THREE.Color( 0xff0000 );
+  var selectedColor = new THREE.Color( 0xffffff );
   var intersectedObj = "";
 
-  for (var i = 0; i < intersects.length; i++) {
-    
-    intersectedObj = intersects[i].object.geometry.name;
-    break;
 
-    // if(intersects[i].object.material.color.r == selectedColor.r
-    //   && intersects[i].object.material.color.g == selectedColor.g
-    //    && intersects[i].object.material.color.b == selectedColor.b) {
-    //   intersects[i].object.material.color = new THREE.Color( 0xffffff );
-    // } else {
-    //     intersects[i].object.material.color = selectedColor;
-    // }
-  }
+
+  if(intersects.length != 0) {
+    
+    intersectedObj = intersects[0].object.geometry.name;
+
+    if(intersects[0].object.material.color.r == selectedColor.r
+      && intersects[0].object.material.color.g == selectedColor.g
+       && intersects[0].object.material.color.b == selectedColor.b) {
+
+      intersects[0].object.material.color = new THREE.Color( 0x8C8C8C );
+    } else {
+        
+        for (var i = 0; i < scene.children.length; i++) { 
+          if(scene.children[i].name != "" && scene.children[i].name != intersectedObj) { 
+            scene.children[i].children[0].material.color = new THREE.Color(0x8C8C8C);
+          }   
+        }
+
+        intersects[0].object.material.color = selectedColor;
+    }
+
+  
+}
 
   $("#name").html(intersectedObj);
 

@@ -2,6 +2,7 @@
 {"objects": [
 	{
 		"name": "Cabinet",
+		"description": "blah blah ",
 		"objFile": "cabinetBody.obj",
 		"albedoFile": "orrery_albedoWithAoShadows.png",
 		"specularFile": "cabinet_specular.png",
