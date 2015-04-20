@@ -24,7 +24,7 @@ function checkKey(e) {
 
 function toggleCanvas() {
   $("#container").css("display", "block");
-  // $("#info").css("display", "block");
+  $("#info").css("display", "block");
   $("#loading").css("display", "none");
 }
 
@@ -187,13 +187,12 @@ function loadObj(id, objName, fileName, albedo, spec, norm, pos, scale, rot) {
          scene.add( object );
          
          countUp += 1; //keep track of objects loaded
-
-         if(countUp == objectModels.length) {
+         
+      });
+      if(countUp == objectModels.length) {
             render();
             toggleCanvas();
          }
-         
-      });
  
 }
 

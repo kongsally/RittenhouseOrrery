@@ -51,6 +51,7 @@ a:hover, a:active {
 }
 
 #info {
+    display: none;
     width: 20%;
     height: 60%;
     position: fixed;
