@@ -187,13 +187,12 @@ function loadObj(id, objName, fileName, albedo, spec, norm, pos, scale, rot) {
          scene.add( object );
          
          countUp += 1; //keep track of objects loaded
-         
-      });
-      if(countUp == objectModels.length) {
+         if(countUp == objectModels.length) {
             render();
             toggleCanvas();
          }
- 
+         
+      });
 }
 
 function putSphere(pos) {
