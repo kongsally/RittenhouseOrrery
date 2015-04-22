@@ -8,6 +8,7 @@ var gears = [];
 var gearModels = [];
 var objectModels = [];
 var countUp = 0;
+var projector, mouse = { x: 0, y: 0 }, INTERSECTED;
 
 
 function toggleCanvas() {
@@ -69,6 +70,8 @@ function setup() {
   scene.add( directionalLight );
   var amblight = new THREE.AmbientLight( 0x404040 ); // soft white light
   scene.add( amblight );
+
+  projector = new THREE.Projector();
 
  
   // start the renderer
@@ -203,7 +206,9 @@ function animate() {
 
   requestAnimationFrame( animate );
   controls.update();
+  //mouseRayCast();
   render();
+  update();
 
 }
 
@@ -217,11 +222,13 @@ function onMouseMove( event ) {
   // (-1 to +1) for both components
   mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1
   mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1    
-  mouseRayCast();
+  //mouseRayCast();
 }
 
+
+
 function onMouseClick (event) {
-   mouseRayCast();
+   //mouseRayCast();
 }
 
 
@@ -258,8 +265,57 @@ function mouseRayCast() {
 
   
 }
+}
 
-  $("#name").html(intersectedObj);
+function update()
+{
+  // find intersections
+
+  // create a Ray with origin at the mouse position
+  //   and direction into the scene (camera direction)
+
+  var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
+   // update the picking ray with the camera and mouse position  
+  raycaster.setFromCamera( vector, camera ); 
+
+  // calculate objects intersecting the picking ray
+  var intersects = raycaster.intersectObjects(scene.children, true);
+  var selectedColor = new THREE.Color( 0xffffff );
+
+  // INTERSECTED = the object in the scene currently closest to the camera 
+  //    and intersected by the Ray projected from the mouse position  
+  
+  // if there is one (or more) intersections
+  if ( intersects.length > 0 )
+  {
+    // if the closest object intersected is not the currently stored intersection object
+    if ( intersects[ 0 ].object != INTERSECTED ) 
+    {
+        // restore previous intersection object (if it exists) to its original color
+      if ( INTERSECTED ) {
+        console.log(INTERSECTED);
+        INTERSECTED.material.color = new THREE.Color( 0x8C8C8C );
+      }
+      // store reference to closest object as current intersection object
+      INTERSECTED = intersects[ 0 ].object;
+      // set a new color for closest object
+      INTERSECTED.material.color = selectedColor;
+       console.log("MORE THAN ONE INTERSE");
+    }
+  } 
+  else // there are no intersections
+  {
+    // restore previous intersection object (if it exists) to its original color
+    if ( INTERSECTED ) 
+      INTERSECTED.material.color = new THREE.Color( 0x8C8C8C  );
+    // remove previous intersection object reference
+    //     by setting current intersection object to "nothing"
+    INTERSECTED = null;
+  }
+
+  controls.update();
+ 
+  //$("#name").html(intersectedObj);
 
   render();
 
