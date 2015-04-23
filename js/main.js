@@ -314,7 +314,7 @@ function update()
       INTERSECTED = intersects[ 0 ].object;
       // set a new color for closest object
       INTERSECTED.material.color = selectedColor;
-       console.log("MORE THAN ONE INTERSE");
+      $("#name").html(INTERSECTED.geometry.name);
     }
   } 
   else // there are no intersections
@@ -329,7 +329,7 @@ function update()
 
   controls.update();
  
-  //$("#name").html(intersectedObj);
+  
 
   render();
 

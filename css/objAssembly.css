@@ -90,6 +90,8 @@ a:link, a:visited {
   border: 1px solid #bbb;
   cursor: pointer;
   box-sizing: border-box;
+  margin-top: -4em;
+  margin-bottom: 1em;
 }
 
 #objList{
