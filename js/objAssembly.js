@@ -49,17 +49,17 @@ function setup() {
 
   // the camera starts at 0,0,0
   // so pull it back
-  camera.position.y = 350;
-  camera.position.z = 0;
+  camera.position.z = 300;
 
   //Orbit Control
   controls = new THREE.OrbitControls( camera );
+  controls.maxDistance = 1000;
 
    // create light
   var directionalLight = new THREE.DirectionalLight( 0xffffff, 1.0 );
   directionalLight.position.set( 100, 100, 100 );
   scene.add( directionalLight );
-  var amblight = new THREE.AmbientLight( 0xffffff ); // soft white light
+  var amblight = new THREE.AmbientLight( 0x404040 ); // soft white light
   scene.add( amblight );
 
  
@@ -72,25 +72,7 @@ function setup() {
   // draw!
   renderer.render(scene, camera);
   animate();
-  load_json_obj("data/gearSetup.json");
-
-  //add gears
-  var gear0 = new Gear(8);
-  gear0.name = "0";
-  var gear1 = new Gear(45);
-  gear1.name = "1";
-  var gear2 = new Gear(64);
-  gear2.name = "2";
-  var gear3 = new Gear(173);
-  gear3.name = "3";
-
-  addToSisters(gear0, gear2);
-  addToChildren(gear0, gear3);
-
-  gears.push(gear0);
-  gears.push(gear1);
-  gears.push(gear2);
-  gears.push(gear3);
+  load_json_obj("data/objSetup.json");
  
 }
 
@@ -168,12 +150,12 @@ function loadObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
          if (countUp == 0) {
           $("#objList").append("<div class='objLoaded' id ='" 
           + countUp + "' onclick=selectObj('" + countUp + "'); >" 
-          + objName + "</div>" +"<div class='accordion-content'>" + 
+          + fileName + "</div>" +"<div class='accordion-content'>" + 
             "<p id='p" + countUp + "'></p> </div>");
          } else {
             $("#objList").append("<div class='objLoaded' id ='" 
               + countUp + "' onclick=selectObj('" + countUp + "'); >" 
-              + objName + "</div>" + "<div class='accordion-content'>" + 
+              + fileName + "</div>" + "<div class='accordion-content'>" + 
                "<p id='p" + countUp + "'></p> </div>" );
           }
 
@@ -192,36 +174,9 @@ function renderObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
   };
 
   var path = "";
-  var material  = new THREE.MeshPhongMaterial();
 
-  if(albedo == "" && spec == "" && norm == "") {
-    //shiny
-    material  = new THREE.MeshPhongMaterial({ color: 0xffff00, specular: 0x009900, 
-      shininess: 30, shading: THREE.FlatShading } );
-    var loader = new THREE.OBJLoader();
-      loader.load(path + fileName, function(object) {
-         object.scale.set(scale.x, scale.y, scale.z);
-         object.rotation.set(rot.x, rot.y, rot.z);
-         object.name = countUp.toString();
-         object.position.set(pos.x, pos.y, pos.z);
-         object.children[0].material = material;
-         object.children[0].material.metal = true;
-         object.children[0].geometry.name = objName;
-         console.log(object);
-         scene.add( object );
-         //add the object to an array of objects
-         //print all objects in the scene
+  var material  = new THREE.MeshPhongMaterial()
 
-            $("#objList").append("<div class='objLoaded' id ='" 
-              + countUp + "' onclick=selectObj('" + countUp + "'); >" 
-              + objName + "</div>" + "<div class='accordion-content'>" + 
-              "<p id='p" + countUp + "'></p> </div>" );
-         countUp += 1; //keep track of objects loaded
-         render();
-         
-      });
-
-  } else {
   if(albedo !== "") {
     material.map = THREE.ImageUtils.loadTexture(path + albedo);
     material.transparent = true;
@@ -258,13 +213,15 @@ function renderObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
          render();
          
       });
-  }
+ 
 }
 
 function animate() {
+
   requestAnimationFrame( animate );
   controls.update();
   render();
+
 }
 
 function render() {

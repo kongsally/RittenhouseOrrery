@@ -95,23 +95,6 @@ function setup() {
 
   load_json_obj("data/sample.json");
 
-  var gear0 = new Gear(8);
-  gear0.name = "0";
-  var gear1 = new Gear(45);
-  gear1.name = "1";
-  var gear2 = new Gear(64);
-  gear2.name = "2";
-  var gear3 = new Gear(173);
-  gear3.name = "3";
-
-  addToSisters(gear0, gear2);
-  addToChildren(gear0, gear3);
-
-  gears.push(gear0);
-  gears.push(gear1);
-  gears.push(gear2);
-  gears.push(gear3);
-
 }
 
 function load_json_obj(filePath){

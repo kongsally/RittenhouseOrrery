@@ -16,7 +16,8 @@
     <script src="js/stats.min.js"></script>
     <script src="js/OBJLoader.js"></script>
     <script src="js/OrbitControls.js"></script>
-    <script src="js/objAssembly.js"></script>
+    <script src="js/gear.js"></script>
+    <script src="js/gearAssembly.js"></script>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/objAssembly.css">
@@ -47,53 +48,12 @@
         <div id="container"></div>
       </div>
       <div class = "four columns">
-        <a id = "objInfo" href = "" download = "file.json" onclick = "downloadFunction();"> Export Configuration </a>
-       <p>Load an obj :  <input type = "file" type="accordian-toggle" id="file-field" id="accordian-content"> </p>
-
+        <a id = "crank" onclick = "crank();"></a>
         <div id ="objList">Uploaded Objs: </div>
       </div>
     </div>
 
 </body>
 
-<script>
-//check if browser supports file api and filereader features
-  if (window.File && window.FileReader && window.FileList && window.Blob) {
-      
-    //this function is called when the input loads an image
-      function renderFile(file){
-        var stuff = [new THREE.Vector3(
-        0,0,0
-      ),
-      new THREE.Vector3(
-        8,8,8
-      ),
-      new THREE.Vector3(
-        0,0,0
-      )];
-        var reader = new FileReader();
-          reader.onload = function(event){
-              the_url = event.target.result
-              renderObj(file.name, the_url,"","","", stuff[0], stuff[1], stuff[2]);
-         
-          }
-      //when the file is read it triggers the onload event above.
-          reader.readAsDataURL(file);
-      }
-    
-
-    //watch for change on the 
-      $( "#file-field" ).change(function() {
-          console.log("file has been chosen");
-          //grab the first image in the fileList
-          //in this example we are only loading one file.
-          renderFile(this.files[0]);
-
-      });
-
-  } else {
-    alert('The File APIs are not fully supported in this browser.');
-  }
-  </script>
 
 </html>
