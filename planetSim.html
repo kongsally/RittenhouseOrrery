@@ -17,7 +17,7 @@
     <script src="js/OBJLoader.js"></script>
     <script src="js/OrbitControls.js"></script>
     <script src="js/gear.js"></script>
-    <script src="js/gearAssembly.js"></script>
+    <script src="js/planetAssembly.js"></script>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/objAssembly.css">
@@ -41,16 +41,11 @@
   
   <a id="homeBtn" class="button" onclick="window.location='index.html'"> Home </a> 
   <a id="simulatorBtn" class="button" onclick="window.location='simulator.html'"> Simulator </a> 
-  <p id = "controlGuide">A: left, D: right, W: up, S: down, Q: back, E: front, [: smaller, ]: bigger</p>
+  <a id = "crank" class = "button" onclick = "crank();">Play</a>
 
-    <div class = "row">
-      <div class = "eight columns">
-        <div id="container"></div>
-      </div>
-      <div class = "four columns">
-        <a id = "crank" onclick = "crank();"></a>
-        <div id ="objList">Uploaded Objs: </div>
-      </div>
+    <div id = "planetWrap">
+        <div id="planetContainer"></div>
+        
     </div>
 
 </body>

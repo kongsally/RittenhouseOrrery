@@ -4,12 +4,14 @@ var camera;
 var scene;
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
-var gears = [];
+var planets = [];
 var gearModels = [];
 var objectModels = [];
+var planetInfos = [];
 var countUp = 0;
 var selectedObj;
 var txt = 'Hello';
+var play = false;
 
 function downloadFunction() {
   txt = JSON.stringify(objectModels);
@@ -21,7 +23,7 @@ function setup() {
 
   //show('container', false);
   // set the scene size
-  var WIDTH = window.innerWidth * 0.6,
+  var WIDTH = window.innerWidth * 0.9,
       HEIGHT = window.innerHeight * 0.65;
 
   // set some camera attributes
@@ -32,7 +34,7 @@ function setup() {
 
   // get the DOM element to attach to
   // - assume we've got jQuery to hand
-  var $container = $('#container');
+  var $container = $('#planetContainer');
 
   // create a WebGL renderer, camera
   // and a scene
@@ -50,18 +52,15 @@ function setup() {
   // the camera starts at 0,0,0
   // so pull it back
   camera.position.y = 350;
-  camera.position.z = 0;
+  camera.position.z = -1000;
 
   //Orbit Control
   controls = new THREE.OrbitControls( camera );
 
    // create light
   var directionalLight = new THREE.DirectionalLight( 0xffffff, 1.0 );
-  directionalLight.position.set( 100, 100, 100 );
+  directionalLight.position.set( 0,1,0 );
   scene.add( directionalLight );
-  var amblight = new THREE.AmbientLight( 0xffffff ); // soft white light
-  scene.add( amblight );
-
  
   // start the renderer
   renderer.setSize(WIDTH, HEIGHT);
@@ -73,60 +72,75 @@ function setup() {
   renderer.render(scene, camera);
   animate();
   load_json_obj("data/gearSetup.json");
-
-  //add gears
-  var gear0 = new Gear(8);
-  gear0.name = "0";
-  var gear1 = new Gear(45);
-  gear1.name = "1";
-  var gear2 = new Gear(64);
-  gear2.name = "2";
-  var gear3 = new Gear(173);
-  gear3.name = "3";
-
-  addToSisters(gear0, gear2);
-  addToChildren(gear0, gear3);
-
-  gears.push(gear0);
-  gears.push(gear1);
-  gears.push(gear2);
-  gears.push(gear3);
- 
 }
 
 
 
 function load_json_obj(filePath){
+  $.getJSON("data/planets.json", function(data) {
+    planetInfos = data.objects;
+  });
+
   $.getJSON(filePath, function(data) {
     objectModels = data.objects;
 
     for(var i = 0; i < objectModels.length; i++) {
-    loadObj(
-      objectModels[i].name,
-      objectModels[i].objFile,
-      objectModels[i].albedoFile,
-      objectModels[i].specularFile,
-      objectModels[i].normalFile,
-      new THREE.Vector3(
+      loadPlanet(
+        objectModels[i].name,
+        new THREE.Vector3(
         objectModels[i].origin.x,
         objectModels[i].origin.y,
         objectModels[i].origin.z
-      ),
-      new THREE.Vector3(
-        objectModels[i].scale.x,
-        objectModels[i].scale.y,
-        objectModels[i].scale.z
-      ),
-      new THREE.Vector3(
-        objectModels[i].rotate.x,
-        objectModels[i].rotate.y,
-        objectModels[i].rotate.z
-      )
-    );
+        ),
+        new THREE.Vector3(
+          objectModels[i].scale.x,
+          objectModels[i].scale.y,
+          objectModels[i].scale.z
+        ));
+    // loadObj(
+    //   objectModels[i].name,
+    //   objectModels[i].objFile,
+    //   objectModels[i].albedoFile,
+    //   objectModels[i].specularFile,
+    //   objectModels[i].normalFile,
+    //   new THREE.Vector3(
+    //     objectModels[i].origin.x,
+    //     objectModels[i].origin.y,
+    //     objectModels[i].origin.z
+    //   ),
+    //   new THREE.Vector3(
+    //     objectModels[i].scale.x,
+    //     objectModels[i].scale.y,
+    //     objectModels[i].scale.z
+    //   ),
+    //   new THREE.Vector3(
+    //     objectModels[i].rotate.x,
+    //     objectModels[i].rotate.y,
+    //     objectModels[i].rotate.z
+    //   )
+    // );
+
   }
 
   });
 
+}
+
+function loadPlanet(name, pos, scale) {
+  var geometry = new THREE.SphereGeometry( scale.x, 32, 32 );
+  var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+  var sphere = new THREE.Mesh( geometry, material );
+  sphere.position.set(pos.x, pos.y, pos.z);
+  geometry.applyMatrix( new THREE.Matrix4().makeTranslation(2 * pos.x, 0, 0 ) );
+  sphere.rotation.set(0, Math.random(), 0);
+  sphere.name = name;
+  scene.add( sphere );
+  for(var i = 0; i < planetInfos.length; i++) {
+    if(planetInfos[i].name == name) {
+      planets.push({"name":name,
+                    "period": planetInfos[i].period});
+    }
+  }
 }
 
 function loadObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
@@ -265,6 +279,13 @@ function animate() {
   requestAnimationFrame( animate );
   controls.update();
   render();
+  if(play) {
+    for(var i = 0; i < planets.length; i++) {
+    planet = scene.getObjectByName(planets[i].name, true );
+    planet.rotation.y += 1/planets[i].period;
+  }
+  render();
+  }
 }
 
 function render() {
@@ -358,7 +379,10 @@ function onKeyDown(e){
   }
 
   $("#p" + selectedObj.name).html(objInfoString(selectedObj));
+}
 
+function crank(){
+  play = !play;
 }
 
 window.addEventListener('mousemove', onMouseMove, false );

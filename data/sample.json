@@ -114,51 +114,6 @@
 
 	},
 	{
-		"name": "ArmPivot",
-		"objFile": "armPivot.obj",
-		"albedoFile": "armPivot_albedo.png",
-		"specularFile": "armPivot_specular.png",
-		"normalFile": "",
-		"origin" : {
-			"x" : 0,
-			"y" : 0,
-			"z" : 1.5
-		},
-		"scale" : {
-			"x" : 8,
-			"y" : 8,
-			"z" : 8
-		},
-		"rotate" : {
-			"x" : 0,
-			"y" : 0,
-			"z" : 0
-		}
-	},
-	{
-		"name": "Arrow Arm",
-		"objFile": "smallArm.obj",
-		"albedoFile": "smallArm_albedo.png",
-		"specularFile": "smallArm_specular.png",
-		"normalFile": "",
-		"origin" : {
-			"x" : 0,
-			"y" : 0,
-			"z" : 1.9
-		},
-		"scale" : {
-			"x" : 8,
-			"y" : 8,
-			"z" : 8
-		},
-		"rotate" : {
-			"x" : 0,
-			"y" : 0,
-			"z" : 0
-		}
-
-	},
-	{
 		"name": "Main Window",
 		"objFile": "mainWindow.obj",
 		"albedoFile": "mainWindow_albedo.png",
@@ -167,7 +122,7 @@
 		"origin" : {
 			"x" : 0,
 			"y" : 0,
-			"z" : 0
+			"z" : 1
 		},
 		"scale" : {
 			"x" : 8,
@@ -189,7 +144,7 @@
 		"origin" : {
 			"x" : 0,
 			"y" : 0,
-			"z" : 0
+			"z" : 0.2
 		},
 		"scale" : {
 			"x" : 8,

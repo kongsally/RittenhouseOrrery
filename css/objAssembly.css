@@ -112,3 +112,7 @@ a:link, a:visited {
     color: #e6e6e6;
     cursor: pointer;
 }
+
+#planetWrap {
+  text-align: center;
+}
