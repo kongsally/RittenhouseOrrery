@@ -33,6 +33,7 @@ function setup() {
   // get the DOM element to attach to
   // - assume we've got jQuery to hand
   var $container = $('#container');
+  $("#objList").css("height", (window.innerHeight * 0.5).toString() + "px" );
 
   // create a WebGL renderer, camera
   // and a scene
@@ -52,7 +53,7 @@ function setup() {
   camera.position.z = 300;
 
   //Orbit Control
-  controls = new THREE.OrbitControls( camera );
+  controls = new THREE.OrbitControls( camera, container );
   controls.maxDistance = 1000;
 
    // create light

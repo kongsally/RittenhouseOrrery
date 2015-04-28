@@ -97,28 +97,6 @@ function load_json_obj(filePath){
           objectModels[i].scale.y,
           objectModels[i].scale.z
         ));
-    // loadObj(
-    //   objectModels[i].name,
-    //   objectModels[i].objFile,
-    //   objectModels[i].albedoFile,
-    //   objectModels[i].specularFile,
-    //   objectModels[i].normalFile,
-    //   new THREE.Vector3(
-    //     objectModels[i].origin.x,
-    //     objectModels[i].origin.y,
-    //     objectModels[i].origin.z
-    //   ),
-    //   new THREE.Vector3(
-    //     objectModels[i].scale.x,
-    //     objectModels[i].scale.y,
-    //     objectModels[i].scale.z
-    //   ),
-    //   new THREE.Vector3(
-    //     objectModels[i].rotate.x,
-    //     objectModels[i].rotate.y,
-    //     objectModels[i].rotate.z
-    //   )
-    // );
 
   }
 

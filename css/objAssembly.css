@@ -4,6 +4,7 @@ html {
 
 body {
 	border: none;
+  overflow: auto;
 }
 
   .objLoaded {
@@ -99,6 +100,7 @@ a:link, a:visited {
     padding: 1em;
     background-color: #eee;
     z-index: -100;
+    overflow: scroll;
 }
 
 .objLoaded {
