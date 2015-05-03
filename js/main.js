@@ -9,6 +9,7 @@ var gearModels = [];
 var objectModels = []; //keep objectmodels Index as ID for description access
 var countUp = 0;
 var projector, mouse = { x: 0, y: 0 }, INTERSECTED;
+var sunPivot = new THREE.Object3D();
 
 document.onkeydown = checkKey;
 
@@ -92,11 +93,15 @@ function setup() {
   // attach the render-supplied DOM element
   $container.append(renderer.domElement);
 
+  //load objs
+  load_json_obj("data/sample.json");
+
+  //set pivot
+  sunPivot.position.set(0, 1, 0.5317);
+
   // draw!
   renderer.render(scene, camera);
   animate();
-
-  load_json_obj("data/sample.json");
 
 }
 
@@ -162,6 +167,7 @@ function loadObj(id, objName, fileName, albedo, spec, norm, pos, scale, rot) {
 
   var loader = new THREE.OBJLoader();
       loader.load(path + fileName, function(object) {
+         object.children[0].geometry.computeBoundingBox();
          object.scale.set(scale.x, scale.y, scale.z);
          object.rotation.set(rot.x, rot.y, rot.z);
          object.name = objName;
@@ -169,6 +175,7 @@ function loadObj(id, objName, fileName, albedo, spec, norm, pos, scale, rot) {
          object.children[0].material = material;
          object.children[0].name = id;
          object.children[0].geometry.name = objName;
+         
          console.log(objName);
          scene.add( object );
          
@@ -240,6 +247,8 @@ function onMouseMove( event ) {
 
 
 function onMouseClick (event) {
+  var bbox = INTERSECTED.geometry.boundingBox;
+  console.log(bbox);
    //mouseRayCast();
 }
 
@@ -252,8 +261,6 @@ function mouseRayCast() {
   var intersects = raycaster.intersectObjects(scene.children, true);
   var selectedColor = new THREE.Color( 0xffffff );
   var intersectedObj = "";
-
-
 
   if(intersects.length != 0) {
     
@@ -346,6 +353,25 @@ function crank() {
   for(var i =0 ;i < gears.length; i++) {
     var object = scene.getObjectByName( "Gear" + i, true );
     object.rotation.z = gears[i].rotateNum * Math.PI/180;
+  }
+}
+
+var mainWindowOpen = false;
+function openMainWindow() {
+  var mainWindow = scene.getObjectByName("Main Window");
+  if(!mainWindowOpen) {
+    mainBBox = mainWindow.children[0].geometry.boundingBox;
+    mainWindow.applyMatrix(
+      new THREE.Matrix4().makeTranslation(
+        -6 * (mainBBox.max.x - mainBBox.min.x), 
+        0,0));
+    mainWindow.rotation.y = 70 * Math.PI/180;
+    // mainWindow.position.x = mainBBox.min.x;
+    mainWindowOpen = true;
+  } else {
+    mainWindow.rotation.y = 0;
+    mainWindow.position.x = 0;
+    mainWindowOpen = false;
   }
 }
 
