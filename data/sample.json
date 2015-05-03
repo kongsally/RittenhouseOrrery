@@ -136,7 +136,7 @@
 		}
 	},
 	{
-		"name": "Window Left",
+		"name": "Left Window",
 		"objFile": "windowLeft.obj",
 		"albedoFile": "windows_albedo.png",
 		"specularFile": "windows_specular.png",
@@ -159,7 +159,7 @@
 
 	},
 	{
-		"name": "Window Right",
+		"name": "Right Window",
 		"objFile": "windowRight.obj",
 		"albedoFile": "windows_albedo.png",
 		"specularFile": "windows_specular.png",

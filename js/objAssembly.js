@@ -9,6 +9,7 @@ var gearModels = [];
 var objectModels = [];
 var countUp = 0;
 var selectedObj;
+var selectedObjID;
 var txt = 'Hello';
 
 function downloadFunction() {
@@ -266,9 +267,11 @@ function mouseRayCast() {
 function selectObj(objID) {
   //gear 1 is mother gear
   selectedObj = scene.getObjectByName( objID, true );
+  selectedObjID = objID;
 
   $("#" + objID).next().slideToggle('fast');
   $("#p" + objID).html(objInfoString(selectedObj));
+  console.log(objectModels[objID]);
 
   //Hide the other panels
   $(".accordion-content").not($("#" + objID).next()).slideUp('fast');
@@ -286,33 +289,53 @@ function onKeyDown(e){
   var keyCode = e.keyCode;
   if(keyCode == 65){ // a
        selectedObj.position.x -= 1;
+       //update object models
+       objectModels[selectedObjID].origin.x -= 1;
   }
   if(keyCode == 68){ // d
        selectedObj.position.x += 1;
+       //update object models
+       objectModels[selectedObjID].origin.x += 1;
   }
    if(keyCode == 87){ // w
        selectedObj.position.y += 1;
+       //update object models
+       objectModels[selectedObjID].origin.y += 1;
   }
    if(keyCode == 83){ // s
        selectedObj.position.y -= 1;
+       //update object models
+       objectModels[selectedObjID].origin.y -= 1;
   }
   if(keyCode == 69){ // e
        selectedObj.position.z += 1;
+       //update object models
+       objectModels[selectedObjID].origin.z += 1;
   }
   if(keyCode == 81){ // q
        selectedObj.position.z -= 1;
+       //update object models
+       objectModels[selectedObjID].origin.z -= 1;
   }
   if(keyCode == 219){ // [
     if(selectedObj.scale.x - 0.5 > 0) {
        selectedObj.scale.x -= 0.5;
        selectedObj.scale.y -= 0.5;
        selectedObj.scale.z -= 0.5;
+       //update object models
+       objectModels[selectedObjID].scale.x -= 0.5;
+       objectModels[selectedObjID].scale.y -= 0.5;
+       objectModels[selectedObjID].scale.z -= 0.5;
     }
   }
    if(keyCode == 221){ // ]
        selectedObj.scale.x += 0.5;
        selectedObj.scale.y += 0.5;
        selectedObj.scale.z += 0.5;
+       //update object models
+       objectModels[selectedObjID].scale.x += 0.5;
+       objectModels[selectedObjID].scale.y += 0.5;
+       objectModels[selectedObjID].scale.z += 0.5;
   }
 
   $("#p" + selectedObj.name).html(objInfoString(selectedObj));
