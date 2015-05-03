@@ -307,7 +307,6 @@ function update()
     {
         // restore previous intersection object (if it exists) to its original color
       if ( INTERSECTED ) {
-        console.log(INTERSECTED);
         INTERSECTED.material.color = new THREE.Color( 0x8C8C8C );
       }
       // store reference to closest object as current intersection object
