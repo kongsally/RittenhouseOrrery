@@ -9,19 +9,46 @@ var gearModels = [];
 var objectModels = [];
 var countUp = 0;
 var projector, mouse = { x: 0, y: 0 }, INTERSECTED;
+var stillLoading;
+var loadTimer;
+var loadTimerComplete;
+var percentIncrease;
+
+
+function drawszlider(count, total){
+    var szazalek= count/total * 100.0;
+    console.log("percent change" + szazalek);
+    $("#szliderbar").css("width", szazalek+'%');
+    $("#szazalek").innerHTML=szazalek+'%';
+}
+
+function incrszlider(increase) {
+  console.log("called");
+  if(stillLoading) {
+    if (percentIncrease >= 100) {
+      toggleCanvas();
+    }
+    $("#szliderbar").css("width", increase+'%');
+    $("#szazalek").innerHTML=increase+'%';
+    percentIncrease+= 2;
+  }
+}
 
 
 function toggleCanvas() {
   $("#container").css("display", "block");
-  // $("#info").css("display", "block");
+  $("#info").css("display", "block");
+  $("#szlider").css("display", "none");
   $("#loading").css("display", "none");
+  clearInterval(loadTimerComplete);
+  clearInterval(loadTimer);
 }
 
 function setLoadLocation(windowWidth, windowHeight) {
-  var loadLeft = windowWidth/2;
+  var loadLeft = windowWidth/2 - windowWidth*.4;
   var loadTop = windowHeight/2 + 100;
-  $('#loading').css("top", loadTop);
-  $('#loading').css("left", loadLeft);
+  $('#szlider').css("top", loadTop);
+  $('#szlider').css("left", loadLeft);
 }
 
 function setup() {
@@ -31,7 +58,16 @@ function setup() {
   var WIDTH = window.innerWidth,
       HEIGHT = window.innerHeight * 0.8;
 
-  setLoadLocation(WIDTH, HEIGHT);    
+  setLoadLocation(WIDTH, HEIGHT);   
+
+
+  stillLoading = true;
+  percentIncrease = 8;
+  drawszlider(8, 100);
+  loadTimer = setInterval(function(){ incrszlider(percentIncrease) }, 100);
+  //loadTimerComplete = setInterval(function() { toggleCanvas()}, 10000)
+
+
 
   // set some camera attributes
   var VIEW_ANGLE = 45,
@@ -80,6 +116,7 @@ function setup() {
   // attach the render-supplied DOM element
   $container.append(renderer.domElement);
 
+
   // draw!
   renderer.render(scene, camera);
   animate();
@@ -93,6 +130,7 @@ function load_json_obj(filePath){
     objectModels = data.objects;
 
     for(var i = 0; i < objectModels.length; i++) {
+    
     loadObj(
       objectModels[i].name,
       objectModels[i].objFile,
@@ -115,6 +153,7 @@ function load_json_obj(filePath){
         objectModels[i].rotate.z
       )
     );
+
   }
 
   });
@@ -125,6 +164,7 @@ function loadObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
 
   var manager = new THREE.LoadingManager();
   manager.onProgress = function ( item, loaded, total ) {
+  
       console.log( item, loaded, total );
   };
 
@@ -159,10 +199,14 @@ function loadObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
          scene.add( object );
          
          countUp += 1; //keep track of objects loaded
-
+        
          if(countUp == objectModels.length) {
             render();
-            toggleCanvas();
+            console.log("DoneLoading");
+            // toggleCanvas();
+            // clearInterval(loadTimer);
+            // clearInterval(loadTimerComplete);
+            //stillLoading = false;
          }
          
       });

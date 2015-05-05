@@ -34,6 +34,8 @@
       ga('send', 'pageview');
     </script>
     <!-- End Google Analytics -->
+
+
 </head>
 <body onload = "setup();">
 
@@ -41,9 +43,19 @@
   
   <a id="homeBtn" class="button" onclick="window.location='index.html'"> Home </a> 
   <a class="button" onclick="window.location='gearAssembly.html'">OBJ Assembly</a>
-  
-  <div id="container"></div>
-  <div id="loading"></div>
+  <a id="histBtn" class="button" onclick="window.location='history.html'"> History </a> 
+  <div id="szlider">
+    <div id="szliderbar">
+    </div>
+    <div id="szazalek">
+      Loading...
+    </div>
+  </div>
+  <div id = "percentLoad"></div>
+  <div id="container" ></div>
+
+  <!-- <div id="loading"></div> -->
+
   <div id ="info">
   <h5 id = "name"></h5>
   <p id = "description">
