@@ -27,7 +27,6 @@ function drawszlider(count, total){
 }
 
 function incrszlider(increase) {
-  console.log("called");
   if(stillLoading) {
     if (percentIncrease >= 100) {
       toggleCanvas();
@@ -94,7 +93,7 @@ function addPivots() {
   p3.add(scene.getObjectByName("Earth Moon"));
   scene.add(p3);
   pivots.push(p3);
-
+ 
   var p4 = new THREE.Object3D();
   p4.name = "Mars pivot";
   p4.position.set(0,8,0);
@@ -113,6 +112,7 @@ function addPivots() {
   pivots.push(p5);
 
   var p6 = new THREE.Object3D();
+  var saturn = scene.getObjectByName("Saturn");
   p6.name = "Saturn pivot";
   p6.position.set(0,8,0);
   p6.add(scene.getObjectByName("Saturn Arm"));
@@ -125,6 +125,7 @@ function addPivots() {
   p6.add(scene.getObjectByName("Saturn Moon6"));
   scene.add(p6);
   pivots.push(p6);  
+  
 }
 
 function setup() {
@@ -282,6 +283,7 @@ function loadObj(id, objName, fileName, albedo, spec, norm, pos, scale, rot) {
          if(countUp == objectModels.length) {
             render();
             addPivots();
+            scene.getObjectByName("Main Window").children[0].material.depthTest = false;
             windowPivot.add(scene.getObjectByName("Main Window"));
             scene.add(windowPivot);
             openMainWindow();

@@ -28,3 +28,12 @@ h3 {
     width: 25%;
     margin: 1em;
 }
+
+textarea {
+    height: auto;
+    margin-bottom: 2em;
+}
+
+#editDescription {
+    display: none;
+}

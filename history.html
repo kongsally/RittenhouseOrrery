@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
   <link rel="stylesheet" href="css/history.css">
+  <script src="js/jquery.js"></script>
+  <script src="js/historyEdit.js"></script>
   <link rel="icon" type="image/png" href="images/favicon.png">
     <!-- Google Analytics -->
     <script>
@@ -35,8 +37,12 @@
          
     <img id = "rittenhouse" src="http://upload.wikimedia.org/wikipedia/commons/7/73/Charles_Willson_Peale_-_David_Rittenhouse_-_Google_Art_Project.jpg">
       <br>
+    <a class = "button" onclick = "editDescription();" id = "editDescription"> 
+        Edit Description 
+    </a>
+    <br>
     <div id = "historyP" class = "offset-by-two eight columns">
-      <p>"Acquired in 1771 by the College of Philadelphia (later to be renamed
+    <p id = "p0">"Acquired in 1771 by the College of Philadelphia (later to be renamed
     the University of Pennsylvania), the Rittenhouse Orrery
     or planetarium was a mechanical device for reckoning, viewing,
     and studying the motions of the known planets and their moons.
@@ -47,6 +53,8 @@
     second, seventeenth-century Newtonian mathematical theory,
     which was used to measure and calculate the properties of the
     natural world and universe.
+    </p>
+    <p id = "p1">
     The College of Philadelphia was not the first mid-Atlantic college
     to purchase an orrery built by David Rittenhouse (1732-
     1796); the College of New Jersey (now Princeton) can make
@@ -62,6 +70,8 @@
     Philosophy, which included the field of astronomy. Smith’s surviving
     lectures from the period affirm his familiarity with Newton’s
     clockwork universe.
+    </p>
+    <p id = "p2">
     Unlike his highly educated friend Provost William Smith (1727-
     1803), first Provost of the College of Philadelphia, Anglican clergyman,
     and Professor of Ethics, David Rittenhouse was born
@@ -78,6 +88,8 @@
     to astronomy, and locally for his service to both the University
     of Pennsylvania and the newly formed national government of
     the United States.
+    </p>
+    <p id = "p3">
     The orrery made in 1771 for Philadelphia demonstrates the motions
     of the known planets in the center panel, the moon in the
     right panel, and moons of Jupiter and Saturn in the left panel
@@ -87,16 +99,14 @@
     Rittenhouse successfully displayed the elliptical rotation of the
     planets, which was an unsurpassed technical achievement. The
     Rittenhouse Orrery is housed in an elegant Chippendale cabinet finely crafted in Philadelphia by John Holwell and Parnell Gibbs. The works and cabinet
-    illustrate the sophisticated state of science, technology, and the practical arts in Philadelphia—the
-    undisputed center of the American Enlightenment.
+    illustrate the sophisticated state of science, technology, and the practical arts in Philadelphia—the undisputed center of the American Enlightenment.
     Owned by the university for over two hundred years, and in practical use for instruction
     for fifty years, by the end of the nineteenth century the Rittenhouse Orrery was an
     elegant mechanical relic of an earlier era of scientific practice and study. In 1888, the
     orrery was moved from obscurity to a place of prominence in the university’s new state
     of the art academic library designed by Frank Furness. Moved a second time in 1962,
     the orrery was relocated to the Van Pelt Library where it continued to serve, as it had for
-    two centuries, as the practical symbol of the university’s intellectual spirit and scientific
-    quest to create new knowledge.
+    two centuries, as the practical symbol of the university’s intellectual spirit and scientific quest to create new knowledge.
     In January 2013, the orrery made its ascent to its pride of place in the Penn libraries’ new
     Kislak Center for Special Collections, Rare Books, and Manuscripts located on the sixth
     floor of the Van Pelt-Dietrich Library Center. Although the orrery’s history and function
@@ -110,12 +120,12 @@
     through innovation and technology.
     Rittenhouse’s carefully designed planetarium served a pedagogical purpose for the College
     of Philadelphia – to train students to study and observe the movement of matter
-    across the night skies. Today, by comparison, it is not unlike the University of Pennsylvania’s
-    investment in the new science of nanotechnology that focuses its quest inwardly
-    to identify and capture the behavior of unobservable programmed matter, which may
+    across the night skies. Today, by comparison, it is not unlike the University of Pennsylvania’sinvestment in the new science of nanotechnology that focuses its quest inwardly to identify and capture the behavior of unobservable programmed matter, which may
     lead to unimagined discoveries and remedies to the most complex scientific and medical
-    problems that humanity faces today. "</p>
+    problems that humanity faces today. "
+    </p>
     </div>
+    <div id = "editsP"></div>
   </div>
 
 </body>
