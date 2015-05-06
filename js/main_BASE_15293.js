@@ -6,72 +6,22 @@ var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
 var gears = [];
 var gearModels = [];
-var objectModels = []; //keep objectmodels Index as ID for description access
+var objectModels = [];
 var countUp = 0;
 var projector, mouse = { x: 0, y: 0 }, INTERSECTED;
-var stillLoading;
-var loadTimer;
-var loadTimerComplete;
-var percentIncrease;
-
-
-function drawszlider(count, total){
-    var szazalek= count/total * 100.0;
-    console.log("percent change" + szazalek);
-    $("#szliderbar").css("width", szazalek+'%');
-    $("#szazalek").innerHTML=szazalek+'%';
-}
-
-function incrszlider(increase) {
-  console.log("called");
-  if(stillLoading) {
-    if (percentIncrease >= 100) {
-      toggleCanvas();
-    }
-    $("#szliderbar").css("width", increase+'%');
-    $("#szazalek").innerHTML=increase+'%';
-    percentIncrease+= 2;
-  }
-}
-
-var windowPivot = new THREE.Object3D();
-windowPivot.position.set(-22, 9, 86);
-
-var pivot = new THREE.Object3D();
-pivot.name = "pivot";
-pivot.position.set(0, 8,0);
-
-var play = true;
-
-
-document.onkeydown = checkKey;
-
-function checkKey(e) {
-
-    e = e || window.event;
-
-    if (e.keyCode == '32') {
-        // space bar
-        crank();
-    }
-}
 
 
 function toggleCanvas() {
   $("#container").css("display", "block");
-  $("#info").css("display", "block");
-
-  $("#szlider").css("display", "none");
+  // $("#info").css("display", "block");
   $("#loading").css("display", "none");
-  clearInterval(loadTimerComplete);
-  clearInterval(loadTimer);
 }
 
 function setLoadLocation(windowWidth, windowHeight) {
-  var loadLeft = windowWidth/2 - windowWidth*.4;
+  var loadLeft = windowWidth/2;
   var loadTop = windowHeight/2 + 100;
-  $('#szlider').css("top", loadTop);
-  $('#szlider').css("left", loadLeft);
+  $('#loading').css("top", loadTop);
+  $('#loading').css("left", loadLeft);
 }
 
 function setup() {
@@ -81,20 +31,16 @@ function setup() {
   var WIDTH = window.innerWidth,
       HEIGHT = window.innerHeight * 0.8;
 
-  setLoadLocation(WIDTH, HEIGHT);   
+  setLoadLocation(WIDTH, HEIGHT);    
 
-
-  stillLoading = true;
-  percentIncrease = 8;
-  drawszlider(8, 100);
-  loadTimer = setInterval(function(){ incrszlider(percentIncrease) }, 100);
- 
   // set some camera attributes
   var VIEW_ANGLE = 45,
     ASPECT = WIDTH / HEIGHT,
     NEAR = 0.1,
     FAR = 10000;
 
+  // get the DOM element to attach to
+  // - assume we've got jQuery to hand
   var $container = $('#container');
 
   // create a WebGL renderer, camera
@@ -134,13 +80,11 @@ function setup() {
   // attach the render-supplied DOM element
   $container.append(renderer.domElement);
 
-  //load objs
-  load_json_obj("data/sample.json");
-
   // draw!
   renderer.render(scene, camera);
   animate();
-  openMainWindow();
+
+  load_json_obj("data/sample.json");
 
 }
 
@@ -149,9 +93,7 @@ function load_json_obj(filePath){
     objectModels = data.objects;
 
     for(var i = 0; i < objectModels.length; i++) {
-    
     loadObj(
-      i,
       objectModels[i].name,
       objectModels[i].objFile,
       objectModels[i].albedoFile,
@@ -173,18 +115,16 @@ function load_json_obj(filePath){
         objectModels[i].rotate.z
       )
     );
-
   }
 
   });
 
 }
 
-function loadObj(id, objName, fileName, albedo, spec, norm, pos, scale, rot) {
+function loadObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
 
   var manager = new THREE.LoadingManager();
   manager.onProgress = function ( item, loaded, total ) {
-  
       console.log( item, loaded, total );
   };
 
@@ -209,15 +149,12 @@ function loadObj(id, objName, fileName, albedo, spec, norm, pos, scale, rot) {
 
   var loader = new THREE.OBJLoader();
       loader.load(path + fileName, function(object) {
-         object.children[0].geometry.computeBoundingBox();
          object.scale.set(scale.x, scale.y, scale.z);
          object.rotation.set(rot.x, rot.y, rot.z);
-         object.name = objName;
+         object.name = fileName;
          object.position.set(pos.x, pos.y, pos.z);
          object.children[0].material = material;
-         object.children[0].name = id;
          object.children[0].geometry.name = objName;
-         
          console.log(objName);
          scene.add( object );
          
@@ -225,32 +162,11 @@ function loadObj(id, objName, fileName, albedo, spec, norm, pos, scale, rot) {
 
          if(countUp == objectModels.length) {
             render();
-            
-            pivot.add(scene.getObjectByName("Earth"));
-            pivot.add(scene.getObjectByName("Earth Plane"));
-            pivot.add(scene.getObjectByName("Venus"));
-            pivot.add(scene.getObjectByName("Mars"));
-            pivot.add(scene.getObjectByName("Sun and Mercury"));
-            pivot.add(scene.getObjectByName("Mercury"));
-            pivot.add(scene.getObjectByName("Knob"));
-            pivot.add(scene.getObjectByName("Jupiter Arm"));
-            pivot.add(scene.getObjectByName("Saturn Arm"));
-            pivot.add(scene.getObjectByName("Earth Moon"));
-            pivot.add(scene.getObjectByName("Jupiter Moon1"));
-            pivot.add(scene.getObjectByName("Jupiter Moon2"));
-            pivot.add(scene.getObjectByName("Jupiter Moon3"));
-            scene.add(pivot);
-
-            windowPivot.add(scene.getObjectByName("Main Window"));
-            scene.add(windowPivot);
-
-        
-         if(countUp == objectModels.length) {
-            render();
-            console.log("DoneLoading");
+            toggleCanvas();
          }
-        }
+         
       });
+ 
 }
 
 function putSphere(pos) {
@@ -293,9 +209,6 @@ function animate() {
   //mouseRayCast();
   render();
   update();
-  if(play) {
-    pivot.rotation.z += 1 * Math.PI/180;
-  }
 
 }
 
@@ -315,8 +228,6 @@ function onMouseMove( event ) {
 
 
 function onMouseClick (event) {
-  var bbox = INTERSECTED.geometry.boundingBox;
-  console.log(bbox);
    //mouseRayCast();
 }
 
@@ -330,12 +241,12 @@ function mouseRayCast() {
   var selectedColor = new THREE.Color( 0xffffff );
   var intersectedObj = "";
 
+
+
   if(intersects.length != 0) {
     
     intersectedObj = intersects[0].object.geometry.name;
-     $("#name").html(intersectedObj);
-     $("#description").html(objectModels[intersects[0].object.name].description);
-   
+
     if(intersects[0].object.material.color.r == selectedColor.r
       && intersects[0].object.material.color.g == selectedColor.g
        && intersects[0].object.material.color.b == selectedColor.b) {
@@ -382,13 +293,14 @@ function update()
     {
         // restore previous intersection object (if it exists) to its original color
       if ( INTERSECTED ) {
+        console.log(INTERSECTED);
         INTERSECTED.material.color = new THREE.Color( 0x8C8C8C );
       }
       // store reference to closest object as current intersection object
       INTERSECTED = intersects[ 0 ].object;
       // set a new color for closest object
       INTERSECTED.material.color = selectedColor;
-      $("#name").html(INTERSECTED.geometry.name);
+       console.log("MORE THAN ONE INTERSE");
     }
   } 
   else // there are no intersections
@@ -403,7 +315,7 @@ function update()
 
   controls.update();
  
-  
+  //$("#name").html(intersectedObj);
 
   render();
 
@@ -412,19 +324,11 @@ function update()
 function crank() {
  
   //gear 1 is mother gear
-  play = !play;
-}
+  interact(gears[1],10);
 
-var mainWindowOpen = false;
-function openMainWindow() {
-  var mainWindow = scene.getObjectByName("Main Window");
-  if(!mainWindowOpen) {
-
-    windowPivot.rotation.y = 45 * Math.PI/180;
-    mainWindowOpen = true;
-  } else {
-    windowPivot.rotation.y = 0;
-    mainWindowOpen = false;
+  for(var i =0 ;i < gears.length; i++) {
+    var object = scene.getObjectByName( "gear" + i + ".obj", true );
+    object.rotation.z = gears[i].rotateNum * Math.PI/180;
   }
 }
 

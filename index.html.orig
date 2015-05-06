@@ -31,9 +31,14 @@
         <h4>Rittenhouse Orrery Project</h4>
         <p>Welcome to the Rittenhouse Orrery Project. This site is still under construction.</p>
           <div class = "row">
-            <a class="button" href="simulator.html">Simulator</a>
-            <a class="button" href="objAssembly.html">OBJ Assembly</a>
-            <a id="histBtn" class="button" onclick="window.location='history.html'"> History </a>
+          <a class="button" href="simulator.html">Simulator</a>
+<<<<<<< HEAD
+          <a class="button" href="objAssembly.html">OBJ Assembly</a>
+=======
+          <a class="button" href="gearAssembly.html">OBJ Assembly</a>
+            <a id="histBtn" class="button" onclick="window.location='history.html'"> History </a> 
+
+>>>>>>> 1d7d31bfb2056fa900c8a51bede2fa01b539c978
           </div>
       </div>
       <div class="one-half column">

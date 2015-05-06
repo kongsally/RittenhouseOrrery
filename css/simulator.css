@@ -65,7 +65,8 @@ a:hover, a:active {
     color: #ECCC58;
 }
 
-#loading {
+/*#loading {
+    display: none;
     z-index: 100;
     background-image: url("../images/ajax-loader.gif");
     background-position: center;
@@ -76,4 +77,34 @@ a:hover, a:active {
     left: 400px;
     width: 66px;
     height: 66px;
+}*/
+
+#szlider{
+    z-index: 100;
+    background-position: center;
+    width:80%;
+    height:25px;
+    border:1px solid #000;
+    overflow:hidden; 
+    position: absolute;
+    top: 300px;
+    left: 400px;}
+
+
+#szliderbar{
+    width:0%;
+    height:25px;
+    border-right: 1px solid #000000;
+    background: #000066; 
 }
+
+#szazalek {
+    color: #ffffff;
+    font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    left: 15px;
+    position: relative;
+    top: -23px; 
+}
+
+

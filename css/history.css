@@ -1,0 +1,28 @@
+
+#orreryImg {
+    width: 100%;
+    height: auto;
+    margin-bottom: 3em;
+}
+
+#navContainer {
+    padding-top: 5%;
+    margin-bottom: 3em;
+}
+
+#homeBtn {
+    margin-left: 5%;
+    cursor: pointer;
+    vertical-align: center;
+}
+
+h3 {
+    text-align: center;
+    font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}

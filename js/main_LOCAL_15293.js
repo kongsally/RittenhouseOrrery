@@ -9,30 +9,6 @@ var gearModels = [];
 var objectModels = []; //keep objectmodels Index as ID for description access
 var countUp = 0;
 var projector, mouse = { x: 0, y: 0 }, INTERSECTED;
-var stillLoading;
-var loadTimer;
-var loadTimerComplete;
-var percentIncrease;
-
-
-function drawszlider(count, total){
-    var szazalek= count/total * 100.0;
-    console.log("percent change" + szazalek);
-    $("#szliderbar").css("width", szazalek+'%');
-    $("#szazalek").innerHTML=szazalek+'%';
-}
-
-function incrszlider(increase) {
-  console.log("called");
-  if(stillLoading) {
-    if (percentIncrease >= 100) {
-      toggleCanvas();
-    }
-    $("#szliderbar").css("width", increase+'%');
-    $("#szazalek").innerHTML=increase+'%';
-    percentIncrease+= 2;
-  }
-}
 
 var windowPivot = new THREE.Object3D();
 windowPivot.position.set(-22, 9, 86);
@@ -60,18 +36,14 @@ function checkKey(e) {
 function toggleCanvas() {
   $("#container").css("display", "block");
   $("#info").css("display", "block");
-
-  $("#szlider").css("display", "none");
   $("#loading").css("display", "none");
-  clearInterval(loadTimerComplete);
-  clearInterval(loadTimer);
 }
 
 function setLoadLocation(windowWidth, windowHeight) {
-  var loadLeft = windowWidth/2 - windowWidth*.4;
+  var loadLeft = windowWidth/2;
   var loadTop = windowHeight/2 + 100;
-  $('#szlider').css("top", loadTop);
-  $('#szlider').css("left", loadLeft);
+  $('#loading').css("top", loadTop);
+  $('#loading').css("left", loadLeft);
 }
 
 function setup() {
@@ -81,20 +53,16 @@ function setup() {
   var WIDTH = window.innerWidth,
       HEIGHT = window.innerHeight * 0.8;
 
-  setLoadLocation(WIDTH, HEIGHT);   
+  setLoadLocation(WIDTH, HEIGHT);    
 
-
-  stillLoading = true;
-  percentIncrease = 8;
-  drawszlider(8, 100);
-  loadTimer = setInterval(function(){ incrszlider(percentIncrease) }, 100);
- 
   // set some camera attributes
   var VIEW_ANGLE = 45,
     ASPECT = WIDTH / HEIGHT,
     NEAR = 0.1,
     FAR = 10000;
 
+  // get the DOM element to attach to
+  // - assume we've got jQuery to hand
   var $container = $('#container');
 
   // create a WebGL renderer, camera
@@ -149,7 +117,6 @@ function load_json_obj(filePath){
     objectModels = data.objects;
 
     for(var i = 0; i < objectModels.length; i++) {
-    
     loadObj(
       i,
       objectModels[i].name,
@@ -173,7 +140,6 @@ function load_json_obj(filePath){
         objectModels[i].rotate.z
       )
     );
-
   }
 
   });
@@ -184,7 +150,6 @@ function loadObj(id, objName, fileName, albedo, spec, norm, pos, scale, rot) {
 
   var manager = new THREE.LoadingManager();
   manager.onProgress = function ( item, loaded, total ) {
-  
       console.log( item, loaded, total );
   };
 
@@ -222,9 +187,9 @@ function loadObj(id, objName, fileName, albedo, spec, norm, pos, scale, rot) {
          scene.add( object );
          
          countUp += 1; //keep track of objects loaded
-
          if(countUp == objectModels.length) {
             render();
+            toggleCanvas();
             
             pivot.add(scene.getObjectByName("Earth"));
             pivot.add(scene.getObjectByName("Earth Plane"));
@@ -243,13 +208,8 @@ function loadObj(id, objName, fileName, albedo, spec, norm, pos, scale, rot) {
 
             windowPivot.add(scene.getObjectByName("Main Window"));
             scene.add(windowPivot);
-
-        
-         if(countUp == objectModels.length) {
-            render();
-            console.log("DoneLoading");
          }
-        }
+         
       });
 }
 
