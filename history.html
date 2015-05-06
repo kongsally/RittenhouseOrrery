@@ -22,6 +22,13 @@
       ga('send', 'pageview');
     </script>
     <!-- End Google Analytics -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
+    <script type="text/javascript">
+    Parse.initialize("vlxm5ebk6uC1dGyTpxHCdUFeUruXyzzMupZq28eB", "YW7U8uMUzlMspFam3lrAdbRYHCVnXuBRHAB4YnSM");</script>
+    <script src="history.js"></script>
 </head>
 <body>
   <div class = "row">
@@ -29,6 +36,17 @@
     <a id="homeBtn" class="button" onclick="window.location='index.html'"> Home </a> 
     <a class="button" href="simulator.html">Simulator</a>
     <a class="button" href="objAssembly.html">OBJ Assembly</a>
+  </div>
+
+  <div class = "row" id="signin">
+    Name: <input id="username"><br>
+    Password: <input id="password"><br>
+    <button id="signUpBtn" onclick="signup();">Sign Up</button>
+    <button id="logInBtn" onclick="login();">Log In</button>
+  </div>
+
+  <div class = "row" id="signout" style="display:none">
+    <button id="signOutBtn" onclick="signout();">Sign Out</button>
   </div>
 
   <div class="row">
