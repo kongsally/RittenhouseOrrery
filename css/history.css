@@ -10,12 +10,6 @@
     margin-bottom: 3em;
 }
 
-#homeBtn {
-    margin-left: 5%;
-    cursor: pointer;
-    vertical-align: center;
-}
-
 h3 {
     text-align: center;
     font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -25,4 +19,13 @@ h3 {
     margin-top: 20px;
     margin-bottom: 20px;
     letter-spacing: 0.5px;
+}
+
+#historyP {
+    text-align: justify;
+}
+
+#rittenhouse {
+    width: 25%;
+    margin: 1em;
 }

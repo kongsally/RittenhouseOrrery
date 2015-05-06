@@ -320,29 +320,6 @@
 		}
 	},
 	{
-		"name": "Knob",
-		"description": " The Rittenhouse Orrery is housed in a Chippendale case built by the prominent Philadelphia cabinetmakers John Folwell and Parnell Gibbs",
-		"objFile": "knob.obj",
-		"albedoFile": "copper_albedo.png",
-		"specularFile": "copper_metalness.png",
-		"normalFile": "",
-		"origin" : {
-			"x" : 0,
-			"y" : -8,
-			"z" : 0
-		},
-		"scale" : {
-			"x" : 8,
-			"y" : 8,
-			"z" : 8
-		},
-		"rotate" : {
-			"x" : 0,
-			"y" : 0,
-			"z" : 0
-		}
-	},
-	{
 		"name": "Mars",
 		"description": " The Rittenhouse Orrery is housed in a Chippendale case built by the prominent Philadelphia cabinetmakers John Folwell and Parnell Gibbs",
 		"objFile": "mars.obj",

@@ -12,17 +12,14 @@ var projector, mouse = { x: 0, y: 0 }, INTERSECTED;
 var stillLoading;
 var loadTimer;
 var percentIncrease;
+var pivots = [];
+var planets = [];
+var timeScale = 5;
 
 var windowPivot = new THREE.Object3D();
 windowPivot.position.set(-22, 9, 86);
 
-var pivot = new THREE.Object3D();
-pivot.name = "pivot";
-pivot.position.set(0, 8,0);
-
 var play = true;
-
-
 
 function drawszlider(count, total){
     var szazalek= count/total * 100.0;
@@ -45,15 +42,19 @@ function incrszlider(increase) {
 
 document.onkeydown = checkKey;
 function checkKey(e) {
-
     e = e || window.event;
 
     if (e.keyCode == '32') {
         // space bar
         crank();
+    } else if (e.keyCode == '38') {
+      timeScale++;
+    } else if(e.keyCode == '40') {
+      if(timeScale > 1) {
+        timeScale--;
+      }
     }
 }
-
 
 function toggleCanvas() {
   $("#container").css("display", "block");
@@ -70,15 +71,70 @@ function setLoadLocation(windowWidth, windowHeight) {
   $('#szlider').css("left", loadLeft);
 }
 
+function addPivots() {
+
+  var p1 = new THREE.Object3D();
+  p1.name = "Mercury pivot";
+  p1.position.set(0,8,0);
+  p1.add(scene.getObjectByName("Sun and Mercury"));
+  p1.add(scene.getObjectByName("Mercury"));
+  scene.add(p1);
+  pivots.push(p1);
+
+  var p2 = new THREE.Object3D();
+  p2.name = "Venus pivot";
+  p2.position.set(0,8,0);
+  p2.add(scene.getObjectByName("Venus"));
+  scene.add(p2);
+  pivots.push(p2);
+
+  var p3 = new THREE.Object3D();
+  p3.name = "Earth pivot";
+  p3.position.set(0,8,0);
+  p3.add(scene.getObjectByName("Earth"));
+  p3.add(scene.getObjectByName("Earth Plane"));
+  p3.add(scene.getObjectByName("Earth Moon"));
+  scene.add(p3);
+  pivots.push(p3);
+
+  var p4 = new THREE.Object3D();
+  p4.name = "Mars pivot";
+  p4.position.set(0,8,0);
+  p4.add(scene.getObjectByName("Mars"));
+  scene.add(p4);
+  pivots.push(p4);
+
+  var p5 = new THREE.Object3D();
+  p5.name = "Jupiter pivot";
+  p5.position.set(0,8,0);
+  p5.add(scene.getObjectByName("Jupiter Arm"));
+  p5.add(scene.getObjectByName("Jupiter Moon1"));
+  p5.add(scene.getObjectByName("Jupiter Moon2"));
+  p5.add(scene.getObjectByName("Jupiter Moon3"));
+  scene.add(p5);
+  pivots.push(p5);
+
+  var p6 = new THREE.Object3D();
+  p6.name = "Saturn pivot";
+  p6.position.set(0,8,0);
+  p6.add(scene.getObjectByName("Saturn Arm"));
+  p6.add(scene.getObjectByName("Saturn"));
+  p6.add(scene.getObjectByName("Saturn Moon1"));
+  p6.add(scene.getObjectByName("Saturn Moon2"));
+  p6.add(scene.getObjectByName("Saturn Moon3"));
+  p6.add(scene.getObjectByName("Saturn Moon4"));
+  p6.add(scene.getObjectByName("Saturn Moon5"));
+  p6.add(scene.getObjectByName("Saturn Moon6"));
+  scene.add(p6);
+  pivots.push(p6);  
+}
+
 function setup() {
 
-  //show('container', false);
-  // set the scene size
   var WIDTH = window.innerWidth,
       HEIGHT = window.innerHeight * 0.8;
 
   setLoadLocation(WIDTH, HEIGHT);   
-
 
   stillLoading = true;
   percentIncrease = 8;
@@ -123,7 +179,6 @@ function setup() {
 
   projector = new THREE.Projector();
 
- 
   // start the renderer
   renderer.setSize(WIDTH, HEIGHT);
 
@@ -132,12 +187,18 @@ function setup() {
 
   //load objs
   load_json_obj("data/sample.json");
+  $.getJSON("data/planets.json", function(data) {
+    var planetInfos = data.objects;
+    for(var i = 0; i < planetInfos.length; i++) {
+      planets.push({"name": planetInfos[i].name,
+                    "period": planetInfos[i].period});
+    }
+  });
 
   // draw!
   renderer.render(scene, camera);
   animate();
   openMainWindow();
-
 }
 
 function load_json_obj(filePath){
@@ -145,7 +206,6 @@ function load_json_obj(filePath){
     objectModels = data.objects;
 
     for(var i = 0; i < objectModels.length; i++) {
-    
     loadObj(
       i,
       objectModels[i].name,
@@ -221,33 +281,10 @@ function loadObj(id, objName, fileName, albedo, spec, norm, pos, scale, rot) {
 
          if(countUp == objectModels.length) {
             render();
-            
-            pivot.add(scene.getObjectByName("Earth"));
-            pivot.add(scene.getObjectByName("Earth Plane"));
-            pivot.add(scene.getObjectByName("Venus"));
-            pivot.add(scene.getObjectByName("Mars"));
-            pivot.add(scene.getObjectByName("Sun and Mercury"));
-            pivot.add(scene.getObjectByName("Mercury"));
-            pivot.add(scene.getObjectByName("Knob"));
-            pivot.add(scene.getObjectByName("Jupiter Arm"));
-            pivot.add(scene.getObjectByName("Saturn Arm"));
-            pivot.add(scene.getObjectByName("Earth Moon"));
-            pivot.add(scene.getObjectByName("Jupiter Moon1"));
-            pivot.add(scene.getObjectByName("Jupiter Moon2"));
-            pivot.add(scene.getObjectByName("Jupiter Moon3"));
-            pivot.add(scene.getObjectByName("Saturn"));
-            pivot.add(scene.getObjectByName("Saturn Moon1"));
-            pivot.add(scene.getObjectByName("Saturn Moon2"));
-            pivot.add(scene.getObjectByName("Saturn Moon3"));
-            pivot.add(scene.getObjectByName("Saturn Moon4"));
-            pivot.add(scene.getObjectByName("Saturn Moon5"));
-            pivot.add(scene.getObjectByName("Saturn Moon6"));
-            scene.add(pivot);
-
+            addPivots();
             windowPivot.add(scene.getObjectByName("Main Window"));
             scene.add(windowPivot);
 
-        
          if(countUp == objectModels.length) {
             render();
             console.log("DoneLoading");
@@ -297,7 +334,9 @@ function animate() {
   render();
   update();
   if(play) {
-    pivot.rotation.z += 1 * Math.PI/180;
+    for (var i = 0; i < pivots.length; i++) {
+      pivots[i].rotation.z += timeScale * 1.0/planets[i].period;
+    }
   }
 
 }
@@ -405,15 +444,11 @@ function update()
   }
 
   controls.update();
- 
-  
-
   render();
 
 }
 
 function crank() {
- 
   //gear 1 is mother gear
   play = !play;
 }
@@ -422,7 +457,6 @@ var mainWindowOpen = false;
 function openMainWindow() {
   var mainWindow = scene.getObjectByName("Main Window");
   if(!mainWindowOpen) {
-
     windowPivot.rotation.y = 45 * Math.PI/180;
     mainWindowOpen = true;
   } else {

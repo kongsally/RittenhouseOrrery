@@ -392,6 +392,10 @@ hr {
   display: table;
   clear: both; }
 
+.row {
+  text-align: center;
+}
+
 
 /* Media Queries
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

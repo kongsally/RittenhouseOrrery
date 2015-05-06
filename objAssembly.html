@@ -36,27 +36,22 @@
 </head>
 <body onload = "setup();">
 
+  <div class = "row">
   <h3 onclick="window.location='index.html'"> David Rittenhouse's 1771 Orrery </h3>
-  
-  <a id="homeBtn" class="button" onclick="window.location='index.html'"> Home </a> 
-  <a id="simulatorBtn" class="button" onclick="window.location='simulator.html'"> Simulator </a> 
-<<<<<<< HEAD:objAssembly.html
-  <p id = "controlGuide">A: left, D: right, W: up, S: down, Q: back, E: front, [: smaller, ]: bigger</p>
-=======
+    <a id="homeBtn" class="button" onclick="window.location='index.html'"> Home </a> 
+    <a id="simulatorBtn" class="button" onclick="window.location='simulator.html'"> Simulator </a>
     <a id="histBtn" class="button" onclick="window.location='history.html'"> History </a> 
-
-  <p id = "controlGuide">A: left, D: right, W: up, S: down, Q: back, E: front</p>
->>>>>>> 1d7d31bfb2056fa900c8a51bede2fa01b539c978:gearAssembly.html
+  </div>
 
     <div class = "row">
       <div class = "eight columns">
         <div id="container"></div>
+         <p id = "controlGuide">A: left, D: right, W: up, S: down, Q: back, E: front, [: smaller, ]: bigger</p>
       </div>
       <div class = "four columns">
         <a id = "objInfo" href = "" download = "file.json" onclick = "downloadFunction();"> Export Configuration </a>
-       <p>Load an obj :  <input type = "file" type="accordian-toggle" id="file-field" id="accordian-content"> </p>
-
         <div id ="objList">Uploaded Objs: </div>
+        <p id = "loadObj">Load an obj :  <input type = "file" type="accordian-toggle" id="file-field" id="accordian-content"> </p>
       </div>
     </div>
 

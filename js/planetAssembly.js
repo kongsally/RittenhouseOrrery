@@ -77,6 +77,7 @@ function setup() {
 
 
 function load_json_obj(filePath){
+  
   $.getJSON("data/planets.json", function(data) {
     planetInfos = data.objects;
   });
