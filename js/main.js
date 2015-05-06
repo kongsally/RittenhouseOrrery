@@ -248,11 +248,13 @@ function loadObj(id, objName, fileName, albedo, spec, norm, pos, scale, rot) {
 
   if(albedo !== "") {
     material.map = THREE.ImageUtils.loadTexture(path + albedo);
+    material.map.minFilter = THREE.LinearFilter;
     material.transparent = true;
   }
 
   if(spec !== "") {
     material.specularMap = THREE.ImageUtils.loadTexture(path + spec);
+    material.specularMap.minFilter = THREE.LinearFilter;
     material.specular  = new THREE.Color('white');
   }
 
@@ -353,7 +355,7 @@ function onMouseMove( event ) {
 
 function onMouseClick (event) {
 
-  if(typeof INTERSECTED != undefined) {
+  if(INTERSECTED != null) {
     if(INTERSECTED.geometry.name === "Main Window") {
       openMainWindow();
     }
@@ -444,7 +446,7 @@ function update()
   else // there are no intersections
   {
     // restore previous intersection object (if it exists) to its original color
-    if ( INTERSECTED) {
+    if (INTERSECTED != null) {
       INTERSECTED.material.color = new THREE.Color( 0x8C8C8C  );
       if(INTERSECTED.geometry.name === "Cabinet") {
         scene.getObjectByName("Cabinet Legs").children[0].material.color = new THREE.Color( 0x8C8C8C );
