@@ -458,7 +458,7 @@ function openMainWindow() {
     mainWindowOpen = true;
   } else {
     windowPivot.rotation.y = 0;
-    scene.getObjectByName("Main Window").position.set(22, -9, -86);
+    scene.getObjectByName("Main Window").position.set(22, -9, -85);
     mainWindowOpen = false;
   }
   render();
