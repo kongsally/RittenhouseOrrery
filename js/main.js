@@ -16,7 +16,7 @@ var pivots = [];
 var planets = [];
 var timeScale = 5;
 var windowPivot = new THREE.Object3D();
-var mainWindowOpen = true;
+var mainWindowOpen = false;
 var play = true;
 
 function drawszlider(count, total){
@@ -282,6 +282,7 @@ function loadObj(id, objName, fileName, albedo, spec, norm, pos, scale, rot) {
             addPivots();
             windowPivot.add(scene.getObjectByName("Main Window"));
             scene.add(windowPivot);
+            openMainWindow();
             openMainWindow();
         }
       });
