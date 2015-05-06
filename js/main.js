@@ -451,7 +451,7 @@ function crank() {
 
 function openMainWindow() {
   var mainWindow = scene.getObjectByName("Main Window");
-  if(!mainWindowOpen) {
+  if(mainWindowOpen) {
     windowPivot.position.set(-22, 9, 86);
     scene.getObjectByName("Main Window").position.set(12, -9, -70);
     windowPivot.rotation.y = 45 * Math.PI/180;
