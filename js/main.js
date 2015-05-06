@@ -353,8 +353,10 @@ function onMouseMove( event ) {
 
 function onMouseClick (event) {
 
-  if(INTERSECTED.geometry.name === "Main Window") {
-    openMainWindow();
+  if(typeof INTERSECTED != undefined) {
+    if(INTERSECTED.geometry.name === "Main Window") {
+      openMainWindow();
+    }
   }
   
 }
@@ -425,9 +427,18 @@ function update()
       }
       // store reference to closest object as current intersection object
       INTERSECTED = intersects[ 0 ].object;
+      $("#name").html(INTERSECTED.geometry.name);
+
       // set a new color for closest object
       INTERSECTED.material.color = selectedColor;
-      $("#name").html(INTERSECTED.geometry.name);
+      if(INTERSECTED.geometry.name === "Cabinet") {
+        scene.getObjectByName("Cabinet Legs").children[0].material.color = selectedColor;
+        $("#name").html("Cabinet");
+      } else if(INTERSECTED.geometry.name === "Cabinet Legs") {
+        scene.getObjectByName("Cabinet").children[0].material.color = selectedColor;
+         $("#name").html("Cabinet");
+      }
+      
     }
   } 
   else // there are no intersections
@@ -435,6 +446,11 @@ function update()
     // restore previous intersection object (if it exists) to its original color
     if ( INTERSECTED ) 
       INTERSECTED.material.color = new THREE.Color( 0x8C8C8C  );
+      if(INTERSECTED.geometry.name === "Cabinet") {
+        scene.getObjectByName("Cabinet Legs").children[0].material.color = new THREE.Color( 0x8C8C8C );
+      } else if(INTERSECTED.geometry.name === "Cabinet Legs") {
+        scene.getObjectByName("Cabinet").children[0].material.color = new THREE.Color( 0x8C8C8C );
+      }
     // remove previous intersection object reference
     //     by setting current intersection object to "nothing"
     INTERSECTED = null;
