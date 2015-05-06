@@ -11,7 +11,7 @@ var countUp = 0;
 var projector, mouse = { x: 0, y: 0 }, INTERSECTED;
 
 var windowPivot = new THREE.Object3D();
-windowPivot.position.set(-12, 9, 70);
+windowPivot.position.set(-22, 9, 86);
 
 var pivot = new THREE.Object3D();
 pivot.name = "pivot";
