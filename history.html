@@ -12,7 +12,9 @@
   <link rel="stylesheet" href="css/skeleton.css">
   <link rel="stylesheet" href="css/history.css">
   <script src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/parse.min.js"></script>
   <script src="js/historyEdit.js"></script>
+
   <link rel="icon" type="image/png" href="images/favicon.png">
     <!-- Google Analytics -->
     <script>
@@ -23,16 +25,21 @@
       ga('create', 'UA-61303691-1', 'auto');
       ga('send', 'pageview');
     </script>
-    <!-- End Google Analytics -->
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
-    <script type="text/javascript">
-    Parse.initialize("vlxm5ebk6uC1dGyTpxHCdUFeUruXyzzMupZq28eB", "YW7U8uMUzlMspFam3lrAdbRYHCVnXuBRHAB4YnSM");</script>
-    <script src="history.js"></script>
+    
 </head>
 <body>
+
+    <div id = "signin">
+    Name: <input id="username" type = "text"><br>
+    Password: <input id="password" type = "password"><br>
+    <a class = "button" id="logInBtn" onclick="login();">Log In</a>
+    </div>
+    <div id = "signout">
+     <a class = "button" id="logOutBtn" onclick="signout();">Log Out</a>
+    </div>
+  
+  
+
   <div class = "row">
     <h3 onclick="window.location='index.html'"> David Rittenhouse's 1771 Orrery </h3>
     <a id="homeBtn" class="button" onclick="window.location='index.html'"> Home </a> 
@@ -40,24 +47,15 @@
     <a class="button" href="objAssembly.html">OBJ Assembly</a>
   </div>
 
-  <div class = "row" id="signin">
-    Name: <input id="username"><br>
-    Password: <input id="password"><br>
-    <button id="signUpBtn" onclick="signup();">Sign Up</button>
-    <button id="logInBtn" onclick="login();">Log In</button>
-  </div>
-
-  <div class = "row" id="signout" style="display:none">
-    <button id="signOutBtn" onclick="signout();">Sign Out</button>
-  </div>
-
   <div class="row">
          
     <img id = "rittenhouse" src="http://upload.wikimedia.org/wikipedia/commons/7/73/Charles_Willson_Peale_-_David_Rittenhouse_-_Google_Art_Project.jpg">
       <br>
+    <div class = "offset-by-two eight columns">
     <a class = "button" onclick = "editDescription();" id = "editDescription"> 
         Edit Description 
     </a>
+    </div>
     <br>
     <div id = "historyP" class = "offset-by-two eight columns">
     <p id = "p0">"Acquired in 1771 by the College of Philadelphia (later to be renamed

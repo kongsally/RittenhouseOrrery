@@ -37,3 +37,15 @@ textarea {
 #editDescription {
     display: none;
 }
+
+.row {
+    text-align: center;
+}
+
+#signin, #signout{
+    display: none;
+    position: fixed;
+    text-align: right;
+    right: 1em;
+    top: 1em;
+}
