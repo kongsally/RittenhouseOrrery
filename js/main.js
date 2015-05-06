@@ -16,7 +16,7 @@ var pivots = [];
 var planets = [];
 var timeScale = 5;
 var windowPivot = new THREE.Object3D();
-var mainWindowOpen = false;
+var mainWindowOpen = true;
 var play = true;
 
 function drawszlider(count, total){
