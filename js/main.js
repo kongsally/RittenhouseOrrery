@@ -56,7 +56,7 @@ function checkKey(e) {
 
 function toggleCanvas() {
   $("#container").css("display", "block");
-  $("#info").css("display", "block");
+  // $("#info").css("display", "block");
   $("#szlider").css("display", "none");
   $("#loading").css("display", "none");
   clearInterval(loadTimer);
