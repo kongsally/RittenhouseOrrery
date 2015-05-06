@@ -61,6 +61,14 @@ function login() {
 function signout() {
 	Parse.User.logOut();
 	isAdmin = false;
+	if(editing) {
+		saveDescriptions();
+		$("#editsP").empty();
+		for(var i = 0; i < historyPs.length; i++) {
+			$("#" + historyPs[i].id).css("display", "block");
+		}
+		$("#editDescription").html("Edit Description");
+	}
 	$("#signout").css("display","none");
 	$("#editDescription").css("display", "none");
 }
