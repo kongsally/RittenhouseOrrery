@@ -120,9 +120,9 @@
 		"specularFile": "mainWindow_specular.png",
 		"normalFile": "",
 		"origin" : {
-			"x" : 12,
-			"y" : -9,
-			"z" : -70
+			"x" : 0,
+			"y" : 0,
+			"z" : 1
 		},
 		"scale" : {
 			"x" : 8,
