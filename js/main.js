@@ -11,8 +11,17 @@ var countUp = 0;
 var projector, mouse = { x: 0, y: 0 }, INTERSECTED;
 var stillLoading;
 var loadTimer;
-var loadTimerComplete;
 var percentIncrease;
+
+var windowPivot = new THREE.Object3D();
+windowPivot.position.set(-22, 9, 86);
+
+var pivot = new THREE.Object3D();
+pivot.name = "pivot";
+pivot.position.set(0, 8,0);
+
+var play = true;
+
 
 
 function drawszlider(count, total){
@@ -34,18 +43,7 @@ function incrszlider(increase) {
   }
 }
 
-var windowPivot = new THREE.Object3D();
-windowPivot.position.set(-22, 9, 86);
-
-var pivot = new THREE.Object3D();
-pivot.name = "pivot";
-pivot.position.set(0, 8,0);
-
-var play = true;
-
-
 document.onkeydown = checkKey;
-
 function checkKey(e) {
 
     e = e || window.event;
@@ -60,10 +58,8 @@ function checkKey(e) {
 function toggleCanvas() {
   $("#container").css("display", "block");
   $("#info").css("display", "block");
-
   $("#szlider").css("display", "none");
   $("#loading").css("display", "none");
-  clearInterval(loadTimerComplete);
   clearInterval(loadTimer);
 }
 
@@ -239,6 +235,13 @@ function loadObj(id, objName, fileName, albedo, spec, norm, pos, scale, rot) {
             pivot.add(scene.getObjectByName("Jupiter Moon1"));
             pivot.add(scene.getObjectByName("Jupiter Moon2"));
             pivot.add(scene.getObjectByName("Jupiter Moon3"));
+            pivot.add(scene.getObjectByName("Saturn"));
+            pivot.add(scene.getObjectByName("Saturn Moon1"));
+            pivot.add(scene.getObjectByName("Saturn Moon2"));
+            pivot.add(scene.getObjectByName("Saturn Moon3"));
+            pivot.add(scene.getObjectByName("Saturn Moon4"));
+            pivot.add(scene.getObjectByName("Saturn Moon5"));
+            pivot.add(scene.getObjectByName("Saturn Moon6"));
             scene.add(pivot);
 
             windowPivot.add(scene.getObjectByName("Main Window"));
