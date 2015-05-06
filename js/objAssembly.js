@@ -126,11 +126,13 @@ function loadObj(objName, fileName, albedo, spec, norm, pos, scale, rot) {
 
   if(albedo !== "") {
     material.map = THREE.ImageUtils.loadTexture(path + albedo);
+    material.map.minFilter = THREE.LinearFilter;
     material.transparent = true;
   }
 
   if(spec !== "") {
     material.specularMap = THREE.ImageUtils.loadTexture(path + spec);
+    material.specularMap.minFilter = THREE.LinearFilter;
     material.specular  = new THREE.Color('white');
   }
 
