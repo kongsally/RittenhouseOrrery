@@ -15,10 +15,8 @@ var percentIncrease;
 var pivots = [];
 var planets = [];
 var timeScale = 5;
-
 var windowPivot = new THREE.Object3D();
-windowPivot.position.set(-22, 9, 86);
-
+var mainWindowOpen = false;
 var play = true;
 
 function drawszlider(count, total){
@@ -198,7 +196,7 @@ function setup() {
   // draw!
   renderer.render(scene, camera);
   animate();
-  openMainWindow();
+
 }
 
 function load_json_obj(filePath){
@@ -284,11 +282,7 @@ function loadObj(id, objName, fileName, albedo, spec, norm, pos, scale, rot) {
             addPivots();
             windowPivot.add(scene.getObjectByName("Main Window"));
             scene.add(windowPivot);
-
-         if(countUp == objectModels.length) {
-            render();
-            console.log("DoneLoading");
-         }
+            openMainWindow();
         }
       });
 }
@@ -357,9 +351,11 @@ function onMouseMove( event ) {
 
 
 function onMouseClick (event) {
-  var bbox = INTERSECTED.geometry.boundingBox;
-  console.log(bbox);
-   //mouseRayCast();
+
+  if(INTERSECTED.geometry.name === "Main Window") {
+    openMainWindow();
+  }
+  
 }
 
 
@@ -453,16 +449,19 @@ function crank() {
   play = !play;
 }
 
-var mainWindowOpen = false;
 function openMainWindow() {
   var mainWindow = scene.getObjectByName("Main Window");
   if(!mainWindowOpen) {
+    windowPivot.position.set(-22, 9, 86);
+    scene.getObjectByName("Main Window").position.set(12, -9, -70);
     windowPivot.rotation.y = 45 * Math.PI/180;
     mainWindowOpen = true;
   } else {
     windowPivot.rotation.y = 0;
+    scene.getObjectByName("Main Window").position.set(22, -9, -86);
     mainWindowOpen = false;
   }
+  render();
 }
 
 window.addEventListener('mousemove', onMouseMove, false );
