@@ -444,13 +444,14 @@ function update()
   else // there are no intersections
   {
     // restore previous intersection object (if it exists) to its original color
-    if ( INTERSECTED && INTERSECTED != null) 
+    if ( INTERSECTED) {
       INTERSECTED.material.color = new THREE.Color( 0x8C8C8C  );
       if(INTERSECTED.geometry.name === "Cabinet") {
         scene.getObjectByName("Cabinet Legs").children[0].material.color = new THREE.Color( 0x8C8C8C );
       } else if(INTERSECTED.geometry.name === "Cabinet Legs") {
         scene.getObjectByName("Cabinet").children[0].material.color = new THREE.Color( 0x8C8C8C );
       }
+    }
     // remove previous intersection object reference
     //     by setting current intersection object to "nothing"
     INTERSECTED = null;
