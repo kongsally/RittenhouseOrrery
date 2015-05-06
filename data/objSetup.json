@@ -69,28 +69,6 @@
 
 	},
 	{
-		"name": "Zodiac Ring",
-		"objFile": "zodiacRing.obj",
-		"albedoFile": "zodiacRing_albedo.png",
-		"specularFile": "zodiacRing_Specular.png",
-		"normalFile": "",
-		"origin" : {
-			"x" : 0,
-			"y" : 0,
-			"z" : 0.1
-		},
-		"scale" : {
-			"x" : 8,
-			"y" : 8,
-			"z" : 8
-		},
-		"rotate" : {
-			"x" : 0,
-			"y" : 0,
-			"z" : 0
-		}
-	},
-	{
 		"name": "Cabinet Legs",
 		"objFile": "cabinet_legs.obj",
 		"albedoFile": "cabinetlegs_albedo.png",
@@ -112,28 +90,6 @@
 			"z" : 0
 		}
 
-	},
-	{
-		"name": "Main Window",
-		"objFile": "mainWindow.obj",
-		"albedoFile": "mainWindow_albedo.png",
-		"specularFile": "mainWindow_specular.png",
-		"normalFile": "",
-		"origin" : {
-			"x" : 0,
-			"y" : 0,
-			"z" : 1
-		},
-		"scale" : {
-			"x" : 8,
-			"y" : 8,
-			"z" : 8
-		},
-		"rotate" : {
-			"x" : 0,
-			"y" : 0,
-			"z" : 0
-		}
 	},
 	{
 		"name": "Window Left",
@@ -519,6 +475,29 @@
 			"x" : 8,
 			"y" : 8,
 			"z" : 8
+		},
+		"rotate" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		}
+	},
+	{
+		"name": "Sphere",
+		"description": " The Rittenhouse Orrery is housed in a Chippendale case built by the prominent Philadelphia cabinetmakers John Folwell and Parnell Gibbs",
+		"objFile": "sphere.obj",
+		"albedoFile": "copper_albedo.png",
+		"specularFile": "copper_metalness.png",
+		"normalFile": "",
+		"origin" : {
+			"x" : 0,
+			"y" : 0,
+			"z" : 0
+		},
+		"scale" : {
+			"x" : 1,
+			"y" : 1,
+			"z" : 1
 		},
 		"rotate" : {
 			"x" : 0,

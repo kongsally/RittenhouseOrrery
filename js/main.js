@@ -9,7 +9,16 @@ var gearModels = [];
 var objectModels = []; //keep objectmodels Index as ID for description access
 var countUp = 0;
 var projector, mouse = { x: 0, y: 0 }, INTERSECTED;
-var sunPivot = new THREE.Object3D();
+
+var windowPivot = new THREE.Object3D();
+windowPivot.position.set(-12, 9, 70);
+
+var pivot = new THREE.Object3D();
+pivot.name = "pivot";
+pivot.position.set(0, 8,0);
+
+var play = true;
+
 
 document.onkeydown = checkKey;
 
@@ -96,12 +105,10 @@ function setup() {
   //load objs
   load_json_obj("data/sample.json");
 
-  //set pivot
-  sunPivot.position.set(0, 1, 0.5317);
-
   // draw!
   renderer.render(scene, camera);
   animate();
+  openMainWindow();
 
 }
 
@@ -183,6 +190,24 @@ function loadObj(id, objName, fileName, albedo, spec, norm, pos, scale, rot) {
          if(countUp == objectModels.length) {
             render();
             toggleCanvas();
+            
+            pivot.add(scene.getObjectByName("Earth"));
+            pivot.add(scene.getObjectByName("Earth Plane"));
+            pivot.add(scene.getObjectByName("Venus"));
+            pivot.add(scene.getObjectByName("Mars"));
+            pivot.add(scene.getObjectByName("Sun and Mercury"));
+            pivot.add(scene.getObjectByName("Mercury"));
+            pivot.add(scene.getObjectByName("Knob"));
+            pivot.add(scene.getObjectByName("Jupiter Arm"));
+            pivot.add(scene.getObjectByName("Saturn Arm"));
+            pivot.add(scene.getObjectByName("Earth Moon"));
+            pivot.add(scene.getObjectByName("Jupiter Moon1"));
+            pivot.add(scene.getObjectByName("Jupiter Moon2"));
+            pivot.add(scene.getObjectByName("Jupiter Moon3"));
+            scene.add(pivot);
+
+            windowPivot.add(scene.getObjectByName("Main Window"));
+            scene.add(windowPivot);
          }
          
       });
@@ -228,6 +253,9 @@ function animate() {
   //mouseRayCast();
   render();
   update();
+  if(play) {
+    pivot.rotation.z += 1 * Math.PI/180;
+  }
 
 }
 
@@ -344,33 +372,18 @@ function update()
 function crank() {
  
   //gear 1 is mother gear
-  console.log("cranking");
-  console.log(gears[0]);
-  console.log(scene);
-
-  interact(gears[0],gears[0].teethNum);
-
-  for(var i =0 ;i < gears.length; i++) {
-    var object = scene.getObjectByName( "Gear" + i, true );
-    object.rotation.z = gears[i].rotateNum * Math.PI/180;
-  }
+  play = !play;
 }
 
 var mainWindowOpen = false;
 function openMainWindow() {
   var mainWindow = scene.getObjectByName("Main Window");
   if(!mainWindowOpen) {
-    mainBBox = mainWindow.children[0].geometry.boundingBox;
-    mainWindow.applyMatrix(
-      new THREE.Matrix4().makeTranslation(
-        -6 * (mainBBox.max.x - mainBBox.min.x), 
-        0,0));
-    mainWindow.rotation.y = 70 * Math.PI/180;
-    // mainWindow.position.x = mainBBox.min.x;
+
+    windowPivot.rotation.y = 45 * Math.PI/180;
     mainWindowOpen = true;
   } else {
-    mainWindow.rotation.y = 0;
-    mainWindow.position.x = 0;
+    windowPivot.rotation.y = 0;
     mainWindowOpen = false;
   }
 }

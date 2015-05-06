@@ -120,9 +120,9 @@
 		"specularFile": "mainWindow_specular.png",
 		"normalFile": "",
 		"origin" : {
-			"x" : 0,
-			"y" : 0,
-			"z" : 1
+			"x" : 12,
+			"y" : -9,
+			"z" : -70
 		},
 		"scale" : {
 			"x" : 8,
@@ -213,7 +213,7 @@
 		"normalFile": "",
 		"origin" : {
 			"x" : 0,
-			"y" : 0,
+			"y" : -8,
 			"z" : 0
 		},
 		"scale" : {
@@ -236,7 +236,7 @@
 		"normalFile": "",
 		"origin" : {
 			"x" : 0,
-			"y" : 0,
+			"y" : -8,
 			"z" : 0
 		},
 		"scale" : {
@@ -259,7 +259,7 @@
 		"normalFile": "",
 		"origin" : {
 			"x" : 0,
-			"y" : 0,
+			"y" : -8,
 			"z" : 0
 		},
 		"scale" : {
@@ -305,7 +305,7 @@
 		"normalFile": "",
 		"origin" : {
 			"x" : 0,
-			"y" : 0,
+			"y" : -8,
 			"z" : 0
 		},
 		"scale" : {
@@ -328,7 +328,7 @@
 		"normalFile": "",
 		"origin" : {
 			"x" : 0,
-			"y" : 0,
+			"y" : -8,
 			"z" : 0
 		},
 		"scale" : {
@@ -351,7 +351,7 @@
 		"normalFile": "",
 		"origin" : {
 			"x" : 0,
-			"y" : 0,
+			"y" : -8,
 			"z" : 0
 		},
 		"scale" : {
@@ -374,7 +374,7 @@
 		"normalFile": "",
 		"origin" : {
 			"x" : 0,
-			"y" : 0,
+			"y" : -8,
 			"z" : 0
 		},
 		"scale" : {
@@ -397,7 +397,7 @@
 		"normalFile": "",
 		"origin" : {
 			"x" : 0,
-			"y" : 0,
+			"y" : -8,
 			"z" : 0
 		},
 		"scale" : {
@@ -420,8 +420,8 @@
 		"normalFile": "",
 		"origin" : {
 			"x" : 0,
-			"y" : 0,
-			"z" : 0
+			"y" : -8,
+			"z" : 2
 		},
 		"scale" : {
 			"x" : 8,
@@ -443,7 +443,7 @@
 		"normalFile": "",
 		"origin" : {
 			"x" : 0,
-			"y" : 0,
+			"y" : -8,
 			"z" : 0
 		},
 		"scale" : {
@@ -466,7 +466,7 @@
 		"normalFile": "",
 		"origin" : {
 			"x" : 0,
-			"y" : 0,
+			"y" : -8,
 			"z" : 0
 		},
 		"scale" : {
@@ -489,7 +489,7 @@
 		"normalFile": "",
 		"origin" : {
 			"x" : 0,
-			"y" : 0,
+			"y" : -8,
 			"z" : 0
 		},
 		"scale" : {
@@ -512,7 +512,7 @@
 		"normalFile": "",
 		"origin" : {
 			"x" : 0,
-			"y" : 0,
+			"y" : -8,
 			"z" : 0
 		},
 		"scale" : {
