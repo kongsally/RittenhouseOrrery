@@ -4,7 +4,7 @@
 		"d": 0.012,
 		"size": 144,
 		"distance" : 57.9,
-		"period" : 88,
+		"period" : -88,
 		"diameter" : 4880
 	},
 	{
@@ -12,7 +12,7 @@
 		"d": 0.029,
 		"size": 252,
 		"distance" : 108.2,
-		"period" : 224.7,
+		"period" : -224.7,
 		"diameter" : 12100
 	},
 	{
@@ -20,7 +20,7 @@
 		"d": 0.031,
 		"size": 360,
 		"distance" : 149.6,
-		"period" : 365.2,
+		"period" : -365.2,
 		"diameter" : 12756
 	},
 	{
@@ -28,7 +28,7 @@
 		"d": 0.016,
 		"size": 540,
 		"distance" : 227.9,
-		"period" : 687,
+		"period" : -687,
 		"diameter" : 6794
 	},
 	{
@@ -36,7 +36,7 @@
 		"d": 0.34,
 		"size": 1872,
 		"distance" : 778.3,
-		"period" : 4332,
+		"period" : -4332,
 		"diameter" : 142800
 	},
 	{
@@ -44,7 +44,7 @@
 		"d": 0.29,
 		"size": 3420,
 		"distance" : 1427,
-		"period" : 10759,
+		"period" : -10759,
 		"diameter" : 120600
 	}
 
