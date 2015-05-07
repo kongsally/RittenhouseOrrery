@@ -1,6 +1,8 @@
 
 .container {
-	margin-top: 42%;
+	width: 100%;
+	position: fixed;
+	bottom: 5%;
 }
 
 body{
@@ -19,6 +21,8 @@ h3{
 }
 
 #navContainer {
+	margin-left: 2em;
+	text-align: left;
 }
 
 #vidContainer {
@@ -34,7 +38,7 @@ a.button:hover {
 }
 
 video#bgVid {
-	position: fixed; left: 0%; bottom: 0%;
+	position: fixed; left: 0%; top: 0%;
 	min-width: 100%; min-height: 100%;
 	width: auto; height: auto; z-index: -100;
 	background: url("../data/vidPoster.png") no-repeat;
