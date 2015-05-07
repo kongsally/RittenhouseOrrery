@@ -22,17 +22,11 @@
       ga('create', 'UA-61303691-1', 'auto');
       ga('send', 'pageview');
     </script>
-    <script>
-      function replay() {
-         document.getElementsByTagName('video').currentTime = 0;
-         document.getElementsByTagName('video')[0].play();
-      }
-    </script>
     <!-- End Google Analytics -->
 </head>
 <body>
 
-  <video autoplay onended="replay();" poster="data/vidPoster.png" id="bgVid" >
+  <video autoplay loop poster="data/vidPoster.png" id="bgVid" >
     <source src="data/turntableBig.mp4" type="video/mp4">
   </video>
      
@@ -42,6 +36,7 @@
       <a class="button" href="simulator.html">Simulator</a>
       <a class="button" href="objAssembly.html">OBJ Assembly</a>
       <a id="histBtn" class="button" onclick="window.location='history.html'"> About </a>
+      <a href='data/OrrerySkyShopApp.zip' class='button' download>Flythrough App</a>
   </div>
 
  
