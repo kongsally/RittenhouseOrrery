@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="css/skeleton.css">
    <link rel="stylesheet" href="css/main.css">
   <link rel="icon" type="image/png" href="images/favicon.png">
+  <script src="js/jquery.js"></script>
     <!-- Google Analytics -->
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -21,25 +22,30 @@
       ga('create', 'UA-61303691-1', 'auto');
       ga('send', 'pageview');
     </script>
+    <script>
+      function replay() {
+         document.getElementsByTagName('video').currentTime = 0;
+         document.getElementsByTagName('video')[0].play();
+      }
+    </script>
     <!-- End Google Analytics -->
 </head>
 <body>
 
-  <div class="container">
-    <div class="row">
-      <div id = "navContainer" class="one-half column">
-        <h4>Rittenhouse Orrery Project</h4>
-        <p>Welcome to the Rittenhouse Orrery Project!<br> This site is still under construction.</p>
-          <div class = "row">
-            <a class="button" href="simulator.html">Simulator</a>
-            <a class="button" href="objAssembly.html">OBJ Assembly</a>
-            <a id="histBtn" class="button" onclick="window.location='history.html'"> History </a>
-          </div>
-      </div>
-      <div class="one-half column">
-        <img id = "orreryImg" src="images/orrery.jpeg">
-        <div>
-    </div>
+  <video autoplay onended="replay();" poster="data/vidPoster.png" id="bgVid" >
+    <source src="data/turntableBig.mp4" type="video/mp4">
+  </video>
+     
+ <div class="container">
+  <div id="navContainer" class = "row">
+  <h3 onclick="window.location='index.html'"> David Rittenhouse's 1771 Orrery </h3>
+      <a class="button" href="simulator.html">Simulator</a>
+      <a class="button" href="objAssembly.html">OBJ Assembly</a>
+      <a id="histBtn" class="button" onclick="window.location='history.html'"> About </a>
+  </div>
+
+ 
+    <!-- <img id = "orreryImg" src="images/orrery.jpeg"> -->
   </div>
 
 

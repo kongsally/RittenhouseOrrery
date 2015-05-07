@@ -1,6 +1,15 @@
 
 .container {
-	margin-top: 10%;
+	margin-top: 42%;
+}
+
+body{
+	
+}
+
+h3{
+	color: #fefefe;
+	font-weight: 100;
 }
 
 #orreryImg {
@@ -10,6 +19,24 @@
 }
 
 #navContainer {
-	padding-top: 10%;
-	margin-bottom: 3em;
+}
+
+#vidContainer {
+	text-align: center;
+}
+
+a.button{
+	background-color: rgba(255,255,255,0.8);
+}
+
+a.button:hover {
+	background-color: rgb(255,255,255);
+}
+
+video#bgVid {
+	position: fixed; left: 0%; bottom: 0%;
+	min-width: 100%; min-height: 100%;
+	width: auto; height: auto; z-index: -100;
+	background: url("../data/vidPoster.png") no-repeat;
+	background-size: cover;
 }
