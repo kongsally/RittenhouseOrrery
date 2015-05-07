@@ -14,7 +14,7 @@ var loadTimer;
 var percentIncrease;
 var pivots = [];
 var planets = [];
-var timeScale = 5;
+var timeScale = 365.2/12;
 var windowPivot = new THREE.Object3D();
 var mainWindowOpen = false;
 var play = true;
@@ -166,7 +166,7 @@ function setup() {
   camera.position.z = 300;
 
   //Orbit Control
-  controls = new THREE.OrbitControls( camera );
+  controls = new THREE.OrbitControls( camera, container );
   controls.maxDistance = 1000;
 
    // create light
@@ -334,7 +334,7 @@ function animate() {
   update();
   if(play) {
     for (var i = 0; i < pivots.length; i++) {
-      pivots[i].rotation.z += timeScale * 1.0/planets[i].period;
+      pivots[i].rotation.z += timeScale * (365.2/planets[i].period)/60 * Math.PI/180;
     }
   }
 
