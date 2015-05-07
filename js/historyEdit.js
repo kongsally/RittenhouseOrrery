@@ -4,6 +4,7 @@ var editing = false;
 var historyPs = [];
 var signinToggle = false;
 var isAdmin = false;
+var historyObj;
 
 //toggle sign-in with esc key
 $(document).keyup(function(e) {
@@ -28,6 +29,19 @@ $(document).keyup(function(e) {
 //initialize Parse
 $(function(){
 	Parse.initialize("vlxm5ebk6uC1dGyTpxHCdUFeUruXyzzMupZq28eB", "YW7U8uMUzlMspFam3lrAdbRYHCVnXuBRHAB4YnSM");
+	var history = Parse.Object.extend("History");
+	var query = new Parse.Query(history);
+	query.equalTo("type", "history");
+	query.find({
+	  success: function(results) {
+	  	historyObj = results[0];
+	    paragraphs = results[0].attributes.texts;
+	    loadDescriptions();
+	  },
+	  error: function(error) {
+	    alert("Error: " + error.code + " " + error.message);
+	  }
+	});
 });
 
 
@@ -73,37 +87,41 @@ function signout() {
 	$("#editDescription").css("display", "none");
 }
 
+function loadDescriptions() {
+	for(var i = 0; i < paragraphs.length; i++) {
+		$("#historyP").append("<p id = 'p" + i + "'>" + 
+			paragraphs[i] + "</p>");
+		historyPs.push("p" + i);
+	}
+}
+
 function editDescription() {
-
-	paragraphs = [];
-	historyPs = $("#historyP").children();
-
 	if(!editing) {
 		$("#editDescription").html("Save");
-		for(var i = 0; i < historyPs.length; i++) {
-			paragraphs.push(historyPs[i].innerHTML);
-			$("#" + historyPs[i].id).css("display", "none");
-			$("#editsP").append("<textarea id='e" + historyPs[i].id + 
+		for(var i = 0; i < paragraphs.length; i++) {
+			$("#" + historyPs[i]).css("display", "none");
+			$("#editsP").append("<textarea id='e" + historyPs[i] + 
 				"'rows='10' cols='100'>" + "</textarea>");
-			$("#e" + historyPs[i].id).val(paragraphs[i]);
+			$("#e" + historyPs[i]).val(paragraphs[i]);
 		}
 	} else {
 		saveDescriptions();
 		$("#editsP").empty();
 		for(var i = 0; i < historyPs.length; i++) {
-			$("#" + historyPs[i].id).css("display", "block");
+			$("#" + historyPs[i]).css("display", "block");
 		}
 		$("#editDescription").html("Edit Description");
 	}
-
 	editing = !editing;
 }
 
 function saveDescriptions() {
 	editPs = $("#editsP").children();
-	console.log(editPs);
-	for(var i = 0; i < editPs.length; i++) {
-		console.log(historyPs[i]);
-		historyPs[i].innerHTML = $("#" + editPs[i].id).val();
+	for(var i = 0; i < historyPs.length; i++) {
+		$("#" + historyPs[i])[0].innerHTML = $("#" + editPs[i].id).val();
+		paragraphs[i] = $("#" + editPs[i].id).val();
 	}
+	historyObj.set("texts", paragraphs);
+	historyObj.save();
 }
+
