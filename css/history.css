@@ -34,7 +34,7 @@ textarea {
     margin-bottom: 2em;
 }
 
-#editDescription {
+#editDescription, #addDescription {
     display: none;
 }
 

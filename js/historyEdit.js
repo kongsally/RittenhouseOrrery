@@ -85,6 +85,7 @@ function signout() {
 	}
 	$("#signout").css("display","none");
 	$("#editDescription").css("display", "none");
+	$("#addDescription").css("display", "none");
 }
 
 function loadDescriptions() {
@@ -98,6 +99,7 @@ function loadDescriptions() {
 function editDescription() {
 	if(!editing) {
 		$("#editDescription").html("Save");
+		$("#addDescription").css("display", "block");
 		for(var i = 0; i < paragraphs.length; i++) {
 			$("#" + historyPs[i]).css("display", "none");
 			$("#editsP").append("<textarea id='e" + historyPs[i] + 
@@ -111,6 +113,7 @@ function editDescription() {
 			$("#" + historyPs[i]).css("display", "block");
 		}
 		$("#editDescription").html("Edit Description");
+		$("#addDescription").css("display", "none");
 	}
 	editing = !editing;
 }
@@ -123,5 +126,13 @@ function saveDescriptions() {
 	}
 	historyObj.set("texts", paragraphs);
 	historyObj.save();
+}
+
+function appendParagraph() {
+	historyPs.push("p" + paragraphs.length);
+	$("#historyP").append("<p id = 'p" + paragraphs.length + "'></p>");
+	paragraphs.push("");
+	$("#editsP").append("<textarea id='e" + historyPs[historyPs.length - 1] + 
+				"'rows='10' cols='100'>" + "</textarea>");
 }
 
