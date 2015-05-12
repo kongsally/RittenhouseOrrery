@@ -58,3 +58,11 @@ textarea {
 #imgs > img {
     width: 33%;
 }
+
+#teamImg {
+    text-align: center;
+}
+
+#teamImg > img {
+    width: 80%;
+}
