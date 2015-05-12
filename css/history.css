@@ -61,8 +61,10 @@ textarea {
 
 #teamImg {
     text-align: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
 
 #teamImg > img {
-    width: 80%;
+    width: 48%;
 }
