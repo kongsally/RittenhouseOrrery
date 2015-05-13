@@ -103,7 +103,7 @@ function editDescription() {
 		for(var i = 0; i < paragraphs.length; i++) {
 			$("#" + historyPs[i]).css("display", "none");
 			$("#editsP").append("<textarea id='e" + historyPs[i] + 
-				"'rows='10' cols='100'>" + "</textarea>");
+				"'rows='8' cols='50'>" + "</textarea>");
 			$("#e" + historyPs[i]).val(paragraphs[i]);
 		}
 	} else {
@@ -133,6 +133,6 @@ function appendParagraph() {
 	$("#historyP").append("<p id = 'p" + paragraphs.length + "'></p>");
 	paragraphs.push("");
 	$("#editsP").append("<textarea id='e" + historyPs[historyPs.length - 1] + 
-				"'rows='10' cols='100'>" + "</textarea>");
+				"'rows='8' cols='50'>" + "</textarea>");
 }
 
