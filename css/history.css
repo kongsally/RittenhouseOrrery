@@ -1,4 +1,9 @@
 
+#theTeam {
+    padding-bottom: 3em;
+    margin-bottom: 2em;
+}
+
 #theTeam > div > div > img {
     width: 100%;
 }
@@ -11,6 +16,11 @@
 #theTeam > h3 {
     padding-top: 2em;
     width: 100%;
+    border-top: solid 1px #2c2c2c;
+}
+
+#orreryRow {
+    padding-top: 2em;
     border-top: solid 1px #2c2c2c;
 }
 
